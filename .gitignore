@@ -49,3 +49,9 @@ yarn-error.log*
 *.sw?
 
 .env
+
+# Virtual environment
+venv/
+
+# Large video files in root
+12421216_3840_2160_30fps.mp4
