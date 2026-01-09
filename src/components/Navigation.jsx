@@ -109,19 +109,19 @@ export default function Navigation({ onLogoClick }) {
   ];
 
   const solutionsItems = [
-    { 
-      title: 'AI Automation', 
-      description: 'Streamline your business processes',
+    {
+      title: 'Operational Efficiency',
+      description: 'Streamline field and internal operations',
       link: '#'
     },
-    { 
-      title: 'Custom Solutions', 
-      description: 'Tailored AI for your needs',
+    {
+      title: 'Growth & Retention',
+      description: 'Uncover hidden revenue opportunities using your data',
       link: '#'
     },
-    { 
-      title: 'Integration Services', 
-      description: 'Connect your existing systems',
+    {
+      title: 'Enterprise API',
+      description: 'Connect your existing ecosystem',
       link: '#'
     },
   ];
