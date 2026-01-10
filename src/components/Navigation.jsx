@@ -9,6 +9,7 @@ import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 export default function Navigation({ onLogoClick }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [whoWeAreOpen, setWhoWeAreOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
@@ -16,6 +17,11 @@ export default function Navigation({ onLogoClick }) {
   const [languageOpen, setLanguageOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const isHomePage = pathname === '/';
+
+  // Handle hydration - only run client-side code after mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const handleDropdownToggle = (dropdown) => {
     if (dropdown === 'solutions') {
@@ -67,14 +73,19 @@ export default function Navigation({ onLogoClick }) {
   };
   
   useEffect(() => {
+    if (!mounted) return;
+
     const handleScroll = () => {
       // Check if scrolled past hero section (viewport height)
       setIsScrolled(window.scrollY > window.innerHeight);
     };
 
+    // Check initial scroll position
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [mounted]);
   
   const handleHomeClick = (e) => {
     e.preventDefault();
@@ -212,11 +223,12 @@ export default function Navigation({ onLogoClick }) {
           <div className="relative z-30 max-w-[1920px] mx-auto px-8 lg:px-16">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" onClick={handleHomeClick} className="flex items-center">
-              <img 
-                src={isScrolled ? "/ArdenusLogoBlue.png" : "/ArdenusLogoWhite.png"}
-                alt="Logo" 
+            <Link href="/" onClick={handleHomeClick} className="flex items-center flex-shrink-0">
+              <img
+                src={mounted && isScrolled ? "/ArdenusLogoBlue.png" : "/ArdenusLogoWhite.png"}
+                alt="Logo"
                 className="h-20 w-auto transition-all duration-500"
+                suppressHydrationWarning
               />
             </Link>
 
@@ -228,7 +240,7 @@ export default function Navigation({ onLogoClick }) {
                 <div className="relative h-20 flex items-center">
                   <button 
                     onClick={() => handleDropdownToggle('solutions')}
-                    className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
+                    className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
                     Solutions
@@ -240,7 +252,7 @@ export default function Navigation({ onLogoClick }) {
                 <div className="relative h-20 flex items-center">
                   <button 
                     onClick={() => handleDropdownToggle('products')}
-                    className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
+                    className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
                     Products
@@ -252,7 +264,7 @@ export default function Navigation({ onLogoClick }) {
                 <div className="relative h-20 flex items-center">
                   <button 
                     onClick={() => handleDropdownToggle('resources')}
-                    className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
+                    className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
                     Resources
@@ -261,11 +273,11 @@ export default function Navigation({ onLogoClick }) {
                 </div>
               </div>
 
-              <button className={`text-base font-light transition-colors duration-500 ${isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
+              <button className={`text-base font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
                 Enterprise
               </button>
-              <button className={`text-base font-light transition-colors duration-500 ${isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
+              <button className={`text-base font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
                 Investors
               </button>
@@ -276,15 +288,15 @@ export default function Navigation({ onLogoClick }) {
               <div className="relative h-20 flex items-center">
                 <button 
                   onClick={() => handleDropdownToggle('language')}
-                  className={`transition-colors duration-500 ${isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
+                  className={`transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                 >
                   <Globe className="w-5 h-5" strokeWidth={1.5} />
                 </button>
               </div>
-              <Button 
+              <Button
                 className={`rounded-none px-8 py-2 text-sm font-light shadow-lg hover:shadow-xl transition-all duration-500 ${
-                  isScrolled 
-                    ? 'bg-[#122b3e] text-white border border-[#122b3e] hover:bg-white hover:text-[#122b3e]' 
+                  mounted && isScrolled
+                    ? 'bg-[#122b3e] text-white border border-[#122b3e] hover:bg-white hover:text-[#122b3e]'
                     : 'bg-white text-[#122b3e] border border-white hover:bg-[#122b3e] hover:text-white hover:border-[#122b3e]'
                 }`}
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
@@ -296,9 +308,9 @@ export default function Navigation({ onLogoClick }) {
             {/* Mobile Menu Button */}
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="xl:hidden p-2">
               {mobileMenuOpen ? (
-                <X className={`w-6 h-6 transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`} />
+                <X className={`w-6 h-6 transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]' : 'text-white'}`} />
               ) : (
-                <Menu className={`w-6 h-6 transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`} />
+                <Menu className={`w-6 h-6 transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]' : 'text-white'}`} />
               )}
             </button>
           </div>
@@ -381,13 +393,13 @@ export default function Navigation({ onLogoClick }) {
                   <a
                     key={idx}
                     href={item.link}
-                    className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
+                    className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${mounted && isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
-                    <h3 className={`font-medium text-base mb-1 transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>
+                    <h3 className={`font-medium text-base mb-1 transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>
                       {item.title}
                     </h3>
-                    <p className={`text-sm font-light transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
+                    <p className={`text-sm font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
                       {item.description}
                     </p>
                   </a>
@@ -427,13 +439,13 @@ export default function Navigation({ onLogoClick }) {
                     key={idx}
                     href={item.link}
                     onClick={closeAllDropdowns}
-                    className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
+                    className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${mounted && isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
-                    <h3 className={`font-medium text-base mb-1 transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>
+                    <h3 className={`font-medium text-base mb-1 transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>
                       {item.title}
                     </h3>
-                    <p className={`text-sm font-light transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
+                    <p className={`text-sm font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
                       {item.description}
                     </p>
                   </Link>
@@ -472,13 +484,13 @@ export default function Navigation({ onLogoClick }) {
                   <a
                     key={idx}
                     href={item.link}
-                    className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
+                    className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${mounted && isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
-                    <h3 className={`font-medium text-base mb-1 transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>
+                    <h3 className={`font-medium text-base mb-1 transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>
                       {item.title}
                     </h3>
-                    <p className={`text-sm font-light transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
+                    <p className={`text-sm font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
                       {item.description}
                     </p>
                   </a>
@@ -524,7 +536,7 @@ export default function Navigation({ onLogoClick }) {
                     className="py-4 px-8 hover:bg-white/5 transition-all text-left"
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
-                    <span className={`text-sm font-light underline transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>{language}</span>
+                    <span className={`text-sm font-light underline transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>{language}</span>
                   </button>
                 ))}
               </div>
