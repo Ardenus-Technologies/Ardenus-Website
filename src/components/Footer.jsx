@@ -58,8 +58,8 @@ export default function Footer() {
             alt="Ardenus"
             className="h-24 md:h-28"
           />
-          <a 
-            href="https://www.linkedin.com/company/backend-flows/"
+          <a
+            href="https://www.linkedin.com/company/ardenus/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-[#0077b5] transition-colors mt-3"
