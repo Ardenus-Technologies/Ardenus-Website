@@ -154,21 +154,28 @@ export default function GetStartedForm({ open, onOpenChange }) {
     setServerError('');
 
     try {
-      // Placeholder submission - simulates API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch('https://backendflows.app.n8n.cloud/webhook/d6b9f12c-0661-4891-ab52-6a5670373132', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          businessEmail: data.businessEmail,
+          phoneNumber: data.phoneNumber || '',
+          company: data.company,
+          jobTitle: data.jobTitle,
+          state: data.state,
+          businessGoals: data.businessGoals,
+          businessOverview: data.businessOverview,
+          emailOptIn: data.emailOptIn,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
 
-      // In production, replace with actual API call:
-      // const response = await fetch('/api/get-started', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // });
-      // if (!response.ok) {
-      //   const error = await response.json();
-      //   throw new Error(error.message || 'Submission failed');
-      // }
+      if (!response.ok) {
+        throw new Error('Submission failed. Please try again.');
+      }
 
-      console.log('Form submitted:', data);
       setIsSuccess(true);
 
       setTimeout(() => {

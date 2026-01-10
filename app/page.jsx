@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Navigation from '@/components/Navigation'
 import HeroSection from '@/components/HeroSection'
-import WhatWeDoSection from '@/components/WhatWeDoSection'
 import MissionStatement from '@/components/MissionStatement'
 import GridSection from '@/components/GridSection'
 import OurProcess from '@/components/OurProcess'
@@ -21,11 +20,10 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navigation onLogoClick={resetAnimations} />
       <HeroSection key={`hero-${animationKey}`} />
-      <WhatWeDoSection key={`whatwedo-${animationKey}`} />
+      <SolutionsSection key={`solutions-${animationKey}`} />
       <MissionStatement key={`mission-${animationKey}`} />
       <OurProcess key={`process-${animationKey}`} />
       <GridSection key={`grid-${animationKey}`} />
-      <SolutionsSection key={`solutions-${animationKey}`} />
       <Footer />
     </div>
   )

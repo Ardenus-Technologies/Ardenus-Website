@@ -3,79 +3,69 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import AIFileOrganizer from './solutions/AIFileOrganizer';
-import AILeadGeneration from './solutions/AILeadGeneration';
-import AIDataAnalysis from './solutions/AIDataAnalysis';
-import AICustomerSupport from './solutions/AICustomerSupport';
-import AIFinancialReporting from './solutions/AIFinancialReporting';
-import SolutionsChart from './SolutionsChart';
 
-const solutions = [
+const capabilities = [
   {
-    id: 'data-entry',
-    title: 'Data Entry',
-    heading: 'Data Entry Automation',
-    description: 'AI extracts data from documents and emails, validates it, and populates your systems instantly.',
-    Component: AIFileOrganizer
+    id: 'retention-intelligence',
+    title: 'Retention Intelligence',
+    heading: 'Predictive Customer Retention Systems',
+    description: 'AI-driven analytics that identify at-risk accounts, quantify churn probability, and deploy targeted intervention strategies to maximize customer lifetime value.'
   },
   {
-    id: 'lead-generation',
-    title: 'Lead Generation',
-    heading: 'AI Lead Generation',
-    description: 'Automatically identify, qualify, and nurture leads from multiple sources.',
-    Component: AILeadGeneration
+    id: 'predictive-revenue',
+    title: 'Predictive Revenue Modeling',
+    heading: 'Dynamic Revenue Forecasting Engine',
+    description: 'Machine learning models that analyze historical patterns, market signals, and pipeline data to generate high-confidence revenue projections across multiple time horizons.'
   },
   {
-    id: 'data-analysis',
-    title: 'Data Analysis',
-    heading: 'Automated Data Analysis',
-    description: 'Transform raw data into actionable insights with AI-powered reporting.',
-    Component: AIDataAnalysis
+    id: 'autonomous-ingestion',
+    title: 'Autonomous Ingestion',
+    heading: 'Intelligent Data Ingestion Pipeline',
+    description: 'Self-configuring ETL infrastructure that automatically discovers, validates, and normalizes data from disparate sources into unified operational datasets.'
   },
   {
-    id: 'customer-support',
-    title: 'Customer Support',
-    heading: 'AI Customer Support',
-    description: 'Automated response system that handles inquiries and routes complex issues.',
-    Component: AICustomerSupport
+    id: 'operations-automation',
+    title: 'Operations Automation',
+    heading: 'End-to-End Process Orchestration',
+    description: 'Comprehensive workflow automation that eliminates manual touchpoints, enforces business logic, and scales operational capacity without proportional headcount growth.'
   },
   {
-    id: 'financial-reporting',
-    title: 'Financial Reporting',
-    heading: 'Financial Reporting Automation',
-    description: 'Automated financial consolidation and custom report generation.',
-    Component: AIFinancialReporting
+    id: 'autonomous-resolution',
+    title: 'Autonomous Resolution',
+    heading: 'Self-Healing Resolution Framework',
+    description: 'Intelligent systems that detect anomalies, diagnose root causes, and execute corrective actions autonomously—reducing mean time to resolution by orders of magnitude.'
+  },
+  {
+    id: 'demand-forecasting',
+    title: 'Demand Forecasting',
+    heading: 'Precision Demand Intelligence',
+    description: 'Advanced forecasting models that synthesize market dynamics, seasonal patterns, and external variables to optimize resource allocation and inventory positioning.'
   }
 ];
 
 export default function SolutionsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
-  const [activeSolution, setActiveSolution] = useState(solutions[0]);
-  const [mobileActiveSolution, setMobileActiveSolution] = useState(null);
+  const [activeCapability, setActiveCapability] = useState(capabilities[0]);
+  const [mobileActiveCapability, setMobileActiveCapability] = useState(null);
 
   return (
-    <section id="solutions" ref={ref} className="py-24 px-6 lg:px-12 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <motion.p 
+    <section id="capabilities" ref={ref} className="py-20 md:py-28 bg-[#efeeee]">
+      <div className="max-w-[1920px] mx-auto px-8 lg:px-16">
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-sm text-gray-500 text-center mb-8 tracking-wider uppercase"
-          style={{ fontFamily: 'Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
+          className="mb-16"
         >
-          SOLUTIONS
-        </motion.p>
-        
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#1a2332] text-center max-w-5xl mx-auto leading-[1.15] mb-16"
-          style={{ fontFamily: 'Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
-        >
-          Solutions That We've Implemented
-        </motion.h2>
+          <span
+            className="text-lg md:text-xl lg:text-2xl font-normal text-[#122b3e] tracking-wider"
+            style={{ fontFamily: 'UAV-OSD-Sans-Mono, monospace' }}
+          >
+            CAPABILITIES
+          </span>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -84,27 +74,30 @@ export default function SolutionsSection() {
         >
           {/* Desktop Layout */}
           <div className="hidden lg:block">
-            <div className="grid grid-cols-12 gap-8">
-              {/* Left Side - Solution Tabs */}
+            <div className="grid grid-cols-12 gap-12">
+              {/* Left Side - Capability Tabs */}
               <div className="col-span-4 flex flex-col gap-3">
-                {solutions.map((solution) => (
+                {capabilities.map((capability) => (
                   <button
-                    key={solution.id}
-                    onMouseEnter={() => setActiveSolution(solution)}
-                    className={`w-full text-left p-5 rounded-xl border transition-all duration-300 ${
-                      activeSolution.id === solution.id
-                        ? 'bg-[#1a2332] border-[#1a2332] text-white shadow-lg'
-                        : 'bg-gray-50 border-gray-100 text-gray-900 hover:border-gray-200 hover:bg-gray-100'
+                    key={capability.id}
+                    onMouseEnter={() => setActiveCapability(capability)}
+                    className={`w-full text-left p-5 rounded-none border-l-2 transition-all duration-300 ${
+                      activeCapability.id === capability.id
+                        ? 'bg-[#122b3e] border-l-[#122b3e] text-white'
+                        : 'bg-white border-l-transparent text-[#122b3e] hover:bg-gray-50'
                     }`}
                   >
-                    <div 
-                      className="text-base font-medium"
-                      style={{ fontFamily: 'Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
+                    <div
+                      className="text-base font-normal tracking-wide"
+                      style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
                     >
-                      {solution.title}
+                      {capability.title}
                     </div>
-                    {activeSolution.id === solution.id && (
-                      <div className="flex items-center gap-1 mt-1 text-sm text-gray-300">
+                    {activeCapability.id === capability.id && (
+                      <div
+                        className="flex items-center gap-2 mt-2 text-sm text-white/70"
+                        style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                      >
                         Active Demo <ArrowRight className="w-3 h-3" />
                       </div>
                     )}
@@ -112,27 +105,21 @@ export default function SolutionsSection() {
                 ))}
               </div>
 
-              {/* Right Side - Demo Display */}
+              {/* Right Side - Content Display */}
               <div className="col-span-8">
-                <div className="bg-gray-50 rounded-xl border border-gray-100 p-6 h-[420px] flex flex-col overflow-hidden">
-                  <div className="mb-4">
-                    <h3 
-                      className="text-2xl font-medium text-[#1a2332] mb-2"
-                      style={{ fontFamily: 'Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
-                    >
-                      {activeSolution.heading}
-                    </h3>
-                    <p 
-                      className="text-base text-gray-600 font-light"
-                      style={{ fontFamily: 'Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
-                    >
-                      {activeSolution.description}
-                    </p>
-                  </div>
-                  
-                  <div className="flex-1 flex items-center justify-center overflow-hidden min-h-0">
-                    <activeSolution.Component key={activeSolution.id} />
-                  </div>
+                <div className="bg-white border-l-2 border-l-[#122b3e] p-8 h-auto flex flex-col">
+                  <h3
+                    className="text-2xl lg:text-3xl font-light text-[#122b3e] mb-4"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                  >
+                    {activeCapability.heading}
+                  </h3>
+                  <p
+                    className="text-base lg:text-lg text-[#122b3e]/70 font-light max-w-2xl leading-relaxed"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                  >
+                    {activeCapability.description}
+                  </p>
                 </div>
               </div>
             </div>
@@ -140,66 +127,54 @@ export default function SolutionsSection() {
 
           {/* Mobile Layout - Demo appears directly under each tab */}
           <div className="lg:hidden flex flex-col gap-3">
-            {solutions.map((solution) => (
-              <div key={solution.id}>
+            {capabilities.map((capability) => (
+              <div key={capability.id}>
                 <button
-                  onClick={() => setMobileActiveSolution(mobileActiveSolution?.id === solution.id ? null : solution)}
-                  className={`w-full text-left p-5 rounded-xl border transition-all duration-300 ${
-                    mobileActiveSolution?.id === solution.id
-                      ? 'bg-[#1a2332] border-[#1a2332] text-white shadow-lg'
-                      : 'bg-gray-50 border-gray-100 text-gray-900 hover:border-gray-200 hover:bg-gray-100'
+                  onClick={() => setMobileActiveCapability(mobileActiveCapability?.id === capability.id ? null : capability)}
+                  className={`w-full text-left p-5 border-l-2 transition-all duration-300 ${
+                    mobileActiveCapability?.id === capability.id
+                      ? 'bg-[#122b3e] border-l-[#122b3e] text-white'
+                      : 'bg-white border-l-transparent text-[#122b3e]'
                   }`}
                 >
-                  <div 
-                    className="text-base font-medium"
-                    style={{ fontFamily: 'Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
+                  <div
+                    className="text-base font-normal tracking-wide"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
                   >
-                    {solution.title}
+                    {capability.title}
                   </div>
-                  {mobileActiveSolution?.id === solution.id && (
-                    <div className="flex items-center gap-1 mt-1 text-sm text-gray-300">
+                  {mobileActiveCapability?.id === capability.id && (
+                    <div
+                      className="flex items-center gap-2 mt-2 text-sm text-white/70"
+                      style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                    >
                       Active Demo <ArrowRight className="w-3 h-3" />
                     </div>
                   )}
                 </button>
 
-                {/* Demo appears right below the active tab */}
-                {mobileActiveSolution?.id === solution.id && (
+                {/* Content appears right below the active tab */}
+                {mobileActiveCapability?.id === capability.id && (
                   <div className="mt-3 mb-3">
-                    <div className="bg-gray-50 rounded-xl border border-gray-100 p-4 h-[380px] flex flex-col overflow-hidden">
-                      <div className="mb-2">
-                        <h3 
-                          className="text-lg font-medium text-[#1a2332] mb-1"
-                          style={{ fontFamily: 'Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
-                        >
-                          {solution.heading}
-                        </h3>
-                        <p 
-                          className="text-sm text-gray-600 font-light"
-                          style={{ fontFamily: 'Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
-                        >
-                          {solution.description}
-                        </p>
-                      </div>
-                      
-                      <div className="flex-1 flex items-center justify-center overflow-hidden min-h-0">
-                        <solution.Component key={solution.id} />
-                      </div>
+                    <div className="bg-white border-l-2 border-l-[#122b3e] p-6">
+                      <h3
+                        className="text-xl font-light text-[#122b3e] mb-3"
+                        style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                      >
+                        {capability.heading}
+                      </h3>
+                      <p
+                        className="text-sm text-[#122b3e]/70 font-light leading-relaxed"
+                        style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                      >
+                        {capability.description}
+                      </p>
                     </div>
                   </div>
                 )}
               </div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Chart Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <SolutionsChart />
         </motion.div>
       </div>
     </section>
