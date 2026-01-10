@@ -296,9 +296,9 @@ export default function Navigation({ onLogoClick }) {
             {/* Mobile Menu Button */}
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2">
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-white" />
+                <X className={`w-6 h-6 transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`} />
               ) : (
-                <Menu className="w-6 h-6 text-white" />
+                <Menu className={`w-6 h-6 transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`} />
               )}
             </button>
           </div>

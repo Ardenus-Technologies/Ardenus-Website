@@ -37,10 +37,11 @@ export default function HeroSection() {
       <div className="relative z-10 flex-1 flex items-center justify-center px-6 lg:px-12">
         <div className="max-w-6xl mx-auto text-center">
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-white tracking-tight"
-            style={{ fontFamily: 'UAV-OSD-Sans-Mono, monospace', lineHeight: '2.2' }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium text-white tracking-tight px-4 sm:px-0"
+            style={{ fontFamily: 'UAV-OSD-Sans-Mono, monospace', lineHeight: '1.8' }}
           >
-            AI & Intelligence Infrastructure<br />for Enterprise Pest Control
+            <span className="block">AI & Intelligence Infrastructure</span>
+            <span className="block">for Enterprise Pest Control</span>
           </h1>
         </div>
       </div>
