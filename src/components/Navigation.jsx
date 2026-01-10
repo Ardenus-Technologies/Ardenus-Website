@@ -423,9 +423,10 @@ export default function Navigation({ onLogoClick }) {
             <div className="relative z-30 max-w-[1920px] mx-auto px-8 lg:px-16">
               <div className="flex justify-start gap-0 py-8">
                 {whoWeAreItems.map((item, idx) => (
-                  <a
+                  <Link
                     key={idx}
                     href={item.link}
+                    onClick={closeAllDropdowns}
                     className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
@@ -435,7 +436,7 @@ export default function Navigation({ onLogoClick }) {
                     <p className={`text-sm font-light transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
                       {item.description}
                     </p>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
