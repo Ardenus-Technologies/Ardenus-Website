@@ -235,8 +235,8 @@ export default function Navigation({ onLogoClick }) {
             }}
           />
 
-          <div className="relative z-30 max-w-[1920px] mx-auto px-8 lg:px-16">
-          <div className="flex items-center justify-between h-20">
+          <div className="relative z-30 max-w-[1920px] mx-auto px-8 lg:px-16 w-full">
+            <div className="flex flex-row items-center justify-between h-20 w-full">
             {/* Logo */}
             <Link href="/" onClick={handleHomeClick} className="flex items-center flex-shrink-0">
               <img
@@ -328,9 +328,9 @@ export default function Navigation({ onLogoClick }) {
                 <Menu className={`w-6 h-6 transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]' : 'text-white'}`} />
               )}
             </button>
-          </div>
+            </div>
 
-          {/* Mobile Menu */}
+            {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="lg:hidden bg-[#122b3e] border-t border-[#0d1f2c]">
               <div className="px-6 py-4 space-y-1">
