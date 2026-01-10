@@ -91,20 +91,20 @@ export default function Navigation({ onLogoClick }) {
   };
 
   const whoWeAreItems = [
-    { 
-      title: 'Our Story', 
-      description: 'Learn about our journey',
-      link: '#'
+    {
+      title: 'Retention Intelligence',
+      description: 'Predict and prevent customer churn',
+      link: '/products/retention-intelligence'
     },
-    { 
-      title: 'Our Team', 
-      description: 'Meet the people behind Backend Flows',
-      link: '#'
+    {
+      title: 'Valuation Engine',
+      description: 'Revenue forecasting and customer prioritization',
+      link: '/products/valuation-engine'
     },
-    { 
-      title: 'Our Values', 
-      description: 'What drives us forward',
-      link: '#'
+    {
+      title: 'Ardenus Core',
+      description: 'Your intelligent automation backbone',
+      link: '/products/ardenus-core'
     },
   ];
 
