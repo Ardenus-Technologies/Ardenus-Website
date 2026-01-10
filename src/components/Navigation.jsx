@@ -221,9 +221,9 @@ export default function Navigation({ onLogoClick }) {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-16">
+            <div className="hidden xl:flex items-center gap-8">
               {/* Continuous hover area for all dropdowns - no gaps */}
-              <div className="flex items-center gap-16 h-20 relative">
+              <div className="flex items-center gap-8 h-20 relative">
                 {/* Solutions */}
                 <div className="relative h-20 flex items-center">
                   <button 
@@ -272,7 +272,7 @@ export default function Navigation({ onLogoClick }) {
             </div>
 
             {/* Auth Buttons */}
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="hidden xl:flex items-center gap-6">
               <div className="relative h-20 flex items-center">
                 <button 
                   onClick={() => handleDropdownToggle('language')}
@@ -294,7 +294,7 @@ export default function Navigation({ onLogoClick }) {
             </div>
 
             {/* Mobile Menu Button */}
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2">
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="xl:hidden p-2">
               {mobileMenuOpen ? (
                 <X className={`w-6 h-6 transition-colors duration-500 ${isScrolled ? 'text-[#122b3e]' : 'text-white'}`} />
               ) : (
@@ -305,7 +305,7 @@ export default function Navigation({ onLogoClick }) {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden bg-[#122b3e] border-t border-[#0d1f2c]">
+            <div className="xl:hidden bg-[#122b3e] border-t border-[#0d1f2c]">
               <div className="px-6 py-4 space-y-1">
                 <button
                   className="block w-full text-left py-3 text-base text-white hover:text-gray-300 transition-colors"
