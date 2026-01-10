@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import GetStartedForm from '@/components/GetStartedForm';
 
 export default function Navigation({ onLogoClick }) {
   const pathname = usePathname();
@@ -16,6 +17,7 @@ export default function Navigation({ onLogoClick }) {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [getStartedOpen, setGetStartedOpen] = useState(false);
   const isHomePage = pathname === '/';
 
   // Handle hydration - only run client-side code after mount
@@ -309,6 +311,7 @@ export default function Navigation({ onLogoClick }) {
                 </button>
               </div>
               <Button
+                onClick={() => setGetStartedOpen(true)}
                 className={`rounded-none px-8 py-2 text-sm font-light shadow-lg hover:shadow-xl transition-all duration-500 ${
                   mounted && isScrolled
                     ? 'bg-[#122b3e] text-white border border-[#122b3e] hover:bg-white hover:text-[#122b3e]'
@@ -359,7 +362,11 @@ export default function Navigation({ onLogoClick }) {
                 >
                   Investors
                 </button>
-                <Button 
+                <Button
+                  onClick={() => {
+                    setGetStartedOpen(true);
+                    setMobileMenuOpen(false);
+                  }}
                   className="w-full mt-3 bg-white hover:bg-gray-100 text-[#122b3e] rounded-none px-10 py-3 text-sm font-light shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Get Started
@@ -559,6 +566,9 @@ export default function Navigation({ onLogoClick }) {
           </div>
         </div>
       )}
+
+      {/* Get Started Form */}
+      <GetStartedForm open={getStartedOpen} onOpenChange={setGetStartedOpen} />
     </nav>
     </>
   );
