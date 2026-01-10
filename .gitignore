@@ -55,3 +55,9 @@ venv/
 
 # Large video files in root
 12421216_3840_2160_30fps.mp4
+
+# Screenshots
+screenshots/
+
+# macOS metadata files
+._*
