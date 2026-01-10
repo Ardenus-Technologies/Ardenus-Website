@@ -22,6 +22,21 @@ export default function Navigation({ onLogoClick }) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Reset state when route changes (handles back/forward navigation)
+  useEffect(() => {
+    // Close all dropdowns and mobile menu on route change
+    setSolutionsOpen(false);
+    setWhoWeAreOpen(false);
+    setResourcesOpen(false);
+    setLanguageOpen(false);
+    setMobileMenuOpen(false);
+
+    // Reset scroll state for the new page
+    if (mounted && typeof window !== 'undefined') {
+      setIsScrolled(window.scrollY > window.innerHeight);
+    }
+  }, [pathname, mounted]);
   
   const handleDropdownToggle = (dropdown) => {
     if (dropdown === 'solutions') {
