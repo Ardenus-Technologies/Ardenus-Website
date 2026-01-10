@@ -40,7 +40,7 @@ export default function HeroSection() {
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-white tracking-tight"
             style={{ fontFamily: 'UAV-OSD-Sans-Mono, monospace', lineHeight: '2.2' }}
           >
-            Architecting<br />Enterprise<br />Intelligence
+            AI & Intelligence Infrastructure<br />for Enterprise Pest Control
           </h1>
         </div>
       </div>
