@@ -289,7 +289,7 @@ export default function Navigation({ onLogoClick }) {
                 }`}
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
               >
-                Let's Talk
+                Get Started
               </Button>
             </div>
 
@@ -335,7 +335,7 @@ export default function Navigation({ onLogoClick }) {
                 <Button 
                   className="w-full mt-3 bg-white hover:bg-gray-100 text-[#122b3e] rounded-none px-10 py-3 text-sm font-light shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  Let's Talk
+                  Get Started
                 </Button>
               </div>
             </div>
