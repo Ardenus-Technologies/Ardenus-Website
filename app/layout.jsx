@@ -5,10 +5,7 @@ export const metadata = {
   title: 'Ardenus - Home',
   description: 'Transform your business with custom AI automation solutions',
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.png', type: 'image/png' },
-    ],
+    icon: '/favicon.png',
     apple: '/favicon.png',
   },
 }
