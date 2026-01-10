@@ -15,6 +15,7 @@ export default function Navigation({ onLogoClick }) {
   const [whoWeAreOpen, setWhoWeAreOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [getStartedOpen, setGetStartedOpen] = useState(false);
@@ -31,6 +32,7 @@ export default function Navigation({ onLogoClick }) {
     setSolutionsOpen(false);
     setWhoWeAreOpen(false);
     setResourcesOpen(false);
+    setCompanyOpen(false);
     setLanguageOpen(false);
     setMobileMenuOpen(false);
 
@@ -40,45 +42,37 @@ export default function Navigation({ onLogoClick }) {
     }
   }, [pathname, mounted]);
   
-  const handleDropdownToggle = (dropdown) => {
+  const handleDropdownEnter = (dropdown) => {
     if (dropdown === 'solutions') {
-      if (solutionsOpen) {
-        // If already open, close it
-        setSolutionsOpen(false);
-      } else {
-        // If closed, open it and close all others
-        setSolutionsOpen(true);
-        setWhoWeAreOpen(false);
-        setResourcesOpen(false);
-        setLanguageOpen(false);
-      }
+      setSolutionsOpen(true);
+      setWhoWeAreOpen(false);
+      setResourcesOpen(false);
+      setCompanyOpen(false);
+      setLanguageOpen(false);
     } else if (dropdown === 'products') {
-      if (whoWeAreOpen) {
-        setWhoWeAreOpen(false);
-      } else {
-        setWhoWeAreOpen(true);
-        setSolutionsOpen(false);
-        setResourcesOpen(false);
-        setLanguageOpen(false);
-      }
+      setWhoWeAreOpen(true);
+      setSolutionsOpen(false);
+      setResourcesOpen(false);
+      setCompanyOpen(false);
+      setLanguageOpen(false);
     } else if (dropdown === 'resources') {
-      if (resourcesOpen) {
-        setResourcesOpen(false);
-      } else {
-        setResourcesOpen(true);
-        setSolutionsOpen(false);
-        setWhoWeAreOpen(false);
-        setLanguageOpen(false);
-      }
+      setResourcesOpen(true);
+      setSolutionsOpen(false);
+      setWhoWeAreOpen(false);
+      setCompanyOpen(false);
+      setLanguageOpen(false);
+    } else if (dropdown === 'company') {
+      setCompanyOpen(true);
+      setSolutionsOpen(false);
+      setWhoWeAreOpen(false);
+      setResourcesOpen(false);
+      setLanguageOpen(false);
     } else if (dropdown === 'language') {
-      if (languageOpen) {
-        setLanguageOpen(false);
-      } else {
-        setLanguageOpen(true);
-        setSolutionsOpen(false);
-        setWhoWeAreOpen(false);
-        setResourcesOpen(false);
-      }
+      setLanguageOpen(true);
+      setSolutionsOpen(false);
+      setWhoWeAreOpen(false);
+      setResourcesOpen(false);
+      setCompanyOpen(false);
     }
   };
 
@@ -86,6 +80,7 @@ export default function Navigation({ onLogoClick }) {
     setSolutionsOpen(false);
     setWhoWeAreOpen(false);
     setResourcesOpen(false);
+    setCompanyOpen(false);
     setLanguageOpen(false);
   };
   
@@ -155,20 +150,33 @@ export default function Navigation({ onLogoClick }) {
   ];
 
   const resourcesItems = [
-    { 
-      title: 'Documentation', 
+    {
+      title: 'Documentation',
       description: 'Guides and technical resources',
       link: '#'
     },
-    { 
-      title: 'Case Studies', 
+    {
+      title: 'Case Studies',
       description: 'See our work in action',
       link: '#'
     },
-    { 
-      title: 'Blog', 
+    {
+      title: 'Blog',
       description: 'Latest insights and updates',
       link: '#'
+    },
+  ];
+
+  const companyItems = [
+    {
+      title: 'Leadership',
+      description: 'Meet our executive team',
+      link: '/company/leadership'
+    },
+    {
+      title: 'Mission',
+      description: 'Our vision and values',
+      link: '/company/mission'
     },
   ];
 
@@ -240,7 +248,7 @@ export default function Navigation({ onLogoClick }) {
           <div className="relative z-30 max-w-[1920px] mx-auto px-8 lg:px-16 w-full">
             <div className="flex flex-row items-center justify-between h-20 w-full">
             {/* Logo */}
-            <Link href="/" onClick={handleHomeClick} className="flex items-center flex-shrink-0">
+            <Link href="/" onClick={handleHomeClick} onMouseEnter={closeAllDropdowns} className="flex items-center flex-shrink-0">
               <img
                 src={mounted && isScrolled ? "/ArdenusLogoBlue.png" : "/ArdenusLogoWhite.png"}
                 alt="Logo"
@@ -254,9 +262,11 @@ export default function Navigation({ onLogoClick }) {
               {/* Continuous hover area for all dropdowns - no gaps */}
               <div className="flex items-center gap-8 h-20 relative">
                 {/* Solutions */}
-                <div className="relative h-20 flex items-center">
-                  <button 
-                    onClick={() => handleDropdownToggle('solutions')}
+                <div
+                  className="relative h-20 flex items-center"
+                  onMouseEnter={() => handleDropdownEnter('solutions')}
+                >
+                  <button
                     className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
@@ -265,22 +275,26 @@ export default function Navigation({ onLogoClick }) {
                   </button>
                 </div>
 
-                {/* Who we are */}
-                <div className="relative h-20 flex items-center">
-                  <button 
-                    onClick={() => handleDropdownToggle('products')}
+                {/* Platform */}
+                <div
+                  className="relative h-20 flex items-center"
+                  onMouseEnter={() => handleDropdownEnter('products')}
+                >
+                  <button
                     className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
-                    Products
+                    Platform
                     <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${whoWeAreOpen ? 'rotate-180' : ''}`} strokeWidth={1.5} />
                   </button>
                 </div>
 
                 {/* Resources */}
-                <div className="relative h-20 flex items-center">
-                  <button 
-                    onClick={() => handleDropdownToggle('resources')}
+                <div
+                  className="relative h-20 flex items-center"
+                  onMouseEnter={() => handleDropdownEnter('resources')}
+                >
+                  <button
                     className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
@@ -290,21 +304,38 @@ export default function Navigation({ onLogoClick }) {
                 </div>
               </div>
 
-              <button className={`text-base font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
-                Enterprise
-              </button>
-              <button className={`text-base font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
-                Investors
-              </button>
+              {/* Company */}
+              <div
+                className="relative h-20 flex items-center"
+                onMouseEnter={() => handleDropdownEnter('company')}
+              >
+                <button
+                  className={`text-base font-light transition-colors duration-500 flex items-center gap-1 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
+                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
+                >
+                  Company
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${companyOpen ? 'rotate-180' : ''}`} strokeWidth={1.5} />
+                </button>
+              </div>
+
+              {/* Careers */}
+              <Link
+                href="/careers"
+                className={`text-base font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
+                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
+                onMouseEnter={closeAllDropdowns}
+              >
+                Careers
+              </Link>
             </div>
 
             {/* Auth Buttons */}
             <div className="hidden lg:flex items-center gap-6">
-              <div className="relative h-20 flex items-center">
-                <button 
-                  onClick={() => handleDropdownToggle('language')}
+              <div
+                className="relative h-20 flex items-center"
+                onMouseEnter={() => handleDropdownEnter('language')}
+              >
+                <button
                   className={`transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e] hover:text-[#1a3a50]' : 'text-white hover:text-gray-300'}`}
                 >
                   <Globe className="w-5 h-5" strokeWidth={1.5} />
@@ -312,6 +343,7 @@ export default function Navigation({ onLogoClick }) {
               </div>
               <Button
                 onClick={() => setGetStartedOpen(true)}
+                onMouseEnter={closeAllDropdowns}
                 className={`rounded-none px-8 py-2 text-sm font-light shadow-lg hover:shadow-xl transition-all duration-500 ${
                   mounted && isScrolled
                     ? 'bg-[#122b3e] text-white border border-[#122b3e] hover:bg-white hover:text-[#122b3e]'
@@ -319,7 +351,7 @@ export default function Navigation({ onLogoClick }) {
                 }`}
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
               >
-                Get Started
+                Book a Demo
               </Button>
             </div>
 
@@ -345,23 +377,39 @@ export default function Navigation({ onLogoClick }) {
                 <button
                   className="block w-full text-left py-3 text-base text-white hover:text-gray-300 transition-colors"
                 >
-                  Products
+                  Platform
                 </button>
                 <button
                   className="block w-full text-left py-3 text-base text-white hover:text-gray-300 transition-colors"
                 >
                   Resources
                 </button>
-                <button
+                <div className="py-2">
+                  <span className="block py-3 text-base text-white">Company</span>
+                  <div className="pl-4 space-y-1">
+                    <Link
+                      href="/company/leadership"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block py-2 text-sm text-white/80 hover:text-white transition-colors"
+                    >
+                      Leadership
+                    </Link>
+                    <Link
+                      href="/company/mission"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block py-2 text-sm text-white/80 hover:text-white transition-colors"
+                    >
+                      Mission
+                    </Link>
+                  </div>
+                </div>
+                <Link
+                  href="/careers"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="block w-full text-left py-3 text-base text-white hover:text-gray-300 transition-colors"
                 >
-                  Enterprise
-                </button>
-                <button
-                  className="block w-full text-left py-3 text-base text-white hover:text-gray-300 transition-colors"
-                >
-                  Investors
-                </button>
+                  Careers
+                </Link>
                 <Button
                   onClick={() => {
                     setGetStartedOpen(true);
@@ -369,7 +417,7 @@ export default function Navigation({ onLogoClick }) {
                   }}
                   className="w-full mt-3 bg-white hover:bg-gray-100 text-[#122b3e] rounded-none px-10 py-3 text-sm font-light shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  Get Started
+                  Book a Demo
                 </Button>
               </div>
             </div>
@@ -378,7 +426,7 @@ export default function Navigation({ onLogoClick }) {
       </div>
 
       {/* Invisible backdrop to close dropdowns when clicking outside */}
-      {(solutionsOpen || whoWeAreOpen || resourcesOpen || languageOpen) && (
+      {(solutionsOpen || whoWeAreOpen || resourcesOpen || companyOpen || languageOpen) && (
         <div 
           className="fixed inset-0 z-40"
           style={{ top: '6.5rem' }}
@@ -391,6 +439,8 @@ export default function Navigation({ onLogoClick }) {
         <div
           className="absolute top-full left-0 right-0 px-4 lg:px-6 z-50"
           style={{ paddingTop: '8px' }}
+          onMouseLeave={() => setSolutionsOpen(false)}
+          onMouseEnter={() => setSolutionsOpen(true)}
         >
           <div className="relative rounded-lg overflow-hidden">
             {/* Bend Layer (Backdrop blur with distortion) */}
@@ -436,6 +486,8 @@ export default function Navigation({ onLogoClick }) {
         <div
           className="absolute top-full left-0 right-0 px-4 lg:px-6 z-50"
           style={{ paddingTop: '8px' }}
+          onMouseLeave={() => setWhoWeAreOpen(false)}
+          onMouseEnter={() => setWhoWeAreOpen(true)}
         >
           <div className="relative rounded-lg overflow-hidden">
             {/* Bend Layer (Backdrop blur with distortion) */}
@@ -482,6 +534,8 @@ export default function Navigation({ onLogoClick }) {
         <div
           className="absolute top-full left-0 right-0 px-4 lg:px-6 z-50"
           style={{ paddingTop: '8px' }}
+          onMouseLeave={() => setResourcesOpen(false)}
+          onMouseEnter={() => setResourcesOpen(true)}
         >
           <div className="relative rounded-lg overflow-hidden">
             {/* Bend Layer (Backdrop blur with distortion) */}
@@ -523,11 +577,62 @@ export default function Navigation({ onLogoClick }) {
         </div>
       )}
 
+      {/* Company Dropdown */}
+      {companyOpen && (
+        <div
+          className="absolute top-full left-0 right-0 px-4 lg:px-6 z-50"
+          style={{ paddingTop: '8px' }}
+          onMouseLeave={() => setCompanyOpen(false)}
+          onMouseEnter={() => setCompanyOpen(true)}
+        >
+          <div className="relative rounded-lg overflow-hidden">
+            {/* Bend Layer (Backdrop blur with distortion) */}
+            <div
+              className="absolute inset-0 backdrop-blur-xl z-0"
+              style={{
+                filter: 'url(#glass-blur)',
+              }}
+            />
+
+            {/* Face Layer (Main glow) */}
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                boxShadow: '0 4px 4px rgba(0, 0, 0, 0.15), 0 0 12px rgba(0, 0, 0, 0.08), 0 0 24px rgba(255, 255, 255, 0.1)',
+              }}
+            />
+
+            <div className="relative z-30 max-w-[1920px] mx-auto px-8 lg:px-16">
+              <div className="flex justify-start gap-0 py-8">
+                {companyItems.map((item, idx) => (
+                  <Link
+                    key={idx}
+                    href={item.link}
+                    onClick={closeAllDropdowns}
+                    className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${mounted && isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
+                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
+                  >
+                    <h3 className={`font-medium text-base mb-1 transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]' : 'text-white'}`}>
+                      {item.title}
+                    </h3>
+                    <p className={`text-sm font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
+                      {item.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Language Dropdown */}
       {languageOpen && (
         <div
           className="absolute top-full left-0 right-0 px-4 lg:px-6 z-50"
           style={{ paddingTop: '8px' }}
+          onMouseLeave={() => setLanguageOpen(false)}
+          onMouseEnter={() => setLanguageOpen(true)}
         >
           <div className="relative rounded-lg overflow-hidden">
             {/* Bend Layer (Backdrop blur with distortion) */}
@@ -567,7 +672,7 @@ export default function Navigation({ onLogoClick }) {
         </div>
       )}
 
-      {/* Get Started Form */}
+      {/* Book a Demo Form */}
       <GetStartedForm open={getStartedOpen} onOpenChange={setGetStartedOpen} />
     </nav>
     </>
