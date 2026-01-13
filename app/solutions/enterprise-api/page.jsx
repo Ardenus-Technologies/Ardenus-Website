@@ -6,10 +6,12 @@ import Footer from '@/components/Footer'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { useDemoForm } from '@/context/DemoFormContext'
+import Image from 'next/image'
 
 export default function EnterpriseAPI() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
+  const [selectedImage, setSelectedImage] = useState(null)
   const fullText = 'Connect your existing ecosystem with powerful, flexible APIs'
   const { setDemoFormOpen } = useDemoForm()
 
@@ -32,18 +34,42 @@ export default function EnterpriseAPI() {
     <div className="min-h-screen bg-white">
       <Navigation />
 
+      {/* Image Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-8"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-7xl max-h-[90vh] w-full h-full">
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 text-white text-4xl font-light hover:text-gray-300 z-10"
+            >
+              ×
+            </button>
+            <Image
+              src={selectedImage}
+              alt="Expanded view"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+      )}
+
       {/* Hero Section with Nature Background */}
       <section
         className="relative min-h-screen flex flex-col items-center justify-start pt-32 pb-20"
         style={{
-          backgroundImage: 'url(/pexels-ants.jpg)',
+          backgroundImage: 'url(/enterprise-api-bg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
         }}
       >
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        {/* Dark overlay with opacity */}
+        <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full">
           {/* Typewriter Header */}
@@ -79,27 +105,48 @@ export default function EnterpriseAPI() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative h-[500px] max-w-6xl mx-auto"
+            className="relative h-[650px] max-w-7xl mx-auto"
           >
-            {/* Image 1 */}
-            <div className="absolute left-0 top-0 w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-10">
-              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                <p className="text-gray-500 text-sm">Demo Screenshot 1</p>
-              </div>
+            {/* Image 1 - Left side */}
+            <div
+              className="absolute left-0 top-0 w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-10 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-enterprise-1.png')}
+            >
+              <Image
+                src="/demo-enterprise-1.png"
+                alt="Enterprise API Demo 1"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
 
-            {/* Image 2 */}
-            <div className="absolute left-[25%] top-[50px] w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-20">
-              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                <p className="text-gray-500 text-sm">Demo Screenshot 2</p>
-              </div>
+            {/* Image 2 - Center */}
+            <div
+              className="absolute left-[26%] top-[30px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-20 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-enterprise-2.png')}
+            >
+              <Image
+                src="/demo-enterprise-2.png"
+                alt="Enterprise API Demo 2"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
 
-            {/* Image 3 */}
-            <div className="absolute right-0 top-[100px] w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-30">
-              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                <p className="text-gray-500 text-sm">Demo Screenshot 3</p>
-              </div>
+            {/* Image 3 - Right side */}
+            <div
+              className="absolute right-0 top-[60px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-30 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-enterprise-3.png')}
+            >
+              <Image
+                src="/demo-enterprise-3.png"
+                alt="Enterprise API Demo 3"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </motion.div>
         </div>
