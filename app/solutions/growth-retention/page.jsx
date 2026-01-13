@@ -14,8 +14,15 @@ export default function GrowthRetention() {
   const [selectedImage, setSelectedImage] = useState(null)
   const [hoveredFeature, setHoveredFeature] = useState(null)
   const [featureText, setFeatureText] = useState({})
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const fullText = 'Uncover hidden revenue opportunities and maximize customer lifetime value'
   const { setDemoFormOpen } = useDemoForm()
+
+  const images = [
+    { src: '/demo-growth-1.png', alt: 'Growth & Retention Demo 1' },
+    { src: '/demo-growth-2.png', alt: 'Growth & Retention Demo 2' },
+    { src: '/demo-growth-3.png', alt: 'Growth & Retention Demo 3' }
+  ]
 
   const features = [
     {
@@ -78,6 +85,15 @@ export default function GrowthRetention() {
         setIsTypingComplete(true)
       }
     }, 25)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  // Auto-rotate carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 4000) // Change image every 4 seconds
 
     return () => clearInterval(interval)
   }, [])
@@ -152,53 +168,43 @@ export default function GrowthRetention() {
             </Button>
           </motion.div>
 
-          {/* Demo Images - No Overlap */}
+          {/* Carousel Container */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-3 gap-6 max-w-7xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
-            {/* Image 1 */}
-            <div
-              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 transition-all duration-500 cursor-pointer"
-              onClick={() => setSelectedImage('/demo-growth-1.png')}
-            >
-              <Image
-                src="/demo-growth-1.png"
-                alt="Growth & Retention Demo 1"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
+            {/* Main Image Display */}
+            <div className="relative">
+              <div
+                className="relative w-full h-[700px] rounded-lg shadow-2xl overflow-hidden cursor-pointer"
+                onClick={() => setSelectedImage(images[currentImageIndex].src)}
+              >
+                <Image
+                  src={images[currentImageIndex].src}
+                  alt={images[currentImageIndex].alt}
+                  fill
+                  className="object-contain transition-opacity duration-500"
+                  priority
+                />
+              </div>
 
-            {/* Image 2 */}
-            <div
-              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 transition-all duration-500 cursor-pointer"
-              onClick={() => setSelectedImage('/demo-growth-2.png')}
-            >
-              <Image
-                src="/demo-growth-2.png"
-                alt="Growth & Retention Demo 2"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-
-            {/* Image 3 */}
-            <div
-              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 transition-all duration-500 cursor-pointer"
-              onClick={() => setSelectedImage('/demo-growth-3.png')}
-            >
-              <Image
-                src="/demo-growth-3.png"
-                alt="Growth & Retention Demo 3"
-                fill
-                className="object-contain"
-                priority
-              />
+              {/* Carousel Navigation Dots */}
+              <div className="flex justify-center gap-3 mt-6">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex
+                        ? 'bg-white w-8'
+                        : 'bg-white/50 hover:bg-white/75'
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
