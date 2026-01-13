@@ -13,7 +13,7 @@ export default function MissionStatement() {
             style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', lineHeight: '1.3' }}
           >
             Computer vision for precision. Predictive analytics for expansion. Automation for scale. The complete{' '}
-            <span className="relative font-bold overflow-hidden" style={{ display: 'inline' }}>
+            <span className="relative font-bold" style={{ display: 'inline', position: 'relative' }}>
               <motion.span
                 className="relative bg-gradient-to-r from-[#d4af37] via-[#f4d47c] to-[#d4af37] bg-clip-text text-transparent"
                 style={{
@@ -24,7 +24,7 @@ export default function MissionStatement() {
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 2,
                   ease: [0.4, 0, 0.2, 1],
                   repeat: Infinity,
                   repeatType: 'loop',
@@ -32,23 +32,23 @@ export default function MissionStatement() {
               >
                 AI-powered
               </motion.span>
-              {/* Motion graphs effect */}
+              {/* Motion graphs effect - confined to AI-powered only */}
               <motion.span
                 className="absolute pointer-events-none"
                 style={{
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.3) 50%, transparent 100%)',
-                  filter: 'blur(8px)',
+                  top: '-10%',
+                  left: '-5%',
+                  width: '110%',
+                  height: '120%',
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.4) 50%, transparent 100%)',
+                  filter: 'blur(6px)',
                 }}
                 animate={{
-                  x: ['-100%', '200%'],
+                  x: ['-120%', '120%'],
                 }}
                 transition={{
-                  duration: 2.5,
-                  ease: [0.4, 0, 0.2, 1],
+                  duration: 1.2,
+                  ease: [0.65, 0, 0.35, 1],
                   repeat: Infinity,
                   repeatType: 'loop',
                 }}

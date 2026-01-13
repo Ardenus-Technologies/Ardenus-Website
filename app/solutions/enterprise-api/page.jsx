@@ -1,47 +1,174 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import { Button } from '@/components/ui/button'
+import { motion } from 'framer-motion'
+import { useDemoForm } from '@/context/DemoFormContext'
 
 export default function EnterpriseAPI() {
+  const [displayedText, setDisplayedText] = useState('')
+  const fullText = 'Connect your existing ecosystem with powerful, flexible APIs'
+  const { setDemoFormOpen } = useDemoForm()
+
+  useEffect(() => {
+    let currentIndex = 0
+    const interval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex))
+        currentIndex++
+      } else {
+        clearInterval(interval)
+      }
+    }, 50)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-[#122b3e] to-[#1a3a50] pt-32">
-        <div className="max-w-6xl mx-auto px-6 lg:px-12 text-center">
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-6"
-            style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+      {/* Hero Section with Nature Background */}
+      <section
+        className="relative min-h-screen flex flex-col items-center justify-start pt-32 pb-20"
+        style={{
+          backgroundImage: 'url(/pexels-ants.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full">
+          {/* Typewriter Header */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-8 max-w-4xl"
+            style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', minHeight: '120px' }}
           >
-            Enterprise API
-          </h1>
-          <p
-            className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto"
-            style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+            {displayedText}
+            <span className="animate-pulse">|</span>
+          </motion.h1>
+
+          {/* Schedule Demo Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-16"
           >
-            Connect your existing ecosystem
-          </p>
+            <Button
+              onClick={() => setDemoFormOpen(true)}
+              className="bg-white hover:bg-gray-100 text-[#122b3e] rounded-full px-10 py-7 text-lg font-medium shadow-xl hover:shadow-2xl transition-all duration-300"
+              style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+            >
+              Schedule a Demo
+            </Button>
+          </motion.div>
+
+          {/* Overlapping Demo Images */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="relative h-[500px] max-w-6xl mx-auto"
+          >
+            {/* Image 1 */}
+            <div className="absolute left-0 top-0 w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-10">
+              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <p className="text-gray-500 text-sm">Demo Screenshot 1</p>
+              </div>
+            </div>
+
+            {/* Image 2 */}
+            <div className="absolute left-[25%] top-[50px] w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-20">
+              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <p className="text-gray-500 text-sm">Demo Screenshot 2</p>
+              </div>
+            </div>
+
+            {/* Image 3 */}
+            <div className="absolute right-0 top-[100px] w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-30">
+              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <p className="text-gray-500 text-sm">Demo Screenshot 3</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Content Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <h2
-              className="text-3xl md:text-4xl font-medium text-[#122b3e] mb-6"
-              style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-            >
-              Content Coming Soon
-            </h2>
-            <p
-              className="text-lg text-gray-600 max-w-2xl mx-auto"
-              style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-            >
-              This is a placeholder page. Add your custom content here to showcase how your Enterprise API connects existing ecosystems.
-            </p>
+      {/* Feature Boxes Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+              <h3
+                className="text-2xl font-medium text-[#122b3e] mb-4"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+              >
+                RESTful & GraphQL APIs
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+              >
+                Choose the API architecture that works best for your needs with comprehensive REST and GraphQL support.
+              </p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+              <h3
+                className="text-2xl font-medium text-[#122b3e] mb-4"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+              >
+                Webhooks & Events
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+              >
+                Real-time notifications and event-driven architecture to keep your systems in sync automatically.
+              </p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+              <h3
+                className="text-2xl font-medium text-[#122b3e] mb-4"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+              >
+                SDK & Libraries
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+              >
+                Pre-built SDKs in Python, JavaScript, Go, and more to accelerate your integration timeline.
+              </p>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+              <h3
+                className="text-2xl font-medium text-[#122b3e] mb-4"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+              >
+                Enterprise Security
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+              >
+                OAuth 2.0, API key management, rate limiting, and comprehensive audit logs for enterprise-grade security.
+              </p>
+            </div>
           </div>
         </div>
       </section>
