@@ -21,7 +21,7 @@ export default function EnterpriseAPI() {
       } else {
         clearInterval(interval)
       }
-    }, 50)
+    }, 25)
 
     return () => clearInterval(interval)
   }, [])
