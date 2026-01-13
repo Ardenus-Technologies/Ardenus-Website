@@ -168,43 +168,74 @@ export default function OperationalEfficiency() {
             </Button>
           </motion.div>
 
-          {/* Carousel Container */}
+          {/* 3D Carousel Container */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="max-w-6xl mx-auto"
+            className="relative w-full h-[700px] max-w-7xl mx-auto"
           >
-            {/* Main Image Display */}
-            <div className="relative">
-              <div
-                className="relative w-full h-[700px] rounded-lg shadow-2xl overflow-hidden cursor-pointer"
-                onClick={() => setSelectedImage(images[currentImageIndex].src)}
-              >
-                <Image
-                  src={images[currentImageIndex].src}
-                  alt={images[currentImageIndex].alt}
-                  fill
-                  className="object-contain transition-opacity duration-500"
-                  priority
-                />
-              </div>
+            <div className="relative w-full h-full flex items-center justify-center">
+              {images.map((image, index) => {
+                const position = (index - currentImageIndex + images.length) % images.length
+                const isCenter = position === 0
+                const isLeft = position === images.length - 1
+                const isRight = position === 1
 
-              {/* Carousel Navigation Dots */}
-              <div className="flex justify-center gap-3 mt-6">
-                {images.map((_, index) => (
-                  <button
+                return (
+                  <div
                     key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentImageIndex
-                        ? 'bg-white w-8'
-                        : 'bg-white/50 hover:bg-white/75'
+                    className={`absolute transition-all duration-700 ease-in-out cursor-pointer ${
+                      isCenter ? 'z-30' : 'z-10'
                     }`}
-                    aria-label={`Go to image ${index + 1}`}
-                  />
-                ))}
-              </div>
+                    style={{
+                      transform: isCenter
+                        ? 'translateX(0) scale(1)'
+                        : isLeft
+                        ? 'translateX(-85%) scale(0.7)'
+                        : isRight
+                        ? 'translateX(85%) scale(0.7)'
+                        : 'translateX(200%) scale(0.5)',
+                      opacity: isCenter ? 1 : isLeft || isRight ? 0.6 : 0,
+                      width: '65%',
+                      height: '100%'
+                    }}
+                    onClick={() => {
+                      if (isCenter) {
+                        setSelectedImage(image.src)
+                      } else {
+                        setCurrentImageIndex(index)
+                      }
+                    }}
+                  >
+                    <div className="relative w-full h-full rounded-lg shadow-2xl overflow-hidden">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-contain"
+                        priority
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Carousel Navigation Dots */}
+            <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-3 mt-6">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentImageIndex
+                      ? 'bg-white w-8'
+                      : 'bg-white/50 hover:bg-white/75'
+                  }`}
+                  aria-label={`Go to image ${index + 1}`}
+                />
+              ))}
             </div>
           </motion.div>
         </div>
