@@ -13,11 +13,12 @@ export default function MissionStatement() {
             style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', lineHeight: '1.3' }}
           >
             Computer vision for precision. Predictive analytics for expansion. Automation for scale. The complete{' '}
-            <span className="inline-block relative font-bold overflow-hidden">
+            <span className="relative font-bold overflow-hidden" style={{ display: 'inline' }}>
               <motion.span
-                className="relative inline-block bg-gradient-to-r from-[#d4af37] via-[#f4d47c] to-[#d4af37] bg-clip-text text-transparent"
+                className="relative bg-gradient-to-r from-[#d4af37] via-[#f4d47c] to-[#d4af37] bg-clip-text text-transparent"
                 style={{
                   backgroundSize: '200% 100%',
+                  display: 'inline',
                 }}
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -33,8 +34,12 @@ export default function MissionStatement() {
               </motion.span>
               {/* Motion graphs effect */}
               <motion.span
-                className="absolute inset-0 pointer-events-none"
+                className="absolute pointer-events-none"
                 style={{
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
                   background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.3) 50%, transparent 100%)',
                   filter: 'blur(8px)',
                 }}
