@@ -161,9 +161,8 @@ export default function GrowthRetention() {
           >
             {/* Image 1 */}
             <div
-              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-              onMouseEnter={() => setSelectedImage('/demo-growth-1.png')}
-              onMouseLeave={() => setSelectedImage(null)}
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 transition-all duration-500 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-growth-1.png')}
             >
               <Image
                 src="/demo-growth-1.png"
@@ -176,9 +175,8 @@ export default function GrowthRetention() {
 
             {/* Image 2 */}
             <div
-              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-              onMouseEnter={() => setSelectedImage('/demo-growth-2.png')}
-              onMouseLeave={() => setSelectedImage(null)}
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 transition-all duration-500 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-growth-2.png')}
             >
               <Image
                 src="/demo-growth-2.png"
@@ -191,9 +189,8 @@ export default function GrowthRetention() {
 
             {/* Image 3 */}
             <div
-              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-              onMouseEnter={() => setSelectedImage('/demo-growth-3.png')}
-              onMouseLeave={() => setSelectedImage(null)}
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 transition-all duration-500 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-growth-3.png')}
             >
               <Image
                 src="/demo-growth-3.png"
@@ -230,9 +227,9 @@ export default function GrowthRetention() {
 
                 {/* Description - Appears on hover with typewriter effect */}
                 <div
-                  className={`mt-4 transition-all duration-300 ${
-                    hoveredFeature === feature.id ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0'
-                  } overflow-hidden`}
+                  className={`mt-4 h-32 transition-opacity duration-300 ${
+                    hoveredFeature === feature.id ? 'opacity-100' : 'opacity-0'
+                  }`}
                 >
                   <p
                     className="text-gray-600 leading-relaxed text-center px-2"
