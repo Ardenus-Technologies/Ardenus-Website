@@ -11,6 +11,7 @@ import Image from 'next/image'
 export default function GrowthRetention() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
+  const [selectedImage, setSelectedImage] = useState(null)
   const fullText = 'Uncover hidden revenue opportunities and maximize customer lifetime value'
   const { setDemoFormOpen } = useDemoForm()
 
@@ -33,18 +34,42 @@ export default function GrowthRetention() {
     <div className="min-h-screen bg-white">
       <Navigation />
 
+      {/* Image Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-8"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-7xl max-h-[90vh] w-full h-full">
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 text-white text-4xl font-light hover:text-gray-300 z-10"
+            >
+              ×
+            </button>
+            <Image
+              src={selectedImage}
+              alt="Expanded view"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+      )}
+
       {/* Hero Section with Nature Background */}
       <section
         className="relative min-h-screen flex flex-col items-center justify-start pt-32 pb-20"
         style={{
-          backgroundImage: 'url(/pexels-flowers.jpg)',
+          backgroundImage: 'url(/growth-retention-bg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
         }}
       >
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        {/* Dark overlay with opacity */}
+        <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full">
           {/* Typewriter Header */}
@@ -80,10 +105,13 @@ export default function GrowthRetention() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative h-[600px] max-w-7xl mx-auto"
+            className="relative h-[650px] max-w-7xl mx-auto"
           >
             {/* Image 1 - Right side */}
-            <div className="absolute right-0 top-0 w-[48%] h-[500px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-10">
+            <div
+              className="absolute right-0 top-0 w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-10 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-growth-1.png')}
+            >
               <Image
                 src="/demo-growth-1.png"
                 alt="Growth & Retention Demo 1"
@@ -94,7 +122,10 @@ export default function GrowthRetention() {
             </div>
 
             {/* Image 2 - Center */}
-            <div className="absolute right-[28%] top-[30px] w-[48%] h-[500px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-20">
+            <div
+              className="absolute right-[26%] top-[30px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-20 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-growth-2.png')}
+            >
               <Image
                 src="/demo-growth-2.png"
                 alt="Growth & Retention Demo 2"
@@ -105,7 +136,10 @@ export default function GrowthRetention() {
             </div>
 
             {/* Image 3 - Left side */}
-            <div className="absolute left-0 top-[60px] w-[48%] h-[500px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-30">
+            <div
+              className="absolute left-0 top-[60px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-30 cursor-pointer"
+              onClick={() => setSelectedImage('/demo-growth-3.png')}
+            >
               <Image
                 src="/demo-growth-3.png"
                 alt="Growth & Retention Demo 3"
