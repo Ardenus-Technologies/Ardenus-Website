@@ -7,6 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import GetStartedForm from '@/components/GetStartedForm';
 import { useDemoForm } from '@/context/DemoFormContext';
+import VenetianBlindsTransition from '@/components/VenetianBlindsTransition';
 
 export default function Navigation({ onLogoClick }) {
   const pathname = usePathname();
@@ -18,6 +19,7 @@ export default function Navigation({ onLogoClick }) {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showTransition, setShowTransition] = useState(false);
   const { demoFormOpen, setDemoFormOpen } = useDemoForm();
   const isHomePage = pathname === '/';
 
@@ -98,8 +100,11 @@ export default function Navigation({ onLogoClick }) {
         setTimeout(() => onLogoClick(), 100);
       }
     } else {
-      router.push('/');
-      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+      setShowTransition(true);
+      setTimeout(() => {
+        router.push('/');
+        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+      }, 300);
     }
     setMobileMenuOpen(false);
   };
@@ -593,6 +598,12 @@ export default function Navigation({ onLogoClick }) {
 
       {/* Book a Demo Form */}
       <GetStartedForm open={demoFormOpen} onOpenChange={setDemoFormOpen} />
+
+      {/* Venetian Blinds Transition */}
+      <VenetianBlindsTransition
+        isActive={showTransition}
+        onComplete={() => setShowTransition(false)}
+      />
     </nav>
     </>
   );
