@@ -34,7 +34,7 @@ export default function OperationalEfficiency() {
       <section
         className="relative min-h-screen flex flex-col items-center justify-start pt-32 pb-20"
         style={{
-          backgroundImage: 'url(/desert-mountain.jpg)',
+          backgroundImage: 'url(/pexels-steve-27236692.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
