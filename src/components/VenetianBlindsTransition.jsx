@@ -12,7 +12,7 @@ export default function VenetianBlindsTransition({ isActive, onComplete }) {
       const timer = setTimeout(() => {
         setShow(false);
         if (onComplete) onComplete();
-      }, 800);
+      }, 900);
       return () => clearTimeout(timer);
     }
   }, [isActive, onComplete]);
@@ -20,20 +20,26 @@ export default function VenetianBlindsTransition({ isActive, onComplete }) {
   return (
     <AnimatePresence mode="sync">
       {show && (
-        <motion.div
-          className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, transparent 0%, transparent 50%, #122b3e 50%, #122b3e 100%)',
-            backgroundSize: '282.84% 282.84%',
-            backgroundPosition: '100% 0%',
-          }}
-          initial={{ backgroundPosition: '100% 0%' }}
-          animate={{ backgroundPosition: '-100% 100%' }}
-          transition={{
-            duration: 0.7,
-            ease: [0.25, 0.1, 0.25, 1],
-          }}
-        />
+        <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden">
+          <motion.div
+            className="absolute bg-[#122b3e]"
+            style={{
+              width: '150%',
+              height: '200%',
+              top: '-50%',
+              left: '-50%',
+              transformOrigin: 'center center',
+              rotate: 25,
+              willChange: 'transform',
+            }}
+            initial={{ x: '-100%' }}
+            animate={{ x: '200%' }}
+            transition={{
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          />
+        </div>
       )}
     </AnimatePresence>
   );
