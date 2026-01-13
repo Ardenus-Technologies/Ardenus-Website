@@ -129,19 +129,19 @@ export default function Navigation({ onLogoClick }) {
 
   const solutionsItems = [
     {
-      title: 'Solution Option 1',
-      description: 'Placeholder for first solution - to be customized',
-      link: '#solution-1'
+      title: 'Operational Efficiency',
+      description: 'Streamline field and internal operations',
+      link: '/solutions/operational-efficiency'
     },
     {
-      title: 'Solution Option 2',
-      description: 'Placeholder for second solution - to be customized',
-      link: '#solution-2'
+      title: 'Growth & Retention',
+      description: 'Uncover hidden revenue opportunities using your data',
+      link: '/solutions/growth-retention'
     },
     {
-      title: 'Solution Option 3',
-      description: 'Placeholder for third solution - to be customized',
-      link: '#solution-3'
+      title: 'Enterprise API',
+      description: 'Connect your existing ecosystem',
+      link: '/solutions/enterprise-api'
     },
   ];
 
@@ -432,9 +432,10 @@ export default function Navigation({ onLogoClick }) {
             <div className="relative z-30 max-w-[1920px] mx-auto px-8 lg:px-16">
               <div className="flex justify-start gap-0 py-8">
                 {solutionsItems.map((item, idx) => (
-                  <a
+                  <Link
                     key={idx}
                     href={item.link}
+                    onClick={closeAllDropdowns}
                     className={`py-4 px-8 border-r last:border-r-0 hover:bg-white/5 transition-all duration-500 ${mounted && isScrolled ? 'border-[#122b3e]/20' : 'border-white/20'}`}
                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
                   >
@@ -444,7 +445,7 @@ export default function Navigation({ onLogoClick }) {
                     <p className={`text-sm font-light transition-colors duration-500 ${mounted && isScrolled ? 'text-[#122b3e]/70' : 'text-white/70'}`}>
                       {item.description}
                     </p>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
