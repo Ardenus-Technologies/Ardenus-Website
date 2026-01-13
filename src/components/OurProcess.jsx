@@ -50,7 +50,7 @@ export default function OurProcess() {
                   className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-110"
                   style={{
                     backgroundImage: `url(${step.image})`,
-                    backgroundPosition: 'center',
+                    backgroundPosition: step.image === '/pexels-mouse.jpg' ? 'center 30%' : 'center',
                     backgroundSize: 'cover'
                   }}
                 ></div>
