@@ -16,8 +16,7 @@ const capabilities = [
     id: 'predictive-revenue',
     title: 'Predictive Revenue Modeling',
     heading: 'Dynamic Revenue Forecasting Engine',
-    description: 'Machine learning models that analyze historical patterns, market signals, and pipeline data to generate high-confidence revenue projections across multiple time horizons.',
-    video: '/ardenus-demo-revenue.mp4'
+    description: 'Machine learning models that analyze historical patterns, market signals, and pipeline data to generate high-confidence revenue projections across multiple time horizons.'
   },
   {
     id: 'autonomous-ingestion',
