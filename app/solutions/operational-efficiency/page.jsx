@@ -88,7 +88,7 @@ export default function OperationalEfficiency() {
                 src="/demo-operational-3.png"
                 alt="Operational Efficiency Demo 3"
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>
@@ -99,7 +99,7 @@ export default function OperationalEfficiency() {
                 src="/demo-operational-2.png"
                 alt="Operational Efficiency Demo 2"
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>
@@ -110,7 +110,7 @@ export default function OperationalEfficiency() {
                 src="/demo-operational-1.png"
                 alt="Operational Efficiency Demo 1"
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>
