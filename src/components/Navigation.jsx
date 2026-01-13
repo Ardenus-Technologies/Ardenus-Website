@@ -129,19 +129,19 @@ export default function Navigation({ onLogoClick }) {
 
   const solutionsItems = [
     {
-      title: 'Operational Efficiency',
-      description: 'Streamline field and internal operations',
-      link: '#'
+      title: 'Solution Option 1',
+      description: 'Placeholder for first solution - to be customized',
+      link: '#solution-1'
     },
     {
-      title: 'Growth & Retention',
-      description: 'Uncover hidden revenue opportunities using your data',
-      link: '#'
+      title: 'Solution Option 2',
+      description: 'Placeholder for second solution - to be customized',
+      link: '#solution-2'
     },
     {
-      title: 'Enterprise API',
-      description: 'Connect your existing ecosystem',
-      link: '#'
+      title: 'Solution Option 3',
+      description: 'Placeholder for third solution - to be customized',
+      link: '#solution-3'
     },
   ];
 
