@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function MissionStatement() {
   return (
@@ -11,7 +12,44 @@ export default function MissionStatement() {
             className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-[#122b3e]"
             style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', lineHeight: '1.3' }}
           >
-            Computer vision for precision. Predictive analytics for expansion. Automation for scale. The complete <span className="font-bold text-[#d4af37]">AI-powered</span> operating system for the modern pest control enterprise.
+            Computer vision for precision. Predictive analytics for expansion. Automation for scale. The complete{' '}
+            <span className="inline-block relative font-bold overflow-hidden">
+              <motion.span
+                className="relative inline-block bg-gradient-to-r from-[#d4af37] via-[#f4d47c] to-[#d4af37] bg-clip-text text-transparent"
+                style={{
+                  backgroundSize: '200% 100%',
+                }}
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  ease: [0.4, 0, 0.2, 1],
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                }}
+              >
+                AI-powered
+              </motion.span>
+              {/* Motion graphs effect */}
+              <motion.span
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.3) 50%, transparent 100%)',
+                  filter: 'blur(8px)',
+                }}
+                animate={{
+                  x: ['-100%', '200%'],
+                }}
+                transition={{
+                  duration: 2.5,
+                  ease: [0.4, 0, 0.2, 1],
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                }}
+              />
+            </span>{' '}
+            operating system for the modern pest control enterprise.
           </h2>
         </div>
       </div>
