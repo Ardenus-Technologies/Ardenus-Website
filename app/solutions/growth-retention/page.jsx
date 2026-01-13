@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { useDemoForm } from '@/context/DemoFormContext'
+import Image from 'next/image'
 
 export default function GrowthRetention() {
   const [displayedText, setDisplayedText] = useState('')
@@ -74,32 +75,44 @@ export default function GrowthRetention() {
             </Button>
           </motion.div>
 
-          {/* Overlapping Demo Images */}
+          {/* Overlapping Demo Images - Mirrored Layout */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative h-[500px] max-w-6xl mx-auto"
+            className="relative h-[600px] max-w-7xl mx-auto"
           >
-            {/* Image 1 */}
-            <div className="absolute left-0 top-0 w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-10">
-              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                <p className="text-gray-500 text-sm">Demo Screenshot 1</p>
-              </div>
+            {/* Image 1 - Right side */}
+            <div className="absolute right-0 top-0 w-[48%] h-[500px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-10">
+              <Image
+                src="/demo-growth-1.png"
+                alt="Growth & Retention Demo 1"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
 
-            {/* Image 2 */}
-            <div className="absolute left-[25%] top-[50px] w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-20">
-              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                <p className="text-gray-500 text-sm">Demo Screenshot 2</p>
-              </div>
+            {/* Image 2 - Center */}
+            <div className="absolute right-[28%] top-[30px] w-[48%] h-[500px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-20">
+              <Image
+                src="/demo-growth-2.png"
+                alt="Growth & Retention Demo 2"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
 
-            {/* Image 3 */}
-            <div className="absolute right-0 top-[100px] w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-30">
-              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                <p className="text-gray-500 text-sm">Demo Screenshot 3</p>
-              </div>
+            {/* Image 3 - Left side */}
+            <div className="absolute left-0 top-[60px] w-[48%] h-[500px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-30">
+              <Image
+                src="/demo-growth-3.png"
+                alt="Growth & Retention Demo 3"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </motion.div>
         </div>
