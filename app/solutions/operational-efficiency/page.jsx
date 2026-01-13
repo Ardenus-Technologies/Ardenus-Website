@@ -55,7 +55,7 @@ export default function OperationalEfficiency() {
           } else {
             clearInterval(interval)
           }
-        }, 15)
+        }, 5)
         return () => clearInterval(interval)
       }
     }
@@ -155,7 +155,7 @@ export default function OperationalEfficiency() {
           >
             {/* Image 1 */}
             <div
-              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-operational-3.png')}
             >
               <Image
@@ -169,7 +169,7 @@ export default function OperationalEfficiency() {
 
             {/* Image 2 */}
             <div
-              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-operational-2-new.png')}
             >
               <Image
@@ -183,7 +183,7 @@ export default function OperationalEfficiency() {
 
             {/* Image 3 */}
             <div
-              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-operational-1.png')}
             >
               <Image

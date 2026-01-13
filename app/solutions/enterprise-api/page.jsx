@@ -55,7 +55,7 @@ export default function EnterpriseAPI() {
           } else {
             clearInterval(interval)
           }
-        }, 15)
+        }, 5)
         return () => clearInterval(interval)
       }
     }
@@ -155,7 +155,7 @@ export default function EnterpriseAPI() {
           >
             {/* Image 1 */}
             <div
-              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-enterprise-1.png')}
             >
               <Image
@@ -169,7 +169,7 @@ export default function EnterpriseAPI() {
 
             {/* Image 2 */}
             <div
-              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-enterprise-2.png')}
             >
               <Image
@@ -183,7 +183,7 @@ export default function EnterpriseAPI() {
 
             {/* Image 3 */}
             <div
-              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+              className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-enterprise-3.png')}
             >
               <Image
