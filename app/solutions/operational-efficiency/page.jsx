@@ -12,8 +12,54 @@ export default function OperationalEfficiency() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
+  const [hoveredFeature, setHoveredFeature] = useState(null)
+  const [featureText, setFeatureText] = useState({})
   const fullText = 'Streamline field and internal operations with intelligent automation'
   const { setDemoFormOpen } = useDemoForm()
+
+  const features = [
+    {
+      id: 1,
+      title: 'Automated Workflows',
+      description: 'Eliminate manual data entry and repetitive tasks with intelligent automation that learns from your processes.'
+    },
+    {
+      id: 2,
+      title: 'Real-Time Insights',
+      description: 'Get instant visibility into field operations with live dashboards and AI-powered analytics.'
+    },
+    {
+      id: 3,
+      title: 'Resource Optimization',
+      description: 'Maximize technician efficiency with intelligent routing and scheduling algorithms.'
+    },
+    {
+      id: 4,
+      title: 'Seamless Integration',
+      description: 'Connect with your existing tools and systems through our comprehensive API and pre-built integrations.'
+    }
+  ]
+
+  useEffect(() => {
+    if (hoveredFeature !== null) {
+      const feature = features.find(f => f.id === hoveredFeature)
+      if (feature && !featureText[hoveredFeature]) {
+        let currentIndex = 0
+        const interval = setInterval(() => {
+          if (currentIndex <= feature.description.length) {
+            setFeatureText(prev => ({
+              ...prev,
+              [hoveredFeature]: feature.description.slice(0, currentIndex)
+            }))
+            currentIndex++
+          } else {
+            clearInterval(interval)
+          }
+        }, 15)
+        return () => clearInterval(interval)
+      }
+    }
+  }, [hoveredFeature])
 
   useEffect(() => {
     let currentIndex = 0
@@ -100,16 +146,16 @@ export default function OperationalEfficiency() {
             </Button>
           </motion.div>
 
-          {/* Overlapping Demo Images */}
+          {/* Demo Images - No Overlap */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative h-[650px] max-w-7xl mx-auto"
+            className="grid grid-cols-3 gap-6 max-w-7xl mx-auto"
           >
-            {/* Image 1 - Now showing Image 3 */}
+            {/* Image 1 */}
             <div
-              className="absolute left-0 top-0 w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-10 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-operational-3.png')}
             >
               <Image
@@ -121,9 +167,9 @@ export default function OperationalEfficiency() {
               />
             </div>
 
-            {/* Image 2 - Center */}
+            {/* Image 2 */}
             <div
-              className="absolute left-[26%] top-[30px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-20 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-operational-2-new.png')}
             >
               <Image
@@ -135,9 +181,9 @@ export default function OperationalEfficiency() {
               />
             </div>
 
-            {/* Image 3 - Now showing Image 1 */}
+            {/* Image 3 */}
             <div
-              className="absolute right-0 top-[60px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-30 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-operational-1.png')}
             >
               <Image
@@ -155,70 +201,42 @@ export default function OperationalEfficiency() {
       {/* Feature Boxes Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature) => (
+              <div
+                key={feature.id}
+                className="flex flex-col"
+                onMouseEnter={() => setHoveredFeature(feature.id)}
+                onMouseLeave={() => setHoveredFeature(null)}
               >
-                Automated Workflows
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Eliminate manual data entry and repetitive tasks with intelligent automation that learns from your processes.
-              </p>
-            </div>
+                {/* Header Box */}
+                <div className="border-2 border-[#122b3e] bg-white rounded-lg p-6 transition-all duration-300 hover:shadow-xl hover:border-[#1a3d57]">
+                  <h3
+                    className="text-xl font-medium text-[#122b3e] text-center"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                  >
+                    {feature.title}
+                  </h3>
+                </div>
 
-            {/* Feature 2 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Real-Time Insights
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Get instant visibility into field operations with live dashboards and AI-powered analytics.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Resource Optimization
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Maximize technician efficiency with intelligent routing and scheduling algorithms.
-              </p>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Seamless Integration
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Connect with your existing tools and systems through our comprehensive API and pre-built integrations.
-              </p>
-            </div>
+                {/* Description - Appears on hover with typewriter effect */}
+                <div
+                  className={`mt-4 transition-all duration-300 ${
+                    hoveredFeature === feature.id ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0'
+                  } overflow-hidden`}
+                >
+                  <p
+                    className="text-gray-600 leading-relaxed text-center px-2"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                  >
+                    {featureText[feature.id] || ''}
+                    {hoveredFeature === feature.id && featureText[feature.id]?.length < feature.description.length && (
+                      <span className="animate-pulse">|</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

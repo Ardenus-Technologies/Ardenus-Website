@@ -12,8 +12,54 @@ export default function GrowthRetention() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
+  const [hoveredFeature, setHoveredFeature] = useState(null)
+  const [featureText, setFeatureText] = useState({})
   const fullText = 'Uncover hidden revenue opportunities and maximize customer lifetime value'
   const { setDemoFormOpen } = useDemoForm()
+
+  const features = [
+    {
+      id: 1,
+      title: 'Predictive Churn Analysis',
+      description: 'Identify at-risk customers before they leave with AI-powered predictive models and intervention strategies.'
+    },
+    {
+      id: 2,
+      title: 'Revenue Forecasting',
+      description: 'Generate accurate revenue projections with machine learning models that analyze historical patterns and market signals.'
+    },
+    {
+      id: 3,
+      title: 'Customer Segmentation',
+      description: 'Discover high-value customer segments and tailor your approach to maximize retention and growth.'
+    },
+    {
+      id: 4,
+      title: 'Upsell Opportunities',
+      description: 'Identify the right time to expand customer relationships with intelligent upsell and cross-sell recommendations.'
+    }
+  ]
+
+  useEffect(() => {
+    if (hoveredFeature !== null) {
+      const feature = features.find(f => f.id === hoveredFeature)
+      if (feature && !featureText[hoveredFeature]) {
+        let currentIndex = 0
+        const interval = setInterval(() => {
+          if (currentIndex <= feature.description.length) {
+            setFeatureText(prev => ({
+              ...prev,
+              [hoveredFeature]: feature.description.slice(0, currentIndex)
+            }))
+            currentIndex++
+          } else {
+            clearInterval(interval)
+          }
+        }, 15)
+        return () => clearInterval(interval)
+      }
+    }
+  }, [hoveredFeature])
 
   useEffect(() => {
     let currentIndex = 0
@@ -100,16 +146,16 @@ export default function GrowthRetention() {
             </Button>
           </motion.div>
 
-          {/* Overlapping Demo Images - Mirrored Layout */}
+          {/* Demo Images - No Overlap */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative h-[650px] max-w-7xl mx-auto"
+            className="grid grid-cols-3 gap-6 max-w-7xl mx-auto"
           >
-            {/* Image 1 - Right side */}
+            {/* Image 1 */}
             <div
-              className="absolute right-0 top-0 w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-10 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-growth-1.png')}
             >
               <Image
@@ -121,9 +167,9 @@ export default function GrowthRetention() {
               />
             </div>
 
-            {/* Image 2 - Center */}
+            {/* Image 2 */}
             <div
-              className="absolute right-[26%] top-[30px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-20 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-growth-2.png')}
             >
               <Image
@@ -135,9 +181,9 @@ export default function GrowthRetention() {
               />
             </div>
 
-            {/* Image 3 - Left side */}
+            {/* Image 3 */}
             <div
-              className="absolute left-0 top-[60px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-30 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-growth-3.png')}
             >
               <Image
@@ -155,70 +201,42 @@ export default function GrowthRetention() {
       {/* Feature Boxes Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature) => (
+              <div
+                key={feature.id}
+                className="flex flex-col"
+                onMouseEnter={() => setHoveredFeature(feature.id)}
+                onMouseLeave={() => setHoveredFeature(null)}
               >
-                Predictive Churn Analysis
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Identify at-risk customers before they leave with AI-powered predictive models and intervention strategies.
-              </p>
-            </div>
+                {/* Header Box */}
+                <div className="border-2 border-[#122b3e] bg-white rounded-lg p-6 transition-all duration-300 hover:shadow-xl hover:border-[#1a3d57]">
+                  <h3
+                    className="text-xl font-medium text-[#122b3e] text-center"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                  >
+                    {feature.title}
+                  </h3>
+                </div>
 
-            {/* Feature 2 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Revenue Forecasting
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Generate accurate revenue projections with machine learning models that analyze historical patterns and market signals.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Customer Segmentation
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Discover high-value customer segments and tailor your approach to maximize retention and growth.
-              </p>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Upsell Opportunities
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Identify the right time to expand customer relationships with intelligent upsell and cross-sell recommendations.
-              </p>
-            </div>
+                {/* Description - Appears on hover with typewriter effect */}
+                <div
+                  className={`mt-4 transition-all duration-300 ${
+                    hoveredFeature === feature.id ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0'
+                  } overflow-hidden`}
+                >
+                  <p
+                    className="text-gray-600 leading-relaxed text-center px-2"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                  >
+                    {featureText[feature.id] || ''}
+                    {hoveredFeature === feature.id && featureText[feature.id]?.length < feature.description.length && (
+                      <span className="animate-pulse">|</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

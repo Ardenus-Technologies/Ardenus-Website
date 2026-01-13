@@ -12,8 +12,54 @@ export default function EnterpriseAPI() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
+  const [hoveredFeature, setHoveredFeature] = useState(null)
+  const [featureText, setFeatureText] = useState({})
   const fullText = 'Connect your existing ecosystem with powerful, flexible APIs'
   const { setDemoFormOpen } = useDemoForm()
+
+  const features = [
+    {
+      id: 1,
+      title: 'RESTful & GraphQL APIs',
+      description: 'Choose the API architecture that works best for your needs with comprehensive REST and GraphQL support.'
+    },
+    {
+      id: 2,
+      title: 'Webhooks & Events',
+      description: 'Real-time notifications and event-driven architecture to keep your systems in sync automatically.'
+    },
+    {
+      id: 3,
+      title: 'SDK & Libraries',
+      description: 'Pre-built SDKs in Python, JavaScript, Go, and more to accelerate your integration timeline.'
+    },
+    {
+      id: 4,
+      title: 'Enterprise Security',
+      description: 'OAuth 2.0, API key management, rate limiting, and comprehensive audit logs for enterprise-grade security.'
+    }
+  ]
+
+  useEffect(() => {
+    if (hoveredFeature !== null) {
+      const feature = features.find(f => f.id === hoveredFeature)
+      if (feature && !featureText[hoveredFeature]) {
+        let currentIndex = 0
+        const interval = setInterval(() => {
+          if (currentIndex <= feature.description.length) {
+            setFeatureText(prev => ({
+              ...prev,
+              [hoveredFeature]: feature.description.slice(0, currentIndex)
+            }))
+            currentIndex++
+          } else {
+            clearInterval(interval)
+          }
+        }, 15)
+        return () => clearInterval(interval)
+      }
+    }
+  }, [hoveredFeature])
 
   useEffect(() => {
     let currentIndex = 0
@@ -100,16 +146,16 @@ export default function EnterpriseAPI() {
             </Button>
           </motion.div>
 
-          {/* Overlapping Demo Images */}
+          {/* Demo Images - No Overlap */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="relative h-[650px] max-w-7xl mx-auto"
+            className="grid grid-cols-3 gap-6 max-w-7xl mx-auto"
           >
-            {/* Image 1 - Left side */}
+            {/* Image 1 */}
             <div
-              className="absolute left-0 top-0 w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-10 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-enterprise-1.png')}
             >
               <Image
@@ -121,9 +167,9 @@ export default function EnterpriseAPI() {
               />
             </div>
 
-            {/* Image 2 - Center */}
+            {/* Image 2 */}
             <div
-              className="absolute left-[26%] top-[30px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-20 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-enterprise-2.png')}
             >
               <Image
@@ -135,9 +181,9 @@ export default function EnterpriseAPI() {
               />
             </div>
 
-            {/* Image 3 - Right side */}
+            {/* Image 3 */}
             <div
-              className="absolute right-0 top-[60px] w-[52%] h-[550px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-110 hover:-translate-y-3 transition-all duration-300 z-30 cursor-pointer"
+              className="w-full h-[450px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedImage('/demo-enterprise-3.png')}
             >
               <Image
@@ -155,70 +201,42 @@ export default function EnterpriseAPI() {
       {/* Feature Boxes Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature) => (
+              <div
+                key={feature.id}
+                className="flex flex-col"
+                onMouseEnter={() => setHoveredFeature(feature.id)}
+                onMouseLeave={() => setHoveredFeature(null)}
               >
-                RESTful & GraphQL APIs
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Choose the API architecture that works best for your needs with comprehensive REST and GraphQL support.
-              </p>
-            </div>
+                {/* Header Box */}
+                <div className="border-2 border-[#122b3e] bg-white rounded-lg p-6 transition-all duration-300 hover:shadow-xl hover:border-[#1a3d57]">
+                  <h3
+                    className="text-xl font-medium text-[#122b3e] text-center"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                  >
+                    {feature.title}
+                  </h3>
+                </div>
 
-            {/* Feature 2 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Webhooks & Events
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Real-time notifications and event-driven architecture to keep your systems in sync automatically.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                SDK & Libraries
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Pre-built SDKs in Python, JavaScript, Go, and more to accelerate your integration timeline.
-              </p>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3
-                className="text-2xl font-medium text-[#122b3e] mb-4"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                Enterprise Security
-              </h3>
-              <p
-                className="text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-              >
-                OAuth 2.0, API key management, rate limiting, and comprehensive audit logs for enterprise-grade security.
-              </p>
-            </div>
+                {/* Description - Appears on hover with typewriter effect */}
+                <div
+                  className={`mt-4 transition-all duration-300 ${
+                    hoveredFeature === feature.id ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0'
+                  } overflow-hidden`}
+                >
+                  <p
+                    className="text-gray-600 leading-relaxed text-center px-2"
+                    style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
+                  >
+                    {featureText[feature.id] || ''}
+                    {hoveredFeature === feature.id && featureText[feature.id]?.length < feature.description.length && (
+                      <span className="animate-pulse">|</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
