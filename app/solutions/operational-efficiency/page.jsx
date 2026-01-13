@@ -83,7 +83,7 @@ export default function OperationalEfficiency() {
             className="relative h-[500px] max-w-6xl mx-auto"
           >
             {/* Image 1 - Now showing Image 3 */}
-            <div className="absolute left-0 top-0 w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-10">
+            <div className="absolute left-0 top-0 w-[40%] h-[400px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-10">
               <Image
                 src="/demo-operational-3.png"
                 alt="Operational Efficiency Demo 3"
@@ -94,7 +94,7 @@ export default function OperationalEfficiency() {
             </div>
 
             {/* Image 2 - Center */}
-            <div className="absolute left-[30%] top-[30px] w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-20">
+            <div className="absolute left-[32%] top-[30px] w-[40%] h-[400px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-20">
               <Image
                 src="/demo-operational-2.png"
                 alt="Operational Efficiency Demo 2"
@@ -105,7 +105,7 @@ export default function OperationalEfficiency() {
             </div>
 
             {/* Image 3 - Now showing Image 1 */}
-            <div className="absolute right-0 top-[60px] w-[45%] h-[400px] bg-white rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-30">
+            <div className="absolute right-0 top-[60px] w-[40%] h-[400px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 z-30">
               <Image
                 src="/demo-operational-1.png"
                 alt="Operational Efficiency Demo 1"
