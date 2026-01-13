@@ -101,10 +101,9 @@ export default function Navigation({ onLogoClick }) {
       }
     } else {
       setShowTransition(true);
-      setTimeout(() => {
-        router.push('/');
-        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
-      }, 300);
+      // Navigate immediately so homepage loads behind the transition
+      router.push('/');
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 50);
     }
     setMobileMenuOpen(false);
   };

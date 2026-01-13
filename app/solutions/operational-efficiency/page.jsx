@@ -9,6 +9,7 @@ import { useDemoForm } from '@/context/DemoFormContext'
 
 export default function OperationalEfficiency() {
   const [displayedText, setDisplayedText] = useState('')
+  const [isTypingComplete, setIsTypingComplete] = useState(false)
   const fullText = 'Streamline field and internal operations with intelligent automation'
   const { setDemoFormOpen } = useDemoForm()
 
@@ -20,6 +21,7 @@ export default function OperationalEfficiency() {
         currentIndex++
       } else {
         clearInterval(interval)
+        setIsTypingComplete(true)
       }
     }, 25)
 
@@ -34,9 +36,10 @@ export default function OperationalEfficiency() {
       <section
         className="relative min-h-screen flex flex-col items-center justify-start pt-32 pb-20"
         style={{
-          backgroundImage: 'url(/pexels-steve-27236692.jpg)',
+          backgroundImage: 'url(/desert-mountain.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
         }}
       >
         {/* Dark overlay */}
@@ -52,7 +55,7 @@ export default function OperationalEfficiency() {
             style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', minHeight: '120px' }}
           >
             {displayedText}
-            <span className="animate-pulse">|</span>
+            {!isTypingComplete && <span className="animate-pulse">|</span>}
           </motion.h1>
 
           {/* Schedule Demo Button */}

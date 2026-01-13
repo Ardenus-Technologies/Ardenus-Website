@@ -9,6 +9,7 @@ import { useDemoForm } from '@/context/DemoFormContext'
 
 export default function EnterpriseAPI() {
   const [displayedText, setDisplayedText] = useState('')
+  const [isTypingComplete, setIsTypingComplete] = useState(false)
   const fullText = 'Connect your existing ecosystem with powerful, flexible APIs'
   const { setDemoFormOpen } = useDemoForm()
 
@@ -20,6 +21,7 @@ export default function EnterpriseAPI() {
         currentIndex++
       } else {
         clearInterval(interval)
+        setIsTypingComplete(true)
       }
     }, 25)
 
@@ -37,6 +39,7 @@ export default function EnterpriseAPI() {
           backgroundImage: 'url(/pexels-ants.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
         }}
       >
         {/* Dark overlay */}
@@ -52,7 +55,7 @@ export default function EnterpriseAPI() {
             style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', minHeight: '120px' }}
           >
             {displayedText}
-            <span className="animate-pulse">|</span>
+            {!isTypingComplete && <span className="animate-pulse">|</span>}
           </motion.h1>
 
           {/* Schedule Demo Button */}
