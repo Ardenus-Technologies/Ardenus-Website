@@ -12,18 +12,18 @@ export default function VenetianBlindsTransition({ isActive, onComplete }) {
       const timer = setTimeout(() => {
         setShow(false);
         if (onComplete) onComplete();
-      }, 800);
+      }, 600);
       return () => clearTimeout(timer);
     }
   }, [isActive, onComplete]);
 
-  const numBlinds = 12;
+  const numBlinds = 15;
   const blinds = Array.from({ length: numBlinds }, (_, i) => i);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {show && (
-        <div className="fixed inset-0 z-[9999] pointer-events-none">
+        <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden">
           {blinds.map((i) => (
             <motion.div
               key={i}
@@ -32,16 +32,17 @@ export default function VenetianBlindsTransition({ isActive, onComplete }) {
                 width: `${100 / numBlinds}%`,
                 left: `${(i * 100) / numBlinds}%`,
                 top: 0,
-                transformOrigin: 'left center',
-                transform: 'skewY(-15deg)',
+                transformOrigin: 'center center',
+                transform: 'skewY(-12deg)',
+                willChange: 'transform',
               }}
-              initial={{ scaleX: 0, x: '-100%' }}
-              animate={{ scaleX: 1, x: '0%' }}
-              exit={{ scaleX: 0, x: '100%' }}
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              exit={{ scaleX: 0, opacity: 0 }}
               transition={{
-                duration: 0.6,
-                delay: i * 0.03,
-                ease: [0.76, 0, 0.24, 1],
+                duration: 0.45,
+                delay: i * 0.015,
+                ease: [0.22, 1, 0.36, 1],
               }}
             />
           ))}
