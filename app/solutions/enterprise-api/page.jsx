@@ -43,7 +43,13 @@ export default function EnterpriseAPI() {
   useEffect(() => {
     if (hoveredFeature !== null) {
       const feature = features.find(f => f.id === hoveredFeature)
-      if (feature && !featureText[hoveredFeature]) {
+      if (feature) {
+        // Reset text when starting to hover
+        setFeatureText(prev => ({
+          ...prev,
+          [hoveredFeature]: ''
+        }))
+
         let currentIndex = 0
         const interval = setInterval(() => {
           if (currentIndex <= feature.description.length) {
@@ -156,7 +162,8 @@ export default function EnterpriseAPI() {
             {/* Image 1 */}
             <div
               className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-              onClick={() => setSelectedImage('/demo-enterprise-1.png')}
+              onMouseEnter={() => setSelectedImage('/demo-enterprise-1.png')}
+              onMouseLeave={() => setSelectedImage(null)}
             >
               <Image
                 src="/demo-enterprise-1.png"
@@ -170,7 +177,8 @@ export default function EnterpriseAPI() {
             {/* Image 2 */}
             <div
               className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-              onClick={() => setSelectedImage('/demo-enterprise-2.png')}
+              onMouseEnter={() => setSelectedImage('/demo-enterprise-2.png')}
+              onMouseLeave={() => setSelectedImage(null)}
             >
               <Image
                 src="/demo-enterprise-2.png"
@@ -184,7 +192,8 @@ export default function EnterpriseAPI() {
             {/* Image 3 */}
             <div
               className="w-full h-[600px] rounded-lg shadow-2xl overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-              onClick={() => setSelectedImage('/demo-enterprise-3.png')}
+              onMouseEnter={() => setSelectedImage('/demo-enterprise-3.png')}
+              onMouseLeave={() => setSelectedImage(null)}
             >
               <Image
                 src="/demo-enterprise-3.png"
