@@ -51,8 +51,21 @@ export default function SolutionsSection() {
   const [mobileActiveCapability, setMobileActiveCapability] = useState(null);
 
   return (
-    <section id="capabilities" ref={ref} className="py-20 md:py-28 bg-[#efeeee]">
-      <div className="max-w-[1920px] mx-auto px-8 lg:px-16">
+    <section id="capabilities" ref={ref} className="group relative py-20 md:py-28 bg-[#efeeee] overflow-hidden cursor-pointer">
+      {/* Background Image - covers entire section */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-110"
+        style={{
+          backgroundImage: 'url(/pexels-wasp.jpg)',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover'
+        }}
+      ></div>
+
+      {/* Dark overlay for text visibility */}
+      <div className="absolute inset-0 bg-black/50 transition-opacity duration-700 opacity-0 group-hover:opacity-100"></div>
+
+      <div className="relative z-10 max-w-[1920px] mx-auto px-8 lg:px-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,7 +74,7 @@ export default function SolutionsSection() {
           className="mb-16"
         >
           <span
-            className="text-lg md:text-xl lg:text-2xl font-normal text-[#122b3e] tracking-wider"
+            className="text-lg md:text-xl lg:text-2xl font-normal tracking-wider transition-colors duration-500 text-[#122b3e] group-hover:text-white"
             style={{ fontFamily: 'UAV-OSD-Sans-Mono, monospace' }}
           >
             CAPABILITIES
@@ -77,12 +90,12 @@ export default function SolutionsSection() {
           <div className="hidden lg:block">
             <div className="grid grid-cols-12 gap-12">
               {/* Left Side - Capability Tabs */}
-              <div className="col-span-4 flex flex-col gap-3">
+              <div className="col-span-4 flex flex-col gap-3 relative z-20">
                 {capabilities.map((capability) => (
                   <button
                     key={capability.id}
                     onMouseEnter={() => setActiveCapability(capability)}
-                    className={`w-full text-left p-5 rounded-none border-l-2 transition-all duration-300 ${
+                    className={`w-full text-left p-5 rounded-none border-l-2 transition-all duration-300 relative ${
                       activeCapability.id === capability.id
                         ? 'bg-[#122b3e] border-l-[#122b3e] text-white'
                         : 'bg-white border-l-transparent text-[#122b3e] hover:bg-gray-50'
@@ -107,8 +120,8 @@ export default function SolutionsSection() {
               </div>
 
               {/* Right Side - Content Display */}
-              <div className="col-span-8">
-                <div className="bg-white border-l-2 border-l-[#122b3e] p-8 h-auto flex flex-col">
+              <div className="col-span-8 relative z-20">
+                <div className="bg-white border-l-2 border-l-[#122b3e] p-8 h-auto flex flex-col relative">
                   <h3
                     className="text-2xl lg:text-3xl font-light text-[#122b3e] mb-4"
                     style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
@@ -139,12 +152,12 @@ export default function SolutionsSection() {
           </div>
 
           {/* Mobile Layout - Demo appears directly under each tab */}
-          <div className="lg:hidden flex flex-col gap-3">
+          <div className="lg:hidden flex flex-col gap-3 relative z-20">
             {capabilities.map((capability) => (
               <div key={capability.id}>
                 <button
                   onClick={() => setMobileActiveCapability(mobileActiveCapability?.id === capability.id ? null : capability)}
-                  className={`w-full text-left p-5 border-l-2 transition-all duration-300 ${
+                  className={`w-full text-left p-5 border-l-2 transition-all duration-300 relative ${
                     mobileActiveCapability?.id === capability.id
                       ? 'bg-[#122b3e] border-l-[#122b3e] text-white'
                       : 'bg-white border-l-transparent text-[#122b3e]'
@@ -168,8 +181,8 @@ export default function SolutionsSection() {
 
                 {/* Content appears right below the active tab */}
                 {mobileActiveCapability?.id === capability.id && (
-                  <div className="mt-3 mb-3">
-                    <div className="bg-white border-l-2 border-l-[#122b3e] p-6">
+                  <div className="mt-3 mb-3 relative z-20">
+                    <div className="bg-white border-l-2 border-l-[#122b3e] p-6 relative">
                       <h3
                         className="text-xl font-light text-[#122b3e] mb-3"
                         style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
