@@ -161,9 +161,8 @@ export default function PlatformPage() {
                   {product.content.features.map((feature, fIndex) => (
                     <li
                       key={fIndex}
-                      className="flex items-start gap-3 text-[#a0a0a0]"
+                      className="pl-6 text-[#a0a0a0]"
                     >
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-white/20" />
                       {feature}
                     </li>
                   ))}

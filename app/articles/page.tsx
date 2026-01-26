@@ -1,86 +1,112 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { LogoReveal } from '@/components/layout';
 import { FadeIn } from '@/components/animations/FadeIn';
+import { ScrollToTop } from '@/components/utils/ScrollToTop';
 
 export const metadata: Metadata = {
   title: 'Articles',
-  description: 'Insights, guides, and updates from our team.',
+  description: 'Insights, guides, and updates from the Ardenus team.',
 };
 
 const articles = [
   {
     id: 1,
-    slug: 'future-of-enterprise-software',
-    title: 'The Future of Enterprise Software: Trends to Watch',
+    slug: 'ai-opportunity-pest-control',
+    title: 'The AI Opportunity: Why Pest Control is the Next Frontier for Intelligent Operations',
     summary:
-      "Discover the key trends shaping enterprise software in 2024 and beyond. From AI integration to low-code platforms, learn what's driving innovation.",
-    category: 'Industry',
-    date: 'Jan 15, 2024',
+      "The pest control industry generates billions annually—yet operates on technology from the last decade. That's about to change.",
+    category: 'Thought Leadership',
+    date: 'Jan 14, 2026',
+    readTime: '4 min read',
+    image: '/articles/ai-opportunity.jpg',
   },
   {
     id: 2,
-    slug: 'maximizing-roi-with-automation',
-    title: 'Maximizing ROI with Intelligent Automation',
+    slug: 'understanding-customer-churn',
+    title: 'The Silent Exodus: Understanding Customer Churn in Pest Control',
     summary:
-      'Learn how businesses are achieving 10x returns through smart automation strategies. Real case studies and actionable insights included.',
-    category: 'Insights',
-    date: 'Jan 10, 2024',
+      "Customer churn isn't a marketing problem—it's an operational blind spot that AI can finally illuminate.",
+    category: 'Customer Intelligence',
+    date: 'Jan 12, 2026',
+    readTime: '5 min read',
+    image: '/articles/roach1.jpg',
   },
   {
     id: 3,
-    slug: 'building-data-driven-culture',
-    title: 'Building a Data-Driven Culture in Your Organization',
+    slug: 'seasonal-intelligence-competitive-advantage',
+    title: 'Predict the Swarm: How Seasonal Intelligence Becomes Competitive Advantage',
     summary:
-      'Practical steps to transform your company into a data-first enterprise. Strategies for leadership buy-in and team adoption.',
-    category: 'Guide',
-    date: 'Jan 5, 2024',
+      'Every pest has a pattern. The companies that see it first win the season.',
+    category: 'Data & Analytics',
+    date: 'Jan 10, 2026',
+    readTime: '5 min read',
+    image: '/articles/bees1.jpg',
   },
   {
     id: 4,
-    slug: 'security-best-practices-2024',
-    title: 'Security Best Practices for 2024',
+    slug: 'hidden-cost-disconnected-systems',
+    title: 'The Hidden Cost of Disconnected Systems: Why Your Software Stack Drains Productivity',
     summary:
-      'Stay ahead of threats with our comprehensive guide to enterprise security. Updated for the latest vulnerabilities and solutions.',
-    category: 'Security',
-    date: 'Dec 28, 2023',
+      "Disconnected systems don't just waste time—they make invisible mistakes that compound daily.",
+    category: 'Technology',
+    date: 'Jan 8, 2026',
+    readTime: '4 min read',
+    image: '/articles/money1.jpg',
   },
   {
     id: 5,
-    slug: 'scaling-startup-to-enterprise',
-    title: 'Scaling from Startup to Enterprise: A Tech Guide',
+    slug: 'technology-creates-elite-field-performance',
+    title: "Your Best Technician's Secret: How Technology Creates Elite Field Performance",
     summary:
-      'Technical considerations when scaling your infrastructure. From microservices to database optimization strategies.',
-    category: 'Technical',
-    date: 'Dec 20, 2023',
+      "The gap between your top performer and average isn't skill—it's information access.",
+    category: 'Workforce',
+    date: 'Jan 6, 2026',
+    readTime: '5 min read',
+    image: '/articles/pestTech.jpg',
   },
   {
     id: 6,
-    slug: 'remote-work-collaboration-tools',
-    title: 'Remote Work: Choosing the Right Collaboration Tools',
+    slug: 'smart-scheduling-reduces-windshield-time',
+    title: 'The Route to Profitability: How Smart Scheduling Reduces Windshield Time',
     summary:
-      'A comprehensive comparison of collaboration platforms for distributed teams. Find the right fit for your organization.',
-    category: 'Productivity',
-    date: 'Dec 15, 2023',
+      "Your technicians spend more time driving than treating. AI is changing that equation—and the savings compound faster than you think.",
+    category: 'Operations',
+    date: 'Jan 4, 2026',
+    readTime: '5 min read',
+    image: '/articles/article4.jpg',
+  },
+  {
+    id: 7,
+    slug: 'data-driven-pricing-pest-control',
+    title: 'Pricing in the Dark: Why Data-Driven Pricing Matters for Pest Control',
+    summary:
+      "Your pricing was set years ago based on gut feel. Meanwhile, your costs changed, your value increased, and your competitors moved. Time to catch up.",
+    category: 'Revenue Intelligence',
+    date: 'Jan 2, 2026',
+    readTime: '6 min read',
+    image: '/articles/article5.jpg',
   },
 ];
 
 export default function ArticlesPage() {
   return (
     <>
+      <ScrollToTop />
       {/* Page Header */}
       <section className="section-py-lg bg-black pt-32">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <h1 className="text-display-1 uppercase tracking-tight text-white">
-              Articles
+              News & Articles
             </h1>
           </FadeIn>
         </div>
       </section>
 
       {/* Articles List */}
-      <section className="border-t border-white/10 bg-black pb-24">
+      <section className="bg-black pb-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="divide-y divide-white/10">
             {articles.map((article, index) => (
@@ -92,12 +118,12 @@ export default function ArticlesPage() {
                   <article className="grid gap-6 sm:grid-cols-12 sm:items-center">
                     {/* Image */}
                     <div className="sm:col-span-4">
-                      <div className="img-grayscale aspect-[16/10] overflow-hidden bg-[#1a1a1a] transition-transform duration-500 group-hover:scale-[1.02]">
-                        <div
-                          className="h-full w-full transition-all duration-500"
-                          style={{
-                            backgroundImage: `linear-gradient(${135 + index * 30}deg, #2a2a2a, #1a1a1a)`,
-                          }}
+                      <div className="relative aspect-[16/10] overflow-hidden bg-[#1a1a1a] transition-transform duration-500 group-hover:scale-[1.02]">
+                        <Image
+                          src={article.image}
+                          alt={article.title}
+                          fill
+                          className="object-cover transition-all duration-500"
                         />
                       </div>
                     </div>
@@ -115,6 +141,7 @@ export default function ArticlesPage() {
                           {article.category}
                         </span>
                         <span>{article.date}</span>
+                        <span>{article.readTime}</span>
                       </div>
                     </div>
                   </article>

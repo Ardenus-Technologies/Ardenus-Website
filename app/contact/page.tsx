@@ -2,14 +2,19 @@
 
 import { useState, FormEvent } from 'react';
 import { FadeIn } from '@/components/animations/FadeIn';
+import { LogoReveal } from '@/components/layout/LogoReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
-const benefits = [
-  'Personalized demo of all features',
-  'Custom pricing for your needs',
-  'Implementation roadmap',
-  'Direct access to our team',
+const usStates = [
+  'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
+  'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
+  'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
+  'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
+  'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
+  'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
+  'Wisconsin', 'Wyoming'
 ];
 
 export default function ContactPage() {
@@ -28,44 +33,22 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="section-py-xl bg-black pt-32">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left Column - Info */}
-          <div>
-            <FadeIn>
-              <span className="text-xs uppercase tracking-widest text-[#4f4f4f]">
-                Get Started
-              </span>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="text-display-1 mt-4 uppercase tracking-tight text-white">
-                Request a Demo
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-body-lg mt-8 text-[#a0a0a0]">
-                See how our platform can transform your business. Fill out the
-                form and one of our specialists will reach out to schedule a
-                personalized demo.
-              </p>
-            </FadeIn>
+    <>
+      {/* Page Header */}
+      <section className="section-py-lg bg-black pt-32">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <h1 className="text-display-1 uppercase tracking-tight text-white">
+              Request a Demo
+            </h1>
+          </FadeIn>
+        </div>
+      </section>
 
-            {/* Benefits List */}
-            <FadeIn delay={0.3}>
-              <ul className="mt-8 space-y-4">
-                {benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <span className="h-px w-4 bg-white/30" />
-                    <span className="text-[#a0a0a0]">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </FadeIn>
-          </div>
-
-          {/* Right Column - Form */}
-          <FadeIn delay={0.4}>
+      {/* Form Section */}
+      <section className="bg-black pb-24">
+        <div className="mx-auto max-w-[700px] px-4 sm:px-6 lg:px-8">
+          <FadeIn delay={0.1}>
             <div className="border border-white/10 bg-[#1a1a1a] p-8">
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
@@ -83,15 +66,14 @@ export default function ContactPage() {
                           htmlFor="firstName"
                           className="block text-sm text-[#a0a0a0]"
                         >
-                          First name *
+                          First Name *
                         </label>
                         <input
                           type="text"
                           id="firstName"
                           name="firstName"
                           required
-                          className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 placeholder:text-[#4f4f4f] focus:border-white/30 focus:outline-none"
-                          placeholder="John"
+                          className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
                         />
                       </div>
                       <div>
@@ -99,34 +81,48 @@ export default function ContactPage() {
                           htmlFor="lastName"
                           className="block text-sm text-[#a0a0a0]"
                         >
-                          Last name *
+                          Last Name *
                         </label>
                         <input
                           type="text"
                           id="lastName"
                           name="lastName"
                           required
-                          className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 placeholder:text-[#4f4f4f] focus:border-white/30 focus:outline-none"
-                          placeholder="Doe"
+                          className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
                         />
                       </div>
                     </div>
 
-                    {/* Email */}
+                    {/* Business Email */}
                     <div>
                       <label
                         htmlFor="email"
                         className="block text-sm text-[#a0a0a0]"
                       >
-                        Work email *
+                        Business Email *
                       </label>
                       <input
                         type="email"
                         id="email"
                         name="email"
                         required
-                        className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 placeholder:text-[#4f4f4f] focus:border-white/30 focus:outline-none"
-                        placeholder="john@company.com"
+                        className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
+                      />
+                    </div>
+
+                    {/* Phone Number */}
+                    <div>
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm text-[#a0a0a0]"
+                      >
+                        Phone Number (optional)
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
                       />
                     </div>
 
@@ -136,71 +132,72 @@ export default function ContactPage() {
                         htmlFor="company"
                         className="block text-sm text-[#a0a0a0]"
                       >
-                        Company name *
+                        Company *
                       </label>
                       <input
                         type="text"
                         id="company"
                         name="company"
                         required
-                        className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 placeholder:text-[#4f4f4f] focus:border-white/30 focus:outline-none"
-                        placeholder="Acme Inc."
+                        className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
                       />
                     </div>
 
-                    {/* Phone & Company Size Row */}
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <label
-                          htmlFor="phone"
-                          className="block text-sm text-[#a0a0a0]"
-                        >
-                          Phone number
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 placeholder:text-[#4f4f4f] focus:border-white/30 focus:outline-none"
-                          placeholder="+1 (555) 000-0000"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="companySize"
-                          className="block text-sm text-[#a0a0a0]"
-                        >
-                          Company size
-                        </label>
-                        <select
-                          id="companySize"
-                          name="companySize"
-                          className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
-                        >
-                          <option value="">Select...</option>
-                          <option value="1-10">1-10 employees</option>
-                          <option value="11-50">11-50 employees</option>
-                          <option value="51-200">51-200 employees</option>
-                          <option value="201-500">201-500 employees</option>
-                          <option value="500+">500+ employees</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Message */}
+                    {/* Job Title */}
                     <div>
                       <label
-                        htmlFor="message"
+                        htmlFor="jobTitle"
                         className="block text-sm text-[#a0a0a0]"
                       >
-                        How can we help?
+                        Job Title *
+                      </label>
+                      <input
+                        type="text"
+                        id="jobTitle"
+                        name="jobTitle"
+                        required
+                        className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
+                      />
+                    </div>
+
+                    {/* State */}
+                    <div>
+                      <label
+                        htmlFor="state"
+                        className="block text-sm text-[#a0a0a0]"
+                      >
+                        State *
+                      </label>
+                      <select
+                        id="state"
+                        name="state"
+                        required
+                        className="mt-2 w-full appearance-none border border-white/10 bg-black px-4 py-3 pr-10 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
+                        style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a0a0a0'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px' }}
+                      >
+                        <option value="">Select your state</option>
+                        {usStates.map((state) => (
+                          <option key={state} value={state}>
+                            {state}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Business Improvement Goals */}
+                    <div>
+                      <label
+                        htmlFor="goals"
+                        className="block text-sm text-[#a0a0a0]"
+                      >
+                        Business Improvement Goals *
                       </label>
                       <textarea
-                        id="message"
-                        name="message"
+                        id="goals"
+                        name="goals"
                         rows={4}
-                        className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 placeholder:text-[#4f4f4f] focus:border-white/30 focus:outline-none"
-                        placeholder="Tell us about your needs..."
+                        required
+                        className="mt-2 w-full border border-white/10 bg-black px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
                       />
                     </div>
 
@@ -218,9 +215,18 @@ export default function ContactPage() {
                       By submitting this form, you agree to our{' '}
                       <Link
                         href="/privacy"
+                        scroll={true}
                         className="link-underline text-[#a0a0a0] transition-colors duration-300 hover:text-white"
                       >
                         Privacy Policy
+                      </Link>
+                      {' '}and{' '}
+                      <Link
+                        href="/terms"
+                        scroll={true}
+                        className="link-underline text-[#a0a0a0] transition-colors duration-300 hover:text-white"
+                      >
+                        Terms of Use
                       </Link>
                       .
                     </p>
@@ -260,7 +266,8 @@ export default function ContactPage() {
             </div>
           </FadeIn>
         </div>
-      </div>
-    </section>
+      </section>
+      <LogoReveal />
+    </>
   );
 }

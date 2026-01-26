@@ -1,36 +1,40 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { motion } from 'framer-motion';
 
 const articles = [
   {
     id: 1,
-    slug: 'future-of-enterprise-software',
-    title: 'The Future of Enterprise Software: Trends to Watch',
+    slug: 'ai-opportunity-pest-control',
+    title: 'The AI Opportunity: Why Pest Control is the Next Frontier for Intelligent Operations',
     summary:
-      'Discover the key trends shaping enterprise software in 2024 and beyond.',
-    category: 'Industry',
-    date: 'Jan 15, 2024',
+      "The pest control industry generates billions annually—yet operates on technology from the last decade. That's about to change.",
+    category: 'Thought Leadership',
+    date: 'Jan 14, 2026',
+    image: '/articles/ai-opportunity.jpg',
   },
   {
     id: 2,
-    slug: 'maximizing-roi-with-automation',
-    title: 'Maximizing ROI with Intelligent Automation',
+    slug: 'understanding-customer-churn',
+    title: 'The Silent Exodus: Understanding Customer Churn in Pest Control',
     summary:
-      'Learn how businesses are achieving 10x returns through smart automation strategies.',
-    category: 'Insights',
-    date: 'Jan 10, 2024',
+      "Customer churn isn't a marketing problem—it's an operational blind spot that AI can finally illuminate.",
+    category: 'Customer Intelligence',
+    date: 'Jan 12, 2026',
+    image: '/articles/roach1.jpg',
   },
   {
     id: 3,
-    slug: 'building-data-driven-culture',
-    title: 'Building a Data-Driven Culture in Your Organization',
+    slug: 'seasonal-intelligence-competitive-advantage',
+    title: 'Predict the Swarm: How Seasonal Intelligence Becomes Competitive Advantage',
     summary:
-      'Practical steps to transform your company into a data-first enterprise.',
-    category: 'Guide',
-    date: 'Jan 5, 2024',
+      'Every pest has a pattern. The companies that see it first win the season.',
+    category: 'Data & Analytics',
+    date: 'Jan 10, 2026',
+    image: '/articles/bees1.jpg',
   },
 ];
 
@@ -42,11 +46,6 @@ export function News() {
         <div className="mb-12 flex items-end justify-between">
           <div>
             <FadeIn>
-              <span className="text-xs uppercase tracking-widest text-[#4f4f4f]">
-                Latest Updates
-              </span>
-            </FadeIn>
-            <FadeIn delay={0.1}>
               <h2 className="text-display-2 mt-4 uppercase tracking-tight text-white">
                 News & Articles
               </h2>
@@ -55,6 +54,7 @@ export function News() {
           <FadeIn delay={0.2}>
             <Link
               href="/articles"
+              scroll={true}
               className="link-underline hidden text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white sm:block"
             >
               View all
@@ -74,14 +74,13 @@ export function News() {
             >
               <Link href={`/articles/${article.slug}`} className="group block">
                 {/* Image */}
-                <div className="img-grayscale relative aspect-[16/10] overflow-hidden bg-[#1a1a1a]">
-                  <div
-                    className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-                    style={{
-                      backgroundImage: `linear-gradient(${135 + index * 45}deg, #2a2a2a, #1a1a1a)`,
-                    }}
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#1a1a1a]">
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  {/* <Image src={article.image} alt={article.title} fill className="object-cover" /> */}
                 </div>
 
                 {/* Content */}
@@ -108,6 +107,7 @@ export function News() {
         <FadeIn className="mt-12 text-center sm:hidden">
           <Link
             href="/articles"
+            scroll={true}
             className="link-underline text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
           >
             View all articles

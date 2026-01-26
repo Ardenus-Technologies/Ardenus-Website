@@ -7,25 +7,29 @@ const processSteps = [
     number: '01',
     title: 'Discovery',
     description:
-      'We start by understanding your business, goals, and challenges through in-depth consultations and research.',
+      'Audit processes, identify ROI opportunities, map integrations, and define metrics.',
+    image: '/monarch-butterfly-egg-hatch-baby-caterpillar.jpg',
   },
   {
     number: '02',
-    title: 'Strategy',
+    title: 'Pilot',
     description:
-      'Our team develops a comprehensive strategy tailored to your specific needs and objectives.',
+      'Design workflows, train AI models, integrate tools, and create dashboards.',
+    image: '/insect-invertebrates-monarch-butterfly-larvae.jpg',
   },
   {
     number: '03',
-    title: 'Implementation',
+    title: 'Deployment',
     description:
-      'We execute the plan with precision, ensuring seamless integration with your existing systems.',
+      'Launch systems, train your team, and establish monitoring and feedback.',
+    image: '/cocoon-butterfly-insect-animal-39862.jpeg',
   },
   {
     number: '04',
     title: 'Optimization',
     description:
-      'Continuous monitoring and refinement to maximize performance and deliver lasting results.',
+      'Monthly reviews, continuous improvements, scaling, and priority support included.',
+    image: '/monarch-butterfly.jpg',
   },
 ];
 
@@ -35,14 +39,9 @@ export function Process() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           {/* Sticky Label */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <FadeIn>
-                <span className="text-xs uppercase tracking-widest text-[#4f4f4f]">
-                  How We Work
-                </span>
-              </FadeIn>
-              <FadeIn delay={0.1}>
                 <h2 className="text-display-2 mt-4 uppercase tracking-tight text-white">
                   Our Process
                 </h2>
@@ -51,12 +50,22 @@ export function Process() {
           </div>
 
           {/* Process Cards */}
-          <div className="space-y-6 lg:col-span-9">
+          <div className="space-y-6 lg:col-span-8">
             {processSteps.map((step, index) => (
               <FadeIn key={step.number} delay={index * 0.15}>
-                <div className="group border border-white/10 bg-[#1a1a1a] p-8 transition-all duration-300 hover:border-white/20 sm:p-10">
+                <div
+                  className="group relative overflow-hidden p-8 transition-all duration-300 sm:p-10"
+                  style={{
+                    backgroundImage: `url(${step.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  {/* Dark overlay for text readability */}
+                  <div className="absolute inset-0 bg-black/70 transition-all duration-300 group-hover:bg-black/60" />
+
                   {/* Content */}
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8">
+                  <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8">
                     <span className="text-xs tracking-widest text-[#4f4f4f]">
                       {step.number}
                     </span>

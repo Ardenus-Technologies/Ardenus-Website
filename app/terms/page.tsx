@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { FadeIn } from '@/components/animations/FadeIn';
+import { LogoReveal } from '@/components/layout/LogoReveal';
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
+    <>
     <section className="section-py-xl bg-black pt-32">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 md:grid-cols-12 md:gap-12">
@@ -57,34 +59,13 @@ export default function TermsPage() {
                     You agree to use the Site only for lawful purposes and in accordance with these Terms. You agree not to:
                   </p>
                   <ul className="mt-4 space-y-2 text-[#a0a0a0]">
-                    <li className="flex items-start gap-3">
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-white/20" />
-                      Use the Site in any way that violates any applicable federal, state, local, or international law or regulation;
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-white/20" />
-                      Use the Site to transmit or procure the sending of any advertising or promotional material without our prior written consent;
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-white/20" />
-                      Impersonate or attempt to impersonate Ardenus, an Ardenus employee, another user, or any other person or entity;
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-white/20" />
-                      Engage in any conduct that restricts or inhibits anyone's use or enjoyment of the Site;
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-white/20" />
-                      Attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site;
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-white/20" />
-                      Use any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site;
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-white/20" />
-                      Introduce any viruses, Trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.
-                    </li>
+                    <li className="pl-6">Use the Site in any way that violates any applicable federal, state, local, or international law or regulation;</li>
+                    <li className="pl-6">Use the Site to transmit or procure the sending of any advertising or promotional material without our prior written consent;</li>
+                    <li className="pl-6">Impersonate or attempt to impersonate Ardenus, an Ardenus employee, another user, or any other person or entity;</li>
+                    <li className="pl-6">Engage in any conduct that restricts or inhibits anyone's use or enjoyment of the Site;</li>
+                    <li className="pl-6">Attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Site, the server on which the Site is stored, or any server, computer, or database connected to the Site;</li>
+                    <li className="pl-6">Use any robot, spider, or other automatic device, process, or means to access the Site for any purpose, including monitoring or copying any of the material on the Site;</li>
+                    <li className="pl-6">Introduce any viruses, Trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
                   </ul>
                 </div>
 
@@ -211,5 +192,7 @@ export default function TermsPage() {
         </div>
       </div>
     </section>
+    <LogoReveal />
+    </>
   );
 }

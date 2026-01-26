@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
@@ -17,6 +18,7 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,6 +46,13 @@ export function Navigation() {
     };
   }, [isOpen]);
 
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
+
   return (
     <>
       <motion.header
@@ -56,7 +65,7 @@ export function Navigation() {
           {/* Logo */}
           <Link
             href="/"
-            className="relative h-8 w-48 transition-opacity duration-300 hover:opacity-50"
+            className="relative h-8 w-48"
           >
             <Image
               src="/logo.png"
@@ -73,12 +82,14 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="link-underline text-base text-[#a0a0a0] transition-colors duration-300 hover:text-white"
+                className={`link-underline text-base transition-colors duration-300 hover:text-white ${
+                  isActive(link.href) ? 'text-white' : 'text-[#a0a0a0]'
+                }`}
               >
                 {link.label}
               </Link>
             ))}
-            <Link href="/contact" className="btn btn-primary">
+            <Link href="/contact" className="btn btn-primary rounded-none">
               Get a Demo
             </Link>
           </div>
@@ -138,9 +149,14 @@ export function Navigation() {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-display-3 uppercase tracking-tight text-white transition-opacity duration-300 hover:opacity-50"
+                    className={`text-display-3 uppercase tracking-tight transition-opacity duration-300 hover:opacity-50 ${
+                      isActive(link.href) ? 'text-white' : 'text-[#a0a0a0]'
+                    }`}
                   >
                     {link.label}
+                    {isActive(link.href) && (
+                      <span className="ml-2 inline-block h-2 w-2 rounded-full bg-white" />
+                    )}
                   </Link>
                 </motion.div>
               ))}
@@ -154,7 +170,7 @@ export function Navigation() {
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="btn btn-primary text-sm"
+                  className="btn btn-primary rounded-none text-sm"
                 >
                   Get a Demo
                 </Link>

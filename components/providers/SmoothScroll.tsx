@@ -82,6 +82,8 @@ export function SmoothScrollProvider({
     });
 
     lenisRef.current = lenis;
+    // Expose globally for scroll utilities
+    (window as any).__lenis = lenis;
 
     // Animation frame loop
     function raf(time: number) {
@@ -95,6 +97,7 @@ export function SmoothScrollProvider({
     return () => {
       lenis.destroy();
       lenisRef.current = null;
+      (window as any).__lenis = null;
     };
   }, [
     lerp,

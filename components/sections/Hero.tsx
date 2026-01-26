@@ -1,18 +1,20 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 const anchorLinks = [
   { href: '#statement', label: 'About' },
-  { href: '#showcase', label: 'Showcase' },
-  { href: '#products', label: 'Products' },
+  { href: '#products', label: 'Capabilities' },
   { href: '#process', label: 'Process' },
+  { href: '#integrations', label: 'Integrations' },
   { href: '#news', label: 'News' },
 ];
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -21,6 +23,30 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+
+  useEffect(() => {
+    let hasScrolled = false;
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        hasScrolled = true;
+        setShowScrollIndicator(false);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      // Only show if user hasn't scrolled and is still at top
+      if (!hasScrolled && window.scrollY <= 50) {
+        setShowScrollIndicator(true);
+      }
+    }, 4000);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <section
@@ -46,7 +72,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity, y }}
-        className="absolute inset-0 flex flex-col justify-end pb-16 sm:pb-24"
+        className="absolute inset-0 flex flex-col justify-end pb-24 sm:pb-32 lg:pb-36"
       >
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
           {/* Tagline */}
@@ -78,7 +104,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-black"
+                className="bg-white/5 px-6 py-2.5 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-black"
               >
                 {link.label}
               </motion.a>
@@ -86,31 +112,43 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-xs uppercase tracking-widest text-white/50">
-              Scroll
-            </span>
-            <div className="h-8 w-5 rounded-full border border-white/20">
-              <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="mx-auto mt-1 h-2 w-1 rounded-full bg-white"
-              />
-            </div>
-          </motion.div>
-        </motion.div>
       </motion.div>
+
+      {/* Scroll Indicator - Fixed at bottom of screen */}
+      <AnimatePresence>
+        {showScrollIndicator && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="flex flex-col items-center gap-2"
+            >
+              <span className="text-xs uppercase tracking-widest text-white/50">
+                Scroll
+              </span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-white/50"
+              >
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
