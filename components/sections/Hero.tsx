@@ -1,7 +1,8 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
 const anchorLinks = [
   { href: '#statement', label: 'About' },
@@ -14,6 +15,7 @@ const anchorLinks = [
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   // Force video to play on mobile devices (especially iOS Safari)
   useEffect(() => {
@@ -27,11 +29,19 @@ export function Hero() {
           const playPromise = video.play();
           if (playPromise !== undefined) {
             await playPromise;
+            setIsVideoPlaying(true);
           }
         } catch {
           // Silently fail - will retry
         }
+      } else {
+        setIsVideoPlaying(true);
       }
+    };
+
+    // Handle when video starts playing
+    const handlePlaying = () => {
+      setIsVideoPlaying(true);
     };
 
     // Handle when video data is loaded
@@ -70,6 +80,7 @@ export function Hero() {
     );
 
     // Add all event listeners
+    video.addEventListener('playing', handlePlaying);
     video.addEventListener('loadeddata', handleLoadedData);
     video.addEventListener('canplay', handleCanPlay);
     window.addEventListener('scroll', handleScroll, {
@@ -84,6 +95,7 @@ export function Hero() {
 
     return () => {
       timers.forEach(clearTimeout);
+      video.removeEventListener('playing', handlePlaying);
       video.removeEventListener('loadeddata', handleLoadedData);
       video.removeEventListener('canplay', handleCanPlay);
       window.removeEventListener('scroll', handleScroll);
@@ -109,16 +121,29 @@ export function Hero() {
     >
       {/* Background Video */}
       <motion.div style={{ scale }} className="absolute inset-0">
+        {/* Poster image - shown until video plays (hides iOS play button) */}
+        <div
+          className={`absolute inset-0 z-10 transition-opacity duration-500 ${
+            isVideoPlaying ? 'pointer-events-none opacity-0' : 'opacity-100'
+          }`}
+        >
+          <Image
+            src="/products-bg.jpg"
+            alt="Background"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        {/* Video - always renders but poster covers it until playing */}
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           className="h-full w-full object-cover"
-          // eslint-disable-next-line react/no-unknown-property
-          webkit-playsinline="true"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
