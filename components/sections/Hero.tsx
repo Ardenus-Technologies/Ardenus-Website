@@ -15,29 +15,30 @@ export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Force video to play on mobile devices
+  // Force video to play on mobile devices (especially iOS Safari)
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const playVideo = async () => {
       try {
-        // Reset video to start
-        video.currentTime = 0;
+        video.muted = true; // Ensure muted for autoplay policy
         await video.play();
       } catch {
-        // Autoplay was prevented, try with muted (required for mobile)
-        video.muted = true;
-        try {
-          await video.play();
-        } catch {
-          // Still failed, will show first frame
-        }
+        // Silently fail - will retry on interaction
       }
     };
 
     // Play immediately
     playVideo();
+
+    // iOS requires user interaction - listen for first touch/click anywhere
+    const handleFirstInteraction = () => {
+      playVideo();
+      // Remove listeners after first successful interaction
+      document.removeEventListener('touchstart', handleFirstInteraction);
+      document.removeEventListener('click', handleFirstInteraction);
+    };
 
     // Also try on visibility change (when user switches tabs back)
     const handleVisibilityChange = () => {
@@ -46,15 +47,24 @@ export function Hero() {
       }
     };
 
-    // Try again after a short delay for mobile browsers
-    const timer = setTimeout(playVideo, 100);
+    // Try again after delays for mobile browsers
+    const timer1 = setTimeout(playVideo, 100);
     const timer2 = setTimeout(playVideo, 500);
+    const timer3 = setTimeout(playVideo, 1000);
 
+    // Add interaction listeners for iOS
+    document.addEventListener('touchstart', handleFirstInteraction, {
+      passive: true,
+    });
+    document.addEventListener('click', handleFirstInteraction);
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timer1);
       clearTimeout(timer2);
+      clearTimeout(timer3);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+      document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
@@ -82,8 +92,13 @@ export function Hero() {
           loop
           playsInline
           preload="auto"
+          controls={false}
+          disablePictureInPicture
           className="h-full w-full object-cover"
-          style={{ objectFit: 'cover' }}
+          style={{
+            objectFit: 'cover',
+            pointerEvents: 'none', // Prevent tap-to-play UI
+          }}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
