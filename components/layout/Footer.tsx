@@ -16,7 +16,7 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer
-      className="relative z-10 -mt-52 border-t border-white/10 bg-black"
+      className="relative z-10 -mt-52 border-t-0 border-white/10 bg-black md:border-t"
       style={{ fontFamily: "'Edgecutting', sans-serif" }}
     >
       <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">

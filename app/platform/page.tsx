@@ -161,7 +161,10 @@ export default function PlatformPage() {
             <div className="mt-16 grid gap-12 md:grid-cols-2">
               <div>
                 <FadeIn>
-                  <h3 className="text-xl font-medium text-white">
+                  <h3
+                    className="text-xl font-medium text-white"
+                    style={{ textTransform: 'none' }}
+                  >
                     {product.content.subheading}
                   </h3>
                 </FadeIn>
