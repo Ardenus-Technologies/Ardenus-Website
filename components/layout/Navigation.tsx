@@ -109,10 +109,10 @@ export function Navigation() {
               <motion.span
                 animate={{
                   rotate: isOpen ? 45 : 0,
-                  y: isOpen ? 6 : 0,
+                  y: isOpen ? 7 : 0,
                 }}
                 transition={{ duration: 0.3 }}
-                className="h-px w-6 bg-white"
+                className="h-px w-6 origin-center bg-white"
               />
               <motion.span
                 animate={{ opacity: isOpen ? 0 : 1 }}
@@ -122,10 +122,10 @@ export function Navigation() {
               <motion.span
                 animate={{
                   rotate: isOpen ? -45 : 0,
-                  y: isOpen ? -6 : 0,
+                  y: isOpen ? -7 : 0,
                 }}
                 transition={{ duration: 0.3 }}
-                className="h-px w-6 bg-white"
+                className="h-px w-6 origin-center bg-white"
               />
             </div>
           </button>

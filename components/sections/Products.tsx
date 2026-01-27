@@ -149,7 +149,7 @@ export function Products() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         viewport={{ once: true }}
-                        className={`relative aspect-[16/10] w-[85%] overflow-hidden shadow-2xl ${product.windowType === 'macos' ? 'rounded-md' : ''}`}
+                        className={`relative aspect-[16/10] w-[85%] overflow-hidden shadow-2xl ${product.windowType === 'macos' ? 'rounded-sm' : ''}`}
                       >
                         {product.windowImage && (
                           <Image

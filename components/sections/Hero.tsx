@@ -47,7 +47,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity, y }}
-        className="absolute inset-0 flex flex-col justify-end pb-24 sm:pb-32 lg:pb-36"
+        className="absolute inset-0 flex flex-col justify-end pb-16 sm:pb-32 lg:pb-36"
       >
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
           {/* Tagline */}
@@ -55,7 +55,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-display-1 mb-8 max-w-4xl uppercase tracking-tight text-white"
+            className="text-display-1 mb-8 max-w-4xl uppercase tracking-tight text-white sm:mb-8"
             style={{ fontFamily: "'Nurom', sans-serif" }}
           >
             The New Standard
@@ -65,12 +65,12 @@ export function Hero() {
             Pest Defense
           </motion.h1>
 
-          {/* Anchor Buttons */}
+          {/* Anchor Buttons - Hidden on mobile */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-wrap gap-3"
+            className="hidden flex-wrap gap-3 sm:flex"
           >
             {anchorLinks.map((link, index) => (
               <motion.a
