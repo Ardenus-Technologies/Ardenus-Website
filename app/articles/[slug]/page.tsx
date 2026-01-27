@@ -572,7 +572,12 @@ export default async function ArticlePage({ params }: Props) {
               {/* Sources */}
               {article.sources && article.sources.length > 0 && (
                 <div className="mt-16 border-t border-white/10 pt-8">
-                  <h3 className="text-lg font-medium text-white" style={{ textTransform: 'none' }}>Sources</h3>
+                  <h3
+                    className="text-lg font-medium text-white"
+                    style={{ textTransform: 'none' }}
+                  >
+                    Sources
+                  </h3>
                   <ul className="mt-4 space-y-2">
                     {article.sources.map((source) => (
                       <li key={source.id} className="text-sm text-[#4f4f4f]">
