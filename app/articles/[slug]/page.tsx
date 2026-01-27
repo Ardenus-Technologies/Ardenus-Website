@@ -589,10 +589,10 @@ export default async function ArticlePage({ params }: Props) {
           <FadeIn>
             <Link
               href="/articles"
-              className="inline-flex items-center gap-2 text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
+              className="group inline-flex items-center gap-2 border border-white/30 px-4 py-2 text-sm text-white transition-all duration-300 hover:border-white"
             >
               <svg
-                className="h-4 w-4"
+                className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -601,7 +601,7 @@ export default async function ArticlePage({ params }: Props) {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={1}
-                  d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                  d="M7 8l-4 4m0 0l4 4m-4-4h18"
                 />
               </svg>
               Back to Articles
