@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://ardenus.com',
     siteName: 'Ardenus',
-    title: 'Ardenus',
+    title: 'Ardenus: The New Standard in Intelligent Pest Defense',
     description:
       'The complete AI-powered operating system for pest control businesses. Intelligence, automation, and analytics in one platform.',
     images: [
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Ardenus - AI-Powered Operating System',
+        alt: 'Ardenus: The New Standard in Intelligent Pest Defense',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ardenus',
+    title: 'Ardenus: The New Standard in Intelligent Pest Defense',
     description:
       'The complete AI-powered operating system for pest control businesses.',
     images: ['/og-image.png'],
