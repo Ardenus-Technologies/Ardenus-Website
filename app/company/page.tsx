@@ -51,7 +51,7 @@ export default function CompanyPage() {
   return (
     <>
       {/* Hero Section with Mission */}
-      <section className="bg-black pt-32 pb-24">
+      <section className="bg-black pb-24 pt-32">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <h1 className="text-display-1 tracking-tight text-white">
@@ -60,25 +60,41 @@ export default function CompanyPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-body-lg mt-8 text-[#a0a0a0]">
-              The physical economy is built by people, but it is slowed by complexity. We believe that true intelligence doesn't replace the human workforce; it creates a new caliber of operator.
+              The physical economy is built by people, but it is slowed by
+              complexity. We believe that true intelligence doesn't replace the
+              human workforce; it creates a new caliber of operator.
             </p>
           </FadeIn>
 
           <div className="mt-16 space-y-12">
             <FadeIn delay={0.2}>
               <div>
-                <h3 className="text-xl font-medium text-white" style={{ textTransform: 'none' }}>Creating Order from Chaos</h3>
-                <p className="mt-4 text-body-lg text-[#a0a0a0]">
-                  We are building the infrastructure that creates order out of physical chaos—automating the logistics and data so your teams have the clarity, speed, and foresight to execute perfectly.
+                <h3
+                  className="text-xl font-medium text-white"
+                  style={{ textTransform: 'none' }}
+                >
+                  Creating Order from Chaos
+                </h3>
+                <p className="text-body-lg mt-4 text-[#a0a0a0]">
+                  We are building the infrastructure that creates order out of
+                  physical chaos—automating the logistics and data so your teams
+                  have the clarity, speed, and foresight to execute perfectly.
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.3}>
               <div>
-                <h3 className="text-xl font-medium text-white" style={{ textTransform: 'none' }}>Scaling Human Capability</h3>
-                <p className="mt-4 text-body-lg text-[#a0a0a0]">
-                  We don't just optimize operations; we scale human capability. Our mission is to amplify what your teams can achieve, giving them the tools to operate at their highest potential.
+                <h3
+                  className="text-xl font-medium text-white"
+                  style={{ textTransform: 'none' }}
+                >
+                  Scaling Human Capability
+                </h3>
+                <p className="text-body-lg mt-4 text-[#a0a0a0]">
+                  We don't just optimize operations; we scale human capability.
+                  Our mission is to amplify what your teams can achieve, giving
+                  them the tools to operate at their highest potential.
                 </p>
               </div>
             </FadeIn>
@@ -92,7 +108,8 @@ export default function CompanyPage() {
         <div
           className="pointer-events-none absolute inset-x-0 top-0 z-0 h-48"
           style={{
-            background: 'linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
+            background:
+              'linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
           }}
         />
 
@@ -100,7 +117,8 @@ export default function CompanyPage() {
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-48"
           style={{
-            background: 'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
+            background:
+              'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
           }}
         />
 
@@ -118,7 +136,9 @@ export default function CompanyPage() {
               <FadeIn key={member.name} delay={index * 0.1}>
                 <div className="group">
                   {/* Image */}
-                  <div className={`relative aspect-square overflow-hidden ${member.bgColor}`}>
+                  <div
+                    className={`relative aspect-square overflow-hidden ${member.bgColor}`}
+                  >
                     <Image
                       src={member.image}
                       alt={member.name}

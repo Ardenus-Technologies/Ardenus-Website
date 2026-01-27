@@ -15,7 +15,10 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative z-10 -mt-52 border-t border-white/10 bg-black" style={{ fontFamily: "'Edgecutting', sans-serif" }}>
+    <footer
+      className="relative z-10 -mt-52 border-t border-white/10 bg-black"
+      style={{ fontFamily: "'Edgecutting', sans-serif" }}
+    >
       <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         {/* Mobile Layout */}
         <div className="md:hidden">
@@ -95,13 +98,13 @@ export function Footer() {
           </nav>
 
           {/* Right Column - Social & Legal */}
-          <div className="flex flex-col gap-12 items-end text-right">
+          <div className="flex flex-col items-end gap-12 text-right">
             {/* Social Media */}
             <div>
               <p className="mb-4 text-xs uppercase tracking-widest text-[#4f4f4f]">
                 Follow Us
               </p>
-              <div className="flex gap-6 justify-end">
+              <div className="flex justify-end gap-6">
                 {socialLinks.map((link) => (
                   <a
                     key={link.label}
@@ -118,7 +121,7 @@ export function Footer() {
             </div>
 
             {/* Legal Links */}
-            <div className="flex flex-col gap-3 items-end">
+            <div className="flex flex-col items-end gap-3">
               <a
                 href="mailto:contact@ardenus.com"
                 className="text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"

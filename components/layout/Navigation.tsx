@@ -70,10 +70,7 @@ export function Navigation() {
       >
         <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
-          <Link
-            href="/"
-            className="relative h-8 w-48"
-          >
+          <Link href="/" className="relative h-8 w-48">
             <Image
               src="/logo.png"
               alt="Ardenus Logo"
@@ -133,7 +130,6 @@ export function Navigation() {
             </div>
           </button>
         </nav>
-
       </motion.header>
 
       {/* Scroll Progress Bar - animates with nav */}

@@ -1,7 +1,12 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from 'framer-motion';
 
 const anchorLinks = [
   { href: '#statement', label: 'About' },
@@ -80,7 +85,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-display-1 mb-8 max-w-4xl tracking-tight text-white uppercase"
+            className="text-display-1 mb-8 max-w-4xl uppercase tracking-tight text-white"
             style={{ fontFamily: "'Nurom', sans-serif" }}
           >
             The New Standard
@@ -104,7 +109,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="bg-white/5 px-6 py-2.5 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-black uppercase tracking-wider"
+                className="bg-white/5 px-6 py-2.5 text-sm uppercase tracking-wider text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-black"
                 style={{ fontFamily: "'Edgecutting', sans-serif" }}
               >
                 {link.label}
@@ -112,7 +117,6 @@ export function Hero() {
             ))}
           </motion.div>
         </div>
-
       </motion.div>
 
       {/* Scroll Indicator - Fixed at bottom of screen */}

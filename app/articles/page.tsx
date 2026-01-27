@@ -14,7 +14,8 @@ const articles = [
   {
     id: 1,
     slug: 'ai-opportunity-pest-control',
-    title: 'The AI Opportunity: Why Pest Control is the Next Frontier for Intelligent Operations',
+    title:
+      'The AI Opportunity: Why Pest Control is the Next Frontier for Intelligent Operations',
     summary:
       "The pest control industry generates billions annually—yet operates on technology from the last decade. That's about to change.",
     category: 'Thought Leadership',
@@ -36,7 +37,8 @@ const articles = [
   {
     id: 3,
     slug: 'seasonal-intelligence-competitive-advantage',
-    title: 'Predict the Swarm: How Seasonal Intelligence Becomes Competitive Advantage',
+    title:
+      'Predict the Swarm: How Seasonal Intelligence Becomes Competitive Advantage',
     summary:
       'Every pest has a pattern. The companies that see it first win the season.',
     category: 'Data & Analytics',
@@ -47,7 +49,8 @@ const articles = [
   {
     id: 4,
     slug: 'hidden-cost-disconnected-systems',
-    title: 'The Hidden Cost of Disconnected Systems: Why Your Software Stack Drains Productivity',
+    title:
+      'The Hidden Cost of Disconnected Systems: Why Your Software Stack Drains Productivity',
     summary:
       "Disconnected systems don't just waste time—they make invisible mistakes that compound daily.",
     category: 'Technology',
@@ -58,7 +61,8 @@ const articles = [
   {
     id: 5,
     slug: 'technology-creates-elite-field-performance',
-    title: "Your Best Technician's Secret: How Technology Creates Elite Field Performance",
+    title:
+      "Your Best Technician's Secret: How Technology Creates Elite Field Performance",
     summary:
       "The gap between your top performer and average isn't skill—it's information access.",
     category: 'Workforce',
@@ -69,9 +73,10 @@ const articles = [
   {
     id: 6,
     slug: 'smart-scheduling-reduces-windshield-time',
-    title: 'The Route to Profitability: How Smart Scheduling Reduces Windshield Time',
+    title:
+      'The Route to Profitability: How Smart Scheduling Reduces Windshield Time',
     summary:
-      "Your technicians spend more time driving than treating. AI is changing that equation—and the savings compound faster than you think.",
+      'Your technicians spend more time driving than treating. AI is changing that equation—and the savings compound faster than you think.',
     category: 'Operations',
     date: 'Jan 4, 2026',
     readTime: '5 min read',
@@ -80,9 +85,10 @@ const articles = [
   {
     id: 7,
     slug: 'data-driven-pricing-pest-control',
-    title: 'Pricing in the Dark: Why Data-Driven Pricing Matters for Pest Control',
+    title:
+      'Pricing in the Dark: Why Data-Driven Pricing Matters for Pest Control',
     summary:
-      "Your pricing was set years ago based on gut feel. Meanwhile, your costs changed, your value increased, and your competitors moved. Time to catch up.",
+      'Your pricing was set years ago based on gut feel. Meanwhile, your costs changed, your value increased, and your competitors moved. Time to catch up.',
     category: 'Revenue Intelligence',
     date: 'Jan 2, 2026',
     readTime: '6 min read',
@@ -95,7 +101,7 @@ export default function ArticlesPage() {
     <>
       <ScrollToTop />
       {/* Page Header */}
-      <section className="bg-black pt-32 pb-20">
+      <section className="bg-black pb-20 pt-32">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <h1 className="text-display-1 tracking-tight text-white">
@@ -130,7 +136,10 @@ export default function ArticlesPage() {
 
                     {/* Content */}
                     <div className="sm:col-span-8">
-                      <h2 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0] sm:text-2xl" style={{ textTransform: 'none' }}>
+                      <h2
+                        className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0] sm:text-2xl"
+                        style={{ textTransform: 'none' }}
+                      >
                         {article.title}
                       </h2>
                       <p className="mt-3 line-clamp-2 text-[#a0a0a0]">

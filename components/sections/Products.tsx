@@ -76,10 +76,7 @@ export function Products() {
       className="relative overflow-hidden"
     >
       {/* Background Image with Parallax */}
-      <motion.div
-        style={{ y, scale }}
-        className="absolute -inset-20 -z-10"
-      >
+      <motion.div style={{ y, scale }} className="absolute -inset-20 -z-10">
         <div
           className="h-full w-full bg-cover bg-center"
           style={{
@@ -95,7 +92,8 @@ export function Products() {
       <div
         className="pointer-events-none absolute inset-x-0 top-0 z-0 h-48"
         style={{
-          background: 'linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
+          background:
+            'linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
         }}
       />
 
@@ -103,11 +101,12 @@ export function Products() {
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-48"
         style={{
-          background: 'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
+          background:
+            'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
         }}
       />
 
-      <div className="relative z-10 section-py-xl pb-32 sm:pb-40 lg:pb-48">
+      <div className="section-py-xl relative z-10 pb-32 sm:pb-40 lg:pb-48">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="mb-16">
@@ -144,13 +143,13 @@ export function Products() {
                     <div className="absolute inset-0 bg-black/40" />
 
                     {/* Centered Image */}
-                    <div className="relative h-full flex items-center justify-center">
+                    <div className="relative flex h-full items-center justify-center">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         viewport={{ once: true }}
-                        className={`relative w-[85%] aspect-[16/10] overflow-hidden shadow-2xl ${product.windowType === 'macos' ? 'rounded-md' : ''}`}
+                        className={`relative aspect-[16/10] w-[85%] overflow-hidden shadow-2xl ${product.windowType === 'macos' ? 'rounded-md' : ''}`}
                       >
                         {product.windowImage && (
                           <Image
@@ -174,7 +173,9 @@ export function Products() {
                     </h3>
 
                     {/* Description */}
-                    <p className="mt-3 text-[#4f4f4f] transition-colors duration-300 group-hover:text-[#a0a0a0]">{product.description}</p>
+                    <p className="mt-3 text-[#4f4f4f] transition-colors duration-300 group-hover:text-[#a0a0a0]">
+                      {product.description}
+                    </p>
 
                     {/* Features */}
                     <ul className="mt-6 space-y-2">

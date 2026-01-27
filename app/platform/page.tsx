@@ -31,7 +31,10 @@ const products = [
     title: 'Ardenus Engine',
     description:
       'Eliminate manual tasks and reduce operational overhead. Ardenus Engine automates the repetitive work so your team can focus on what matters.',
-    images: ['/software/core-screenshot-left.png', '/software/core-screenshot-right.png'],
+    images: [
+      '/software/core-screenshot-left.png',
+      '/software/core-screenshot-right.png',
+    ],
     content: {
       subheading: 'WORKFLOW AUTOMATION',
       paragraphs: [
@@ -70,7 +73,7 @@ export default function PlatformPage() {
   return (
     <>
       {/* Hero Section with Background Image */}
-      <section className="relative min-h-[80vh] w-full pt-32 pb-20">
+      <section className="relative min-h-[80vh] w-full pb-20 pt-32">
         <Image
           src="/platform-hero.webp"
           alt="Pest control technician"
@@ -83,20 +86,23 @@ export default function PlatformPage() {
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48"
           style={{
-            background: 'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
+            background:
+              'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
           }}
         />
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <h1 className="text-display-1 tracking-tight text-white">
-              The Complete<br />AI-Powered Operating System
+              The Complete
+              <br />
+              AI-Powered Operating System
             </h1>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-body-lg mt-8 max-w-3xl text-white/80">
-              Our platform combines powerful tools for analytics,
-              automation, and collaboration into one seamless experience.
-              Built for scale, designed for simplicity.
+              Our platform combines powerful tools for analytics, automation,
+              and collaboration into one seamless experience. Built for scale,
+              designed for simplicity.
             </p>
           </FadeIn>
         </div>
@@ -123,17 +129,20 @@ export default function PlatformPage() {
             </FadeIn>
 
             {/* Two-column image grid */}
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 items-start">
+            <div className="mt-12 grid items-start gap-6 sm:grid-cols-2">
               {[0, 1].map((imgIndex) => (
                 <FadeIn key={imgIndex} delay={0.3 + imgIndex * 0.1}>
-                  <div className="relative overflow-hidden bg-[#1a1a1a] aspect-[16/9]">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-[#1a1a1a]">
                     {product.images ? (
                       <Image
                         src={product.images[imgIndex]}
                         alt={`${product.title} screenshot ${imgIndex + 1}`}
                         fill
                         sizes="(max-width: 640px) 100vw, 50vw"
-                        style={{ objectFit: 'cover', objectPosition: 'left top' }}
+                        style={{
+                          objectFit: 'cover',
+                          objectPosition: 'left top',
+                        }}
                       />
                     ) : (
                       <div
@@ -153,10 +162,14 @@ export default function PlatformPage() {
               <div>
                 <FadeIn>
                   <h3
-                    className="text-xl font-medium text-white transition-all duration-300 cursor-default"
+                    className="cursor-default text-xl font-medium text-white transition-all duration-300"
                     style={{ textTransform: 'uppercase' }}
-                    onMouseEnter={(e) => e.currentTarget.style.textTransform = 'none'}
-                    onMouseLeave={(e) => e.currentTarget.style.textTransform = 'uppercase'}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.textTransform = 'none')
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.textTransform = 'uppercase')
+                    }
                   >
                     {product.content.subheading}
                   </h3>
@@ -170,10 +183,7 @@ export default function PlatformPage() {
               <FadeIn delay={0.3}>
                 <ul className="space-y-2">
                   {product.content.features.map((feature, fIndex) => (
-                    <li
-                      key={fIndex}
-                      className="pl-6 text-[#a0a0a0]"
-                    >
+                    <li key={fIndex} className="pl-6 text-[#a0a0a0]">
                       {feature}
                     </li>
                   ))}

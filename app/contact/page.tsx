@@ -8,14 +8,56 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const usStates = [
-  'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
-  'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
-  'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
-  'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
-  'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
-  'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
-  'Wisconsin', 'Wyoming'
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming',
 ];
 
 export default function ContactPage() {
@@ -45,22 +87,23 @@ export default function ContactPage() {
   return (
     <>
       {/* Full Page Section with Background */}
-      <section className="relative min-h-screen w-full pt-32 pb-20">
+      <section className="relative min-h-screen w-full pb-20 pt-32">
         {/* Background Image */}
         <Image
           src="/pexels-ali-goode-2151511157-32995528.jpg"
           alt="Background"
           fill
-          className="object-cover z-0 blur-sm"
+          className="z-0 object-cover blur-sm"
           priority
         />
         {/* Heavy Dark Overlay */}
-        <div className="absolute inset-0 bg-black/[0.93] z-[1]" />
+        <div className="absolute inset-0 z-[1] bg-black/[0.93]" />
         {/* Bottom gradient fade */}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-48"
           style={{
-            background: 'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
+            background:
+              'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
           }}
         />
 
@@ -68,7 +111,7 @@ export default function ContactPage() {
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           {/* Page Header */}
           <FadeIn>
-            <h1 className="text-display-1 tracking-tight text-white mb-12">
+            <h1 className="text-display-1 mb-12 tracking-tight text-white">
               Request a Demo
             </h1>
           </FadeIn>
@@ -76,7 +119,7 @@ export default function ContactPage() {
           {/* Form */}
           <FadeIn delay={0.1}>
             <div className="mx-auto max-w-[700px]">
-              <div className="bg-white/5 backdrop-blur-sm p-8">
+              <div className="bg-white/5 p-8 backdrop-blur-sm">
                 <AnimatePresence mode="wait">
                   {!isSubmitted ? (
                     <motion.form
@@ -200,7 +243,12 @@ export default function ContactPage() {
                           name="state"
                           required
                           className="mt-2 w-full appearance-none border border-white/10 bg-black/50 px-4 py-3 pr-10 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
-                          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a0a0a0'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px' }}
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a0a0a0'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'right 12px center',
+                            backgroundSize: '20px',
+                          }}
                         >
                           <option value="">Select your state</option>
                           {usStates.map((state) => (
@@ -246,8 +294,8 @@ export default function ContactPage() {
                           className="link-underline text-[#a0a0a0] transition-colors duration-300 hover:text-white"
                         >
                           Privacy Policy
-                        </Link>
-                        {' '}and{' '}
+                        </Link>{' '}
+                        and{' '}
                         <Link
                           href="/terms"
                           scroll={true}
@@ -284,8 +332,8 @@ export default function ContactPage() {
                         Thank you!
                       </h3>
                       <p className="mt-2 text-[#a0a0a0]">
-                        We've received your request and will be in touch within 24
-                        hours to schedule your demo.
+                        We've received your request and will be in touch within
+                        24 hours to schedule your demo.
                       </p>
                     </motion.div>
                   )}

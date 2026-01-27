@@ -6,22 +6,38 @@ import Image from 'next/image';
 
 const showcaseImagesAll = [
   { id: 1, src: '/software/core-screenshot-left.png', alt: 'Core Dashboard' },
-  { id: 2, src: '/software/solutions-first-left.png', alt: 'Solutions Overview' },
+  {
+    id: 2,
+    src: '/software/solutions-first-left.png',
+    alt: 'Solutions Overview',
+  },
   { id: 3, src: '/software/solutions-api-right.png', alt: 'API Integration' },
   { id: 4, src: '/software/solutions-growth-left.png', alt: 'Growth Metrics' },
-  { id: 5, src: '/software/engine-screenshot-right.png', alt: 'Engine Analytics' },
+  {
+    id: 5,
+    src: '/software/engine-screenshot-right.png',
+    alt: 'Engine Analytics',
+  },
 ];
 
 const showcaseImagesTop = [
   { id: 1, src: '/software/core-screenshot-left.png', alt: 'Core Dashboard' },
-  { id: 2, src: '/software/solutions-first-left.png', alt: 'Solutions Overview' },
+  {
+    id: 2,
+    src: '/software/solutions-first-left.png',
+    alt: 'Solutions Overview',
+  },
   { id: 3, src: '/software/solutions-api-right.png', alt: 'API Integration' },
 ];
 
 const showcaseImagesBottom = [
   { id: 6, src: '/software/core-screenshot-right.png', alt: 'Core Analytics' },
   { id: 4, src: '/software/solutions-growth-left.png', alt: 'Growth Metrics' },
-  { id: 5, src: '/software/engine-screenshot-right.png', alt: 'Engine Analytics' },
+  {
+    id: 5,
+    src: '/software/engine-screenshot-right.png',
+    alt: 'Engine Analytics',
+  },
 ];
 
 export function Showcase() {

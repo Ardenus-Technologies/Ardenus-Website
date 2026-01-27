@@ -37,14 +37,14 @@ const processSteps = [
 
 const ProcessCard = memo(function ProcessCard({
   step,
-  index
+  index,
 }: {
-  step: typeof processSteps[0];
+  step: (typeof processSteps)[0];
   index: number;
 }) {
   return (
     <FadeIn delay={index * 0.1}>
-      <div className="group relative overflow-hidden p-8 sm:p-10 will-change-transform">
+      <div className="group relative overflow-hidden p-8 will-change-transform sm:p-10">
         {/* Background Image using Next.js Image */}
         <Image
           src={step.image}
@@ -64,12 +64,8 @@ const ProcessCard = memo(function ProcessCard({
             {step.number}
           </span>
           <div>
-            <h3 className="text-xl font-medium text-white">
-              {step.title}
-            </h3>
-            <p className="mt-3 max-w-xl text-[#a0a0a0]">
-              {step.description}
-            </p>
+            <h3 className="text-xl font-medium text-white">{step.title}</h3>
+            <p className="mt-3 max-w-xl text-[#a0a0a0]">{step.description}</p>
           </div>
         </div>
       </div>

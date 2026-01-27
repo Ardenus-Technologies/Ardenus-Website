@@ -27,10 +27,7 @@ const integrations = [
 
 export function Integrations() {
   return (
-    <section
-      id="integrations"
-      className="relative overflow-hidden bg-black"
-    >
+    <section id="integrations" className="relative overflow-hidden bg-black">
       <div className="section-py-xl relative z-10">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
@@ -41,7 +38,10 @@ export function Integrations() {
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-body-lg mx-auto mt-6 text-[#a0a0a0] whitespace-nowrap">Connect with the tools you already use. We integrate seamlessly with 2,000+ tools.</p>
+              <p className="text-body-lg mx-auto mt-6 whitespace-nowrap text-[#a0a0a0]">
+                Connect with the tools you already use. We integrate seamlessly
+                with 2,000+ tools.
+              </p>
             </FadeIn>
           </div>
 
@@ -55,7 +55,7 @@ export function Integrations() {
                 transition={{ duration: 0.3, delay: index * 0.03 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.5, transition: { duration: 0.1 } }}
-                className="flex aspect-square items-center justify-center p-4 cursor-pointer"
+                className="flex aspect-square cursor-pointer items-center justify-center p-4"
               >
                 <Image
                   src={integration.icon}

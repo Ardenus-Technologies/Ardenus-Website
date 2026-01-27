@@ -9,7 +9,8 @@ const articles = [
   {
     id: 1,
     slug: 'ai-opportunity-pest-control',
-    title: 'The AI Opportunity: Why Pest Control is the Next Frontier for Intelligent Operations',
+    title:
+      'The AI Opportunity: Why Pest Control is the Next Frontier for Intelligent Operations',
     summary:
       "The pest control industry generates billions annually—yet operates on technology from the last decade. That's about to change.",
     category: 'Thought Leadership',
@@ -29,7 +30,8 @@ const articles = [
   {
     id: 3,
     slug: 'seasonal-intelligence-competitive-advantage',
-    title: 'Predict the Swarm: How Seasonal Intelligence Becomes Competitive Advantage',
+    title:
+      'Predict the Swarm: How Seasonal Intelligence Becomes Competitive Advantage',
     summary:
       'Every pest has a pattern. The companies that see it first win the season.',
     category: 'Data & Analytics',
@@ -55,7 +57,7 @@ export function News() {
             <Link
               href="/articles"
               scroll={true}
-              className="group hidden sm:inline-flex items-center gap-2 border border-white/30 px-4 py-2 text-sm text-white transition-all duration-300 hover:border-white"
+              className="group hidden items-center gap-2 border border-white/30 px-4 py-2 text-sm text-white transition-all duration-300 hover:border-white sm:inline-flex"
             >
               See All Articles
               <svg
@@ -98,7 +100,10 @@ export function News() {
 
                 {/* Content */}
                 <div className="mt-6">
-                  <h3 className="text-lg font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0]" style={{ textTransform: 'none' }}>
+                  <h3
+                    className="text-lg font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0]"
+                    style={{ textTransform: 'none' }}
+                  >
                     {article.title}
                   </h3>
                   <p className="mt-2 line-clamp-2 text-sm text-[#a0a0a0]">
