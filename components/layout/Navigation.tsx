@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
 const navLinks = [
@@ -16,9 +16,11 @@ const navLinks = [
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
+  const router = useRouter();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -58,6 +60,18 @@ export function Navigation() {
       return pathname === '/';
     }
     return pathname.startsWith(href);
+  };
+
+  const handleMobileNavClick = (href: string) => {
+    setIsNavigating(true);
+    // Small delay to let the fade animation play, then navigate
+    setTimeout(() => {
+      router.push(href);
+      setTimeout(() => {
+        setIsOpen(false);
+        setIsNavigating(false);
+      }, 100);
+    }, 200);
   };
 
   return (
@@ -151,7 +165,11 @@ export function Navigation() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-black md:hidden"
           >
-            <div className="flex h-full flex-col items-center justify-center gap-8">
+            <motion.div
+              className="flex h-full flex-col items-center justify-center gap-8"
+              animate={{ opacity: isNavigating ? 0 : 1 }}
+              transition={{ duration: 0.2 }}
+            >
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.href}
@@ -160,16 +178,15 @@ export function Navigation() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ delay: index * 0.1, duration: 0.3 }}
                 >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
+                  <button
+                    onClick={() => handleMobileNavClick(link.href)}
                     className={`text-3xl uppercase tracking-wider transition-opacity duration-300 hover:opacity-50 ${
                       isActive(link.href) ? 'text-white' : 'text-[#a0a0a0]'
                     }`}
                     style={{ fontFamily: "'Edgecutting', sans-serif" }}
                   >
                     {link.label}
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
               <motion.div
@@ -179,15 +196,14 @@ export function Navigation() {
                 transition={{ delay: navLinks.length * 0.1, duration: 0.3 }}
                 className="mt-8"
               >
-                <Link
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
+                <button
+                  onClick={() => handleMobileNavClick('/contact')}
                   className="btn btn-primary rounded-none text-sm"
                 >
                   Request a Demo
-                </Link>
+                </button>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
