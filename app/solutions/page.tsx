@@ -206,15 +206,15 @@ export default function SolutionsPage() {
                         {solution.overlays[imgIndex].map((item, itemIndex) => (
                           <div
                             key={itemIndex}
-                            className={itemIndex === 1 ? 'mt-6' : ''}
+                            className={itemIndex === 1 ? 'mt-4 sm:mt-6' : ''}
                           >
                             <h4
-                              className="text-xl font-medium text-white"
+                              className="text-base font-medium text-white sm:text-xl"
                               style={{ textTransform: 'none' }}
                             >
                               {item.title}
                             </h4>
-                            <p className="mt-2 text-base text-white/80">
+                            <p className="mt-1 text-sm text-white/80 sm:mt-2 sm:text-base">
                               {item.description}
                             </p>
                           </div>

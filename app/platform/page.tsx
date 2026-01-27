@@ -13,7 +13,7 @@ const products = [
       'Turn your data into actionable intelligence. Predict outcomes, identify opportunities, and make confident decisions backed by AI-powered analysis.',
     images: ['/intelligence-new-1.png', '/intelligence-new-2.png'],
     content: {
-      subheading: 'DECISION INTELLIGENCE',
+      subheading: 'Decision Intelligence',
       paragraphs: [
         'Ardenus Intelligence analyzes patterns across your operations to surface insights that matter. Know which customers are at risk before they churn, discover which neighborhoods offer the best expansion potential, and receive confidence-scored recommendations that empower your team to act decisively.',
       ],
@@ -36,7 +36,7 @@ const products = [
       '/software/core-screenshot-right.png',
     ],
     content: {
-      subheading: 'WORKFLOW AUTOMATION',
+      subheading: 'Workflow Automation',
       paragraphs: [
         'From automated service reminders to intelligent routing, Ardenus Engine handles the operational complexity. Set up trigger-based workflows that respond to events in real-time, ensuring nothing falls through the cracks and every customer touchpoint is optimized.',
       ],
@@ -55,7 +55,7 @@ const products = [
       'See everything in one place. Ardenus Core aggregates data from every system, giving you complete visibility into your operations from a single command center.',
     images: ['/core-new-1.png', '/core-new-2.png'],
     content: {
-      subheading: 'DATA AGGREGATION HUB',
+      subheading: 'Data Aggregation Hub',
       paragraphs: [
         'No more switching between tools or reconciling data across platforms. Ardenus Core connects to your CRM, scheduling software, payment systems, and field tools to create one unified view. Real-time dashboards surface the metrics that matter, making it easy to monitor performance across every branch and team.',
       ],
@@ -161,16 +161,7 @@ export default function PlatformPage() {
             <div className="mt-16 grid gap-12 md:grid-cols-2">
               <div>
                 <FadeIn>
-                  <h3
-                    className="cursor-default text-xl font-medium text-white transition-all duration-300"
-                    style={{ textTransform: 'uppercase' }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.textTransform = 'none')
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.textTransform = 'uppercase')
-                    }
-                  >
+                  <h3 className="text-xl font-medium text-white">
                     {product.content.subheading}
                   </h3>
                 </FadeIn>
