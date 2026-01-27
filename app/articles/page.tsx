@@ -114,12 +114,12 @@ export default function ArticlesPage() {
       {/* Articles List */}
       <section className="bg-black pb-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-12 sm:gap-16">
+          <div className="flex flex-col gap-8 sm:gap-10">
             {articles.map((article, index) => (
               <FadeIn key={article.id} delay={index * 0.1}>
                 <Link
                   href={`/articles/${article.slug}`}
-                  className="group block border-b border-white/10 pb-12 last:border-b-0 sm:pb-16"
+                  className="group block border-b border-white/10 pb-8 last:border-b-0 sm:pb-10"
                 >
                   <article className="grid gap-6 sm:grid-cols-12 sm:items-center">
                     {/* Image */}
