@@ -119,7 +119,7 @@ export default function ArticlesPage() {
               <FadeIn key={article.id} delay={index * 0.1}>
                 <Link
                   href={`/articles/${article.slug}`}
-                  className="group block py-10 first:pt-0 last:pb-0 sm:py-16"
+                  className="group block py-12 first:pt-0 last:pb-0 sm:py-20"
                 >
                   <article className="grid gap-6 sm:grid-cols-12 sm:items-center">
                     {/* Image */}
