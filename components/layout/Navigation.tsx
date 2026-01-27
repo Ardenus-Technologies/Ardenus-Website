@@ -55,6 +55,18 @@ export function Navigation() {
     };
   }, [isOpen]);
 
+  // Close menu when pathname changes (navigation complete)
+  useEffect(() => {
+    if (isNavigating) {
+      // Pathname changed, navigation is complete - close menu
+      const timer = setTimeout(() => {
+        setIsOpen(false);
+        setIsNavigating(false);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname, isNavigating]);
+
   const isActive = (href: string) => {
     if (href === '/') {
       return pathname === '/';
@@ -63,15 +75,14 @@ export function Navigation() {
   };
 
   const handleMobileNavClick = (href: string) => {
+    if (pathname === href) {
+      // Already on this page, just close the menu
+      setIsOpen(false);
+      return;
+    }
     setIsNavigating(true);
-    // Small delay to let the fade animation play, then navigate
-    setTimeout(() => {
-      router.push(href);
-      setTimeout(() => {
-        setIsOpen(false);
-        setIsNavigating(false);
-      }, 100);
-    }, 200);
+    // Navigate immediately, menu will close when pathname changes
+    router.push(href);
   };
 
   return (
