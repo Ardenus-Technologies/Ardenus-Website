@@ -376,27 +376,6 @@ export default function TermsPage() {
                       herein.
                     </p>
                   </div>
-
-                  {/* Section 14 */}
-                  <div>
-                    <h2 className="text-xl font-medium text-white">
-                      14. Contact Information
-                    </h2>
-                    <p className="mt-4 text-[#a0a0a0]">
-                      If you have any questions about these Terms of Use, please
-                      contact us at:
-                    </p>
-                    <p className="mt-4 text-[#a0a0a0]">
-                      Ardenus LLC
-                      <br />
-                      <a
-                        href="mailto:legal@ardenus.com"
-                        className="text-white transition-colors duration-300 hover:text-[#a0a0a0]"
-                      >
-                        legal@ardenus.com
-                      </a>
-                    </p>
-                  </div>
                 </div>
               </FadeIn>
             </div>

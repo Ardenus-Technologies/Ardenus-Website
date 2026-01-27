@@ -302,14 +302,7 @@ export default function PrivacyPage() {
                       of individuals under 16 years of age.
                     </p>
                     <p className="mt-4 text-[#a0a0a0]">
-                      To exercise your CCPA rights, please contact us at{' '}
-                      <a
-                        href="mailto:legal@ardenus.com"
-                        className="text-white transition-colors duration-300 hover:text-[#a0a0a0]"
-                      >
-                        legal@ardenus.com
-                      </a>
-                      . We may verify your identity before responding to your
+                      We may verify your identity before responding to your
                       request. If you use an authorized agent to submit a
                       request, we may require the agent to provide proof that
                       you gave them signed permission. We may also ask you to
@@ -393,29 +386,7 @@ export default function PrivacyPage() {
                   {/* Section 11 */}
                   <div>
                     <h2 className="text-xl font-medium text-white">
-                      11. Contact Us
-                    </h2>
-                    <p className="mt-4 text-[#a0a0a0]">
-                      If you have any questions or requests regarding this
-                      Privacy Policy or your personal information, please
-                      contact us at:
-                    </p>
-                    <p className="mt-4 text-[#a0a0a0]">
-                      Ardenus LLC
-                      <br />
-                      <a
-                        href="mailto:legal@ardenus.com"
-                        className="text-white transition-colors duration-300 hover:text-[#a0a0a0]"
-                      >
-                        legal@ardenus.com
-                      </a>
-                    </p>
-                  </div>
-
-                  {/* Section 12 */}
-                  <div>
-                    <h2 className="text-xl font-medium text-white">
-                      12. International Data Transfers
+                      11. International Data Transfers
                     </h2>
                     <p className="mt-4 text-[#a0a0a0]">
                       If we transfer personal information outside the United

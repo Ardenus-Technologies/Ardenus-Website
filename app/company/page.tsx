@@ -157,7 +157,7 @@ export default function CompanyPage() {
                       href={member.social}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-8 w-8 items-center justify-center border border-white/10 text-xs text-[#4f4f4f] transition-all duration-300 hover:border-white/30 hover:text-white"
+                      className="flex h-8 w-8 items-center justify-center border border-white/30 text-xs text-white transition-all duration-300 hover:border-white/50 hover:bg-white/10"
                       aria-label={`${member.name}'s LinkedIn`}
                     >
                       in

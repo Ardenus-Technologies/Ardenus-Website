@@ -10,28 +10,28 @@ const processSteps = [
     title: 'Discovery',
     description:
       'Audit processes, identify ROI opportunities, map integrations, and define metrics.',
-    image: '/monarch-butterfly-egg-hatch-baby-caterpillar.jpg',
+    image: '/process/process-01-discovery.jpg',
   },
   {
     number: '02',
     title: 'Pilot',
     description:
       'Design workflows, train AI models, integrate tools, and create dashboards.',
-    image: '/insect-invertebrates-monarch-butterfly-larvae.jpg',
+    image: '/process/process-02-pilot.jpg',
   },
   {
     number: '03',
     title: 'Deployment',
     description:
       'Launch systems, train your team, and establish monitoring and feedback.',
-    image: '/cocoon-butterfly-insect-animal-39862.jpeg',
+    image: '/process/process-03-deployment.jpg',
   },
   {
     number: '04',
     title: 'Optimization',
     description:
       'Monthly reviews, continuous improvements, scaling, and priority support included.',
-    image: '/monarch-butterfly.jpg',
+    image: '/process/process-04-optimization.jpg',
   },
 ];
 

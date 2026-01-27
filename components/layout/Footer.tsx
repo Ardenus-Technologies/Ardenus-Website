@@ -53,12 +53,6 @@ export function Footer() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="mailto:contact@ardenus.com"
-                className="text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
-              >
-                contact@ardenus.com
-              </a>
               <Link
                 href="/privacy"
                 className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
@@ -122,12 +116,6 @@ export function Footer() {
 
             {/* Legal Links */}
             <div className="flex flex-col items-end gap-3">
-              <a
-                href="mailto:contact@ardenus.com"
-                className="text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
-              >
-                contact@ardenus.com
-              </a>
               <Link
                 href="/privacy"
                 className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
