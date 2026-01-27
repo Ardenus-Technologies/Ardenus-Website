@@ -47,7 +47,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity, y }}
-        className="absolute inset-0 flex flex-col justify-end pb-24 sm:pb-32 lg:pb-36"
+        className="absolute inset-0 flex flex-col justify-end pb-32 sm:pb-32 lg:pb-36"
       >
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
           {/* Tagline */}
