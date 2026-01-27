@@ -1,5 +1,7 @@
 'use client';
 
+import { memo } from 'react';
+import Image from 'next/image';
 import { FadeIn } from '@/components/animations/FadeIn';
 
 const processSteps = [
@@ -33,6 +35,48 @@ const processSteps = [
   },
 ];
 
+const ProcessCard = memo(function ProcessCard({
+  step,
+  index
+}: {
+  step: typeof processSteps[0];
+  index: number;
+}) {
+  return (
+    <FadeIn delay={index * 0.1}>
+      <div className="group relative overflow-hidden p-8 sm:p-10 will-change-transform">
+        {/* Background Image using Next.js Image */}
+        <Image
+          src={step.image}
+          alt={step.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 1024px) 100vw, 66vw"
+          loading={index < 2 ? 'eager' : 'lazy'}
+        />
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/85 transition-colors duration-300 group-hover:bg-black/75" />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8">
+          <span className="text-xs tracking-widest text-[#4f4f4f]">
+            {step.number}
+          </span>
+          <div>
+            <h3 className="text-xl font-medium text-white">
+              {step.title}
+            </h3>
+            <p className="mt-3 max-w-xl text-[#a0a0a0]">
+              {step.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </FadeIn>
+  );
+});
+
 export function Process() {
   return (
     <section id="process" className="section-py-xl bg-black">
@@ -42,7 +86,7 @@ export function Process() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <FadeIn>
-                <h2 className="text-display-2 mt-4 uppercase tracking-tight text-white">
+                <h2 className="text-display-2 mt-4 tracking-tight text-white">
                   Our Process
                 </h2>
               </FadeIn>
@@ -52,34 +96,7 @@ export function Process() {
           {/* Process Cards */}
           <div className="space-y-6 lg:col-span-8">
             {processSteps.map((step, index) => (
-              <FadeIn key={step.number} delay={index * 0.15}>
-                <div
-                  className="group relative overflow-hidden p-8 transition-all duration-300 sm:p-10"
-                  style={{
-                    backgroundImage: `url(${step.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  {/* Dark overlay for text readability */}
-                  <div className="absolute inset-0 bg-black/70 transition-all duration-300 group-hover:bg-black/60" />
-
-                  {/* Content */}
-                  <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8">
-                    <span className="text-xs tracking-widest text-[#4f4f4f]">
-                      {step.number}
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-medium text-white">
-                        {step.title}
-                      </h3>
-                      <p className="mt-3 max-w-xl text-[#a0a0a0]">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
+              <ProcessCard key={step.number} step={step} index={index} />
             ))}
           </div>
         </div>

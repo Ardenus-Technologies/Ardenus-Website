@@ -1,101 +1,57 @@
-import { Metadata } from 'next';
-import { ScrollProgress, LogoReveal } from '@/components/layout';
+'use client';
+
+import { LogoReveal } from '@/components/layout';
 import { FadeIn } from '@/components/animations/FadeIn';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Solutions',
-  description: 'Tailored solutions for your industry and business needs.',
-};
+import Image from 'next/image';
 
 const solutions = [
   {
     number: '01',
-    title: 'Enterprise',
-    subtitle: 'Scale your operations with enterprise-grade solutions',
-    features: [
-      {
-        number: '01',
-        title: 'Scalable Infrastructure',
-        description:
-          'Cloud-native architecture that grows with your business needs.',
-      },
-      {
-        number: '02',
-        title: 'Advanced Security',
-        description:
-          'Enterprise-grade security with SOC 2 compliance and encryption.',
-      },
-      {
-        number: '03',
-        title: 'Dedicated Support',
-        description:
-          '24/7 dedicated support team with guaranteed response times.',
-      },
-      {
-        number: '04',
-        title: 'Custom Integrations',
-        description:
-          'Bespoke integrations with your existing enterprise systems.',
-      },
+    title: 'Operational Efficiency',
+    subtitle: 'Streamline field and internal operations',
+    images: ['/software/solutions-first-left.png', '/solutions-new-2.png'],
+    overlays: [
+      [
+        { title: 'Automated Workflows', description: 'Eliminate manual data entry and repetitive tasks with intelligent automation that learns from your processes.' },
+        { title: 'Real-Time Insights', description: 'Get instant visibility into field operations with live dashboards and AI-powered analytics.' },
+      ],
+      [
+        { title: 'Resource Optimization', description: 'Maximize technician efficiency with intelligent routing and scheduling algorithms.' },
+        { title: 'Seamless Integration', description: 'Connect with your existing tools and systems through our comprehensive API and pre-built integrations.' },
+      ],
     ],
   },
   {
     number: '02',
-    title: 'Startups',
-    subtitle: 'Accelerate growth with tools built for innovation',
-    features: [
-      {
-        number: '01',
-        title: 'Rapid Deployment',
-        description:
-          'Get up and running in minutes with our quick-start guides.',
-      },
-      {
-        number: '02',
-        title: 'Flexible Pricing',
-        description: 'Pay-as-you-grow pricing that scales with your success.',
-      },
-      {
-        number: '03',
-        title: 'API First',
-        description:
-          'Comprehensive APIs for building custom solutions and integrations.',
-      },
-      {
-        number: '04',
-        title: 'Community Support',
-        description: 'Active community forums and extensive documentation.',
-      },
+    title: 'Growth & Retention',
+    subtitle: 'Uncover hidden revenue opportunities using your data',
+    images: ['/software/solutions-growth-left.png', '/software/solutions-growth-right.png'],
+    overlays: [
+      [
+        { title: 'Predictive Churn Analysis', description: 'Identify at-risk customers before they leave with AI-powered predictive models and intervention strategies.' },
+        { title: 'Revenue Forecasting', description: 'Generate accurate revenue projections with machine learning models that analyze historical patterns and market signals.' },
+      ],
+      [
+        { title: 'Customer Segmentation', description: 'Discover high-value customer segments and tailor your approach to maximize retention and growth.' },
+        { title: 'Upsell Opportunities', description: 'Identify the right time to expand customer relationships with intelligent upsell and cross-sell recommendations.' },
+      ],
     ],
   },
   {
     number: '03',
-    title: 'Agencies',
-    subtitle: 'Deliver exceptional results for your clients',
-    features: [
-      {
-        number: '01',
-        title: 'White Label Options',
-        description:
-          'Customize the platform with your branding for client-facing use.',
-      },
-      {
-        number: '02',
-        title: 'Multi-Client Management',
-        description: 'Manage all your clients from a single dashboard.',
-      },
-      {
-        number: '03',
-        title: 'Reporting Tools',
-        description: 'Generate branded reports to showcase results to clients.',
-      },
-      {
-        number: '04',
-        title: 'Partner Program',
-        description:
-          'Join our partner program for exclusive benefits and support.',
-      },
+    title: 'Enterprise API',
+    subtitle: 'Connect your existing ecosystem',
+    images: ['/software/solutions-api-left.png', '/software/solutions-api-right.png'],
+    overlays: [
+      [
+        { title: 'RESTful & GraphQL APIs', description: 'Choose the API architecture that works best for your needs with comprehensive REST and GraphQL support.' },
+        { title: 'Webhooks & Events', description: 'Real-time notifications and event-driven architecture to keep your systems in sync automatically.' },
+      ],
+      [
+        { title: 'SDK & Libraries', description: 'Pre-built SDKs in Python, JavaScript, Go, and more to accelerate your integration timeline.' },
+        { title: 'Enterprise Security', description: 'OAuth 2.0, API key management, rate limiting, and comprehensive audit logs for enterprise-grade security.' },
+      ],
     ],
   },
 ];
@@ -103,32 +59,34 @@ const solutions = [
 export default function SolutionsPage() {
   return (
     <>
-      <ScrollProgress />
-
-      {/* Intro Section */}
-      <section className="section-py-lg bg-black pt-32">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-12 md:gap-12">
-            <FadeIn className="md:col-span-3">
-              <span className="text-xs uppercase tracking-widest text-[#4f4f4f]">
-                Solutions
-              </span>
-            </FadeIn>
-            <div className="md:col-span-9">
-              <FadeIn delay={0.1}>
-                <h1 className="text-display-1 uppercase tracking-tight text-white">
-                  Tailored for Your Needs
-                </h1>
-              </FadeIn>
-              <FadeIn delay={0.2}>
-                <p className="text-body-lg mt-8 text-[#a0a0a0]">
-                  Whether you're a growing startup or an established enterprise,
-                  we have solutions designed specifically for your industry and
-                  scale.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
+      {/* Hero Section with Background Image */}
+      <section className="relative min-h-[80vh] w-full pt-32 pb-20">
+        <Image
+          src="/686c2aff881c223b6fbcee79_m71 home pest control .jpg"
+          alt="Pest control service"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        {/* Bottom gradient fade */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48"
+          style={{
+            background: 'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <h1 className="text-display-1 tracking-tight text-white">
+              Intelligent<br />Tools for Every Stage of Growth
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-body-lg mt-8 max-w-3xl text-white/80">
+              From operational efficiency to revenue intelligence, our solutions are designed to solve the specific challenges facing modern pest control operators.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
@@ -136,7 +94,7 @@ export default function SolutionsPage() {
       {solutions.map((solution, index) => (
         <section
           key={solution.number}
-          className={`border-t border-white/10 ${index % 2 === 0 ? 'bg-black' : 'bg-[#1a1a1a]'}`}
+          className="bg-black"
         >
           <div className="section-py-xl mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
             {/* Two-column layout */}
@@ -148,16 +106,11 @@ export default function SolutionsPage() {
               {/* Content Side */}
               <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                 <FadeIn>
-                  <span className="text-xs tracking-widest text-[#4f4f4f]">
-                    {solution.number}
-                  </span>
-                </FadeIn>
-                <FadeIn delay={0.1}>
-                  <h2 className="text-display-2 mt-4 uppercase tracking-tight text-white">
+                  <h2 className="text-display-2 tracking-tight text-white">
                     {solution.title}
                   </h2>
                 </FadeIn>
-                <FadeIn delay={0.2}>
+                <FadeIn delay={0.1}>
                   <p className="text-body-lg mt-6 text-[#a0a0a0]">
                     {solution.subtitle}
                   </p>
@@ -170,47 +123,56 @@ export default function SolutionsPage() {
               >
                 {[0, 1].map((imgIndex) => (
                   <FadeIn key={imgIndex} delay={0.3 + imgIndex * 0.1}>
-                    <div className="img-grayscale aspect-[16/9] overflow-hidden bg-[#1a1a1a]">
-                      <div
-                        className="h-full w-full"
-                        style={{
-                          backgroundImage: `linear-gradient(${135 + (index + imgIndex) * 45}deg, #2a2a2a, #1a1a1a)`,
-                        }}
-                      />
+                    <div className="group relative aspect-[16/9] overflow-hidden bg-[#1a1a1a] cursor-pointer">
+                      {/* Image */}
+                      {solution.images ? (
+                        <Image
+                          src={solution.images[imgIndex]}
+                          alt={`${solution.title} screenshot ${imgIndex + 1}`}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="object-cover object-left-top transition-all duration-500 group-hover:blur-sm group-hover:scale-105"
+                        />
+                      ) : (
+                        <div
+                          className="h-full w-full transition-all duration-500 group-hover:blur-sm"
+                          style={{
+                            backgroundImage: `linear-gradient(${135 + (index + imgIndex) * 45}deg, #2a2a2a, #1a1a1a)`,
+                          }}
+                        />
+                      )}
+
+                      {/* Dim overlay on hover */}
+                      <div className="absolute inset-0 bg-black/0 transition-all duration-500 group-hover:bg-black/80" />
+
+                      {/* Text overlay */}
+                      <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 opacity-0 transition-all duration-500 group-hover:opacity-100">
+                        {solution.overlays[imgIndex].map((item, itemIndex) => (
+                          <div key={itemIndex} className={itemIndex === 1 ? 'mt-6' : ''}>
+                            <h4 className="text-xl font-medium text-white" style={{ textTransform: 'none' }}>
+                              {item.title}
+                            </h4>
+                            <p className="mt-2 text-base text-white/80">
+                              {item.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </FadeIn>
                 ))}
               </div>
-            </div>
-
-            {/* Feature Grid */}
-            <div className="mt-16 grid gap-6 sm:grid-cols-2">
-              {solution.features.map((feature, fIndex) => (
-                <FadeIn key={feature.number} delay={0.1 * fIndex}>
-                  <div className="border border-white/10 bg-black p-6 transition-all duration-300 hover:border-white/20">
-                    <span className="text-xs tracking-widest text-[#4f4f4f]">
-                      {feature.number}
-                    </span>
-                    <h3 className="mt-3 text-lg font-medium text-white">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-[#a0a0a0]">
-                      {feature.description}
-                    </p>
-                  </div>
-                </FadeIn>
-              ))}
             </div>
           </div>
         </section>
       ))}
 
       {/* CTA */}
-      <section className="section-py-xl border-t border-white/10 bg-black">
+      <section className="section-py-xl bg-black">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center">
-            <Link href="/contact" className="btn btn-primary">
-              Find Your Solution
+            <Link href="/contact" className="btn btn-primary rounded-none">
+              Request a Demo
             </Link>
           </FadeIn>
         </div>

@@ -50,50 +50,44 @@ const teamMembers = [
 export default function CompanyPage() {
   return (
     <>
-      {/* Page Header */}
-      <section className="section-py-lg bg-black pt-32">
+      {/* Hero Section with Mission */}
+      <section className="bg-black pt-32 pb-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <h1 className="text-display-1 uppercase tracking-tight text-white">
+            <h1 className="text-display-1 tracking-tight text-white">
               Mission
             </h1>
           </FadeIn>
-        </div>
-      </section>
+          <FadeIn delay={0.1}>
+            <p className="text-body-lg mt-8 text-[#a0a0a0]">
+              The physical economy is built by people, but it is slowed by complexity. We believe that true intelligence doesn't replace the human workforce; it creates a new caliber of operator.
+            </p>
+          </FadeIn>
 
-      {/* Mission Section */}
-      <section className="bg-black pb-24">
-        <div className="mx-auto max-w-[1400px] px-4 pt-16 sm:px-6 lg:px-8">
-          <div className="space-y-12">
-              <FadeIn delay={0.1}>
-                <p className="text-body-lg text-[#a0a0a0]">
-                  The physical economy is built by people, but it is slowed by complexity. We believe that true intelligence doesn't replace the human workforce; it creates a new caliber of operator.
+          <div className="mt-16 space-y-12">
+            <FadeIn delay={0.2}>
+              <div>
+                <h3 className="text-xl font-medium text-white" style={{ textTransform: 'none' }}>Creating Order from Chaos</h3>
+                <p className="mt-4 text-body-lg text-[#a0a0a0]">
+                  We are building the infrastructure that creates order out of physical chaos—automating the logistics and data so your teams have the clarity, speed, and foresight to execute perfectly.
                 </p>
-              </FadeIn>
+              </div>
+            </FadeIn>
 
-              <FadeIn delay={0.2}>
-                <div>
-                  <h3 className="text-xl font-medium text-white">Creating Order from Chaos</h3>
-                  <p className="mt-4 text-body-lg text-[#a0a0a0]">
-                    We are building the infrastructure that creates order out of physical chaos—automating the logistics and data so your teams have the clarity, speed, and foresight to execute perfectly.
-                  </p>
-                </div>
-              </FadeIn>
-
-              <FadeIn delay={0.3}>
-                <div>
-                  <h3 className="text-xl font-medium text-white">Scaling Human Capability</h3>
-                  <p className="mt-4 text-body-lg text-[#a0a0a0]">
-                    We don't just optimize operations; we scale human capability. Our mission is to amplify what your teams can achieve, giving them the tools to operate at their highest potential.
-                  </p>
-                </div>
-              </FadeIn>
+            <FadeIn delay={0.3}>
+              <div>
+                <h3 className="text-xl font-medium text-white" style={{ textTransform: 'none' }}>Scaling Human Capability</h3>
+                <p className="mt-4 text-body-lg text-[#a0a0a0]">
+                  We don't just optimize operations; we scale human capability. Our mission is to amplify what your teams can achieve, giving them the tools to operate at their highest potential.
+                </p>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="relative bg-[#1a1a1a] py-32 sm:py-40 lg:py-48">
+      <section className="relative bg-black py-32 sm:py-40 lg:py-48">
         {/* Top gradient fade */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 z-0 h-48"
@@ -113,7 +107,7 @@ export default function CompanyPage() {
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <FadeIn>
-            <h2 className="text-display-2 uppercase tracking-tight text-white">
+            <h2 className="text-display-2 tracking-tight text-white">
               Leadership
             </h2>
           </FadeIn>

@@ -6,7 +6,7 @@ const pageLinks = [
   { href: '/solutions', label: 'Solutions' },
   { href: '/articles', label: 'Articles' },
   { href: '/company', label: 'Company' },
-  { href: '/contact', label: 'Get a Demo' },
+  { href: '/contact', label: 'Request a Demo' },
 ];
 
 const socialLinks = [
@@ -15,7 +15,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative z-10 -mt-52 border-t border-white/10 bg-black">
+    <footer className="relative z-10 -mt-52 border-t border-white/10 bg-black" style={{ fontFamily: "'Edgecutting', sans-serif" }}>
       <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         {/* Mobile Layout */}
         <div className="md:hidden">
@@ -74,7 +74,7 @@ export function Footer() {
           {/* Copyright - Centered on Mobile */}
           <div className="mt-12 text-center">
             <p className="text-xs text-[#4f4f4f]">
-              © 2026 Ardenus LLC. All rights reserved.
+              Copyright 2026 Ardenus LLC. All rights reserved.
             </p>
           </div>
         </div>
@@ -141,7 +141,7 @@ export function Footer() {
 
             {/* Copyright */}
             <p className="text-xs text-[#4f4f4f]">
-              © 2026 Ardenus LLC. All rights reserved.
+              Copyright 2026 Ardenus LLC. All rights reserved.
             </p>
           </div>
         </div>

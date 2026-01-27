@@ -36,15 +36,12 @@ export function Integrations() {
           {/* Section Header */}
           <div className="mb-16 text-center">
             <FadeIn>
-              <h2 className="text-display-2 mt-4 uppercase tracking-tight text-white">
+              <h2 className="text-display-2 mt-4 tracking-tight text-white">
                 Integrations
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-body-lg mx-auto mt-6 max-w-2xl text-[#a0a0a0]">
-                Connect with the tools you already use. Our platform integrates
-                seamlessly with your favorite apps.
-              </p>
+              <p className="text-body-lg mx-auto mt-6 text-[#a0a0a0] whitespace-nowrap">Connect with the tools you already use. We integrate seamlessly with 2,000+ tools.</p>
             </FadeIn>
           </div>
 
@@ -57,15 +54,15 @@ export function Integrations() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.03 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="flex aspect-square items-center justify-center p-4"
+                whileHover={{ scale: 1.5, transition: { duration: 0.1 } }}
+                className="flex aspect-square items-center justify-center p-4 cursor-pointer"
               >
                 <Image
                   src={integration.icon}
                   alt={integration.name}
                   width={80}
                   height={80}
-                  className="h-auto w-full max-w-[80px] object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
+                  className="h-auto w-full max-w-[80px] object-contain"
                 />
               </motion.div>
             ))}

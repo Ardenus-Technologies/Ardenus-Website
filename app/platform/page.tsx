@@ -1,71 +1,66 @@
-import { Metadata } from 'next';
-import { ScrollProgress, LogoReveal } from '@/components/layout';
+'use client';
+
+import { LogoReveal } from '@/components/layout';
 import { FadeIn } from '@/components/animations/FadeIn';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Platform',
-  description: 'Explore our comprehensive platform and product offerings.',
-};
+import Image from 'next/image';
 
 const products = [
   {
     number: '01',
-    title: 'Analytics Platform',
+    title: 'Ardenus Intelligence',
     description:
-      'Transform raw data into actionable insights with our powerful analytics tools.',
+      'Turn your data into actionable intelligence. Predict outcomes, identify opportunities, and make confident decisions backed by AI-powered analysis.',
+    images: ['/intelligence-new-1.png', '/intelligence-new-2.png'],
     content: {
-      subheading: 'Data-Driven Decisions',
+      subheading: 'DECISION INTELLIGENCE',
       paragraphs: [
-        'Our analytics platform provides real-time visibility into every aspect of your business operations. With customizable dashboards and advanced visualization tools, you can monitor KPIs, track trends, and identify opportunities as they emerge.',
-        'Leverage AI-powered predictive analytics to forecast outcomes and make proactive decisions. Our machine learning algorithms continuously learn from your data to provide increasingly accurate predictions.',
+        'Ardenus Intelligence analyzes patterns across your operations to surface insights that matter. Know which customers are at risk before they churn, discover which neighborhoods offer the best expansion potential, and receive confidence-scored recommendations that empower your team to act decisively.',
       ],
       features: [
-        'Real-time data streaming and processing',
-        'Custom dashboard builder with drag-and-drop interface',
-        'Advanced filtering and segmentation capabilities',
-        'Automated report generation and scheduling',
-        'Role-based access controls and data governance',
+        'Churn risk prediction and early warnings',
+        'Market expansion opportunity scoring',
+        'Neighborhood targeting recommendations',
+        'Customer lifetime value forecasting',
+        'Confidence-scored action suggestions',
       ],
     },
   },
   {
     number: '02',
-    title: 'Automation Suite',
+    title: 'Ardenus Engine',
     description:
-      'Streamline operations and eliminate manual tasks with intelligent automation.',
+      'Eliminate manual tasks and reduce operational overhead. Ardenus Engine automates the repetitive work so your team can focus on what matters.',
+    images: ['/software/core-screenshot-left.png', '/software/core-screenshot-right.png'],
     content: {
-      subheading: 'Work Smarter, Not Harder',
+      subheading: 'WORKFLOW AUTOMATION',
       paragraphs: [
-        'Our automation suite helps you identify and eliminate bottlenecks in your workflows. Using a visual workflow builder, you can create complex automation rules without writing a single line of code.',
-        'Connect your favorite tools and create seamless data flows across your entire tech stack. Our integration hub supports hundreds of popular applications out of the box.',
+        'From automated service reminders to intelligent routing, Ardenus Engine handles the operational complexity. Set up trigger-based workflows that respond to events in real-time, ensuring nothing falls through the cracks and every customer touchpoint is optimized.',
       ],
       features: [
-        'Visual workflow designer with conditional logic',
-        'Pre-built automation templates for common use cases',
-        'Trigger-based actions and scheduled tasks',
-        'Error handling and retry mechanisms',
-        'Detailed audit logs and performance metrics',
+        'Automated service reminders and follow-ups',
+        'Smart scheduling and route optimization',
+        'Trigger-based customer communications',
+        'Task assignment and escalation workflows',
       ],
     },
   },
   {
     number: '03',
-    title: 'Collaboration Hub',
+    title: 'Ardenus Core',
     description:
-      'Unite your team with tools designed for seamless communication and productivity.',
+      'See everything in one place. Ardenus Core aggregates data from every system, giving you complete visibility into your operations from a single command center.',
+    images: ['/core-new-1.png', '/core-new-2.png'],
     content: {
-      subheading: 'Better Together',
+      subheading: 'DATA AGGREGATION HUB',
       paragraphs: [
-        'Break down silos and foster collaboration across teams with our integrated communication platform. From instant messaging to video conferencing, all your collaboration needs are covered.',
-        'Share documents, manage projects, and track progress in one unified workspace. Our collaboration hub keeps everyone aligned and moving toward common goals.',
+        'No more switching between tools or reconciling data across platforms. Ardenus Core connects to your CRM, scheduling software, payment systems, and field tools to create one unified view. Real-time dashboards surface the metrics that matter, making it easy to monitor performance across every branch and team.',
       ],
       features: [
-        'Threaded conversations and channels',
-        'HD video conferencing with screen sharing',
-        'Real-time document collaboration',
-        'Project boards with customizable views',
-        'Mobile apps for iOS and Android',
+        'Unified data from all your systems',
+        'Real-time operational dashboards',
+        'Cross-platform data synchronization',
+        'Single source of truth for reporting',
       ],
     },
   },
@@ -74,32 +69,36 @@ const products = [
 export default function PlatformPage() {
   return (
     <>
-      <ScrollProgress />
-
-      {/* Intro Section */}
-      <section className="section-py-lg bg-black pt-32">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-12 md:gap-12">
-            <FadeIn className="md:col-span-3">
-              <span className="text-xs uppercase tracking-widest text-[#4f4f4f]">
-                Our Platform
-              </span>
-            </FadeIn>
-            <div className="md:col-span-9">
-              <FadeIn delay={0.1}>
-                <h1 className="text-display-1 uppercase tracking-tight text-white">
-                  A Complete Solution for Modern Business
-                </h1>
-              </FadeIn>
-              <FadeIn delay={0.2}>
-                <p className="text-body-lg mt-8 text-[#a0a0a0]">
-                  Our platform combines powerful tools for analytics,
-                  automation, and collaboration into one seamless experience.
-                  Built for scale, designed for simplicity.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
+      {/* Hero Section with Background Image */}
+      <section className="relative min-h-[80vh] w-full pt-32 pb-20">
+        <Image
+          src="/platform-hero.webp"
+          alt="Pest control technician"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        {/* Bottom gradient fade */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48"
+          style={{
+            background: 'linear-gradient(to top, rgb(0 0 0) 0%, rgb(0 0 0 / 0.8) 30%, transparent 100%)',
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <h1 className="text-display-1 tracking-tight text-white">
+              The Complete<br />AI-Powered Operating System
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-body-lg mt-8 max-w-3xl text-white/80">
+              Our platform combines powerful tools for analytics,
+              automation, and collaboration into one seamless experience.
+              Built for scale, designed for simplicity.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
@@ -108,17 +107,12 @@ export default function PlatformPage() {
         <section
           key={product.number}
           id={product.title.toLowerCase().replace(/\s+/g, '-')}
-          className={`border-t border-white/10 ${index % 2 === 0 ? 'bg-[#1a1a1a]' : 'bg-black'}`}
+          className="bg-black"
         >
           <div className="section-py-xl mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
             {/* Header */}
             <FadeIn>
-              <span className="text-xs tracking-widest text-[#4f4f4f]">
-                {product.number}
-              </span>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="text-display-2 mt-4 uppercase tracking-tight text-white">
+              <h2 className="text-display-2 tracking-tight text-white">
                 {product.title}
               </h2>
             </FadeIn>
@@ -129,35 +123,52 @@ export default function PlatformPage() {
             </FadeIn>
 
             {/* Two-column image grid */}
-            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 items-start">
               {[0, 1].map((imgIndex) => (
                 <FadeIn key={imgIndex} delay={0.3 + imgIndex * 0.1}>
-                  <div className="img-grayscale aspect-[4/3] overflow-hidden bg-[#1a1a1a]">
-                    <div
-                      className="h-full w-full"
-                      style={{
-                        backgroundImage: `linear-gradient(${135 + (index + imgIndex) * 45}deg, #2a2a2a, #1a1a1a)`,
-                      }}
-                    />
+                  <div className="relative overflow-hidden bg-[#1a1a1a] aspect-[16/9]">
+                    {product.images ? (
+                      <Image
+                        src={product.images[imgIndex]}
+                        alt={`${product.title} screenshot ${imgIndex + 1}`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        style={{ objectFit: 'cover', objectPosition: 'left top' }}
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          backgroundImage: `linear-gradient(${135 + (index + imgIndex) * 45}deg, #2a2a2a, #1a1a1a)`,
+                        }}
+                      />
+                    )}
                   </div>
                 </FadeIn>
               ))}
             </div>
 
             {/* Detailed content */}
-            <div className="mt-16 max-w-3xl">
-              <FadeIn>
-                <h3 className="text-xl font-medium text-white">
-                  {product.content.subheading}
-                </h3>
-              </FadeIn>
-              {product.content.paragraphs.map((paragraph, pIndex) => (
-                <FadeIn key={pIndex} delay={0.1 * (pIndex + 1)}>
-                  <p className="mt-4 text-[#a0a0a0]">{paragraph}</p>
+            <div className="mt-16 grid gap-12 md:grid-cols-2">
+              <div>
+                <FadeIn>
+                  <h3
+                    className="text-xl font-medium text-white transition-all duration-300 cursor-default"
+                    style={{ textTransform: 'uppercase' }}
+                    onMouseEnter={(e) => e.currentTarget.style.textTransform = 'none'}
+                    onMouseLeave={(e) => e.currentTarget.style.textTransform = 'uppercase'}
+                  >
+                    {product.content.subheading}
+                  </h3>
                 </FadeIn>
-              ))}
+                {product.content.paragraphs.map((paragraph, pIndex) => (
+                  <FadeIn key={pIndex} delay={0.1 * (pIndex + 1)}>
+                    <p className="mt-4 text-[#a0a0a0]">{paragraph}</p>
+                  </FadeIn>
+                ))}
+              </div>
               <FadeIn delay={0.3}>
-                <ul className="mt-8 space-y-3">
+                <ul className="space-y-2">
                   {product.content.features.map((feature, fIndex) => (
                     <li
                       key={fIndex}
@@ -174,11 +185,11 @@ export default function PlatformPage() {
       ))}
 
       {/* CTA */}
-      <section className="section-py-xl border-t border-white/10 bg-black">
+      <section className="section-py-xl bg-black">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center">
-            <Link href="/contact" className="btn btn-primary">
-              Get Started Today
+            <Link href="/contact" className="btn btn-primary rounded-none">
+              Request a Demo
             </Link>
           </FadeIn>
         </div>

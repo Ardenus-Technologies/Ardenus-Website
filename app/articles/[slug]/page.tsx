@@ -441,7 +441,7 @@ export default async function ArticlePage({ params }: Props) {
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h1 className="text-display-3 mt-4 text-white">{article.title}</h1>
+              <h1 className="text-display-3 mt-4 text-white" style={{ textTransform: 'none' }}>{article.title}</h1>
             </FadeIn>
             <FadeIn delay={0.2}>
               <div className="mt-6 flex items-center gap-4 text-sm text-[#a0a0a0]">

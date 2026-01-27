@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -19,6 +19,13 @@ export function Navigation() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,15 +89,16 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`link-underline text-base transition-colors duration-300 hover:text-white ${
+                className={`link-underline text-sm uppercase tracking-wider transition-colors duration-300 hover:text-white ${
                   isActive(link.href) ? 'text-white' : 'text-[#a0a0a0]'
                 }`}
+                style={{ fontFamily: "'Edgecutting', sans-serif" }}
               >
                 {link.label}
               </Link>
             ))}
             <Link href="/contact" className="btn btn-primary rounded-none">
-              Get a Demo
+              Request a Demo
             </Link>
           </div>
 
@@ -125,7 +133,17 @@ export function Navigation() {
             </div>
           </button>
         </nav>
+
       </motion.header>
+
+      {/* Scroll Progress Bar - animates with nav */}
+      <motion.div
+        style={{ scaleX }}
+        initial={{ top: 80 }}
+        animate={{ top: isVisible ? 80 : 0 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="fixed left-0 right-0 z-50 h-px origin-left bg-white"
+      />
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -149,14 +167,12 @@ export function Navigation() {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`text-display-3 uppercase tracking-tight transition-opacity duration-300 hover:opacity-50 ${
+                    className={`text-3xl uppercase tracking-wider transition-opacity duration-300 hover:opacity-50 ${
                       isActive(link.href) ? 'text-white' : 'text-[#a0a0a0]'
                     }`}
+                    style={{ fontFamily: "'Edgecutting', sans-serif" }}
                   >
                     {link.label}
-                    {isActive(link.href) && (
-                      <span className="ml-2 inline-block h-2 w-2 rounded-full bg-white" />
-                    )}
                   </Link>
                 </motion.div>
               ))}
@@ -172,7 +188,7 @@ export function Navigation() {
                   onClick={() => setIsOpen(false)}
                   className="btn btn-primary rounded-none text-sm"
                 >
-                  Get a Demo
+                  Request a Demo
                 </Link>
               </motion.div>
             </div>

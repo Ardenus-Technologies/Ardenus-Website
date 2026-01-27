@@ -80,8 +80,8 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-display-1 mb-8 max-w-4xl tracking-tight text-white"
-            style={{ fontFamily: "'ZT Nature', sans-serif" }}
+            className="text-display-1 mb-8 max-w-4xl tracking-tight text-white uppercase"
+            style={{ fontFamily: "'Nurom', sans-serif" }}
           >
             The New Standard
             <br />
@@ -104,7 +104,8 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="bg-white/5 px-6 py-2.5 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-black"
+                className="bg-white/5 px-6 py-2.5 text-sm text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-black uppercase tracking-wider"
+                style={{ fontFamily: "'Edgecutting', sans-serif" }}
               >
                 {link.label}
               </motion.a>

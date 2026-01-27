@@ -46,7 +46,7 @@ export function News() {
         <div className="mb-12 flex items-end justify-between">
           <div>
             <FadeIn>
-              <h2 className="text-display-2 mt-4 uppercase tracking-tight text-white">
+              <h2 className="text-display-2 mt-4 tracking-tight text-white">
                 News & Articles
               </h2>
             </FadeIn>
@@ -55,9 +55,22 @@ export function News() {
             <Link
               href="/articles"
               scroll={true}
-              className="link-underline hidden text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white sm:block"
+              className="group hidden sm:inline-flex items-center gap-2 border border-white/30 px-4 py-2 text-sm text-white transition-all duration-300 hover:border-white"
             >
-              View all
+              See All Articles
+              <svg
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
             </Link>
           </FadeIn>
         </div>
@@ -85,7 +98,7 @@ export function News() {
 
                 {/* Content */}
                 <div className="mt-6">
-                  <h3 className="text-lg font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0]">
+                  <h3 className="text-lg font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0]" style={{ textTransform: 'none' }}>
                     {article.title}
                   </h3>
                   <p className="mt-2 line-clamp-2 text-sm text-[#a0a0a0]">
@@ -108,9 +121,22 @@ export function News() {
           <Link
             href="/articles"
             scroll={true}
-            className="link-underline text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
+            className="group inline-flex items-center gap-2 border border-white/30 px-4 py-2 text-sm text-white transition-all duration-300 hover:border-white"
           >
-            View all articles
+            See All Articles
+            <svg
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
           </Link>
         </FadeIn>
       </div>

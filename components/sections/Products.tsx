@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { SlideIn } from '@/components/animations/SlideIn';
@@ -19,6 +20,7 @@ const products = [
     ],
     href: '/platform',
     isEmpty: false,
+    mobileOrder: 'order-1 sm:order-none',
   },
   {
     title: '',
@@ -26,6 +28,9 @@ const products = [
     features: [],
     href: '',
     isEmpty: true,
+    windowImage: '/capabilities-window-1.png',
+    windowType: 'macos',
+    mobileOrder: 'order-2 sm:order-none',
   },
   {
     title: '',
@@ -33,6 +38,10 @@ const products = [
     features: [],
     href: '',
     isEmpty: true,
+    windowImage: '/capabilities-window-2.png',
+    windowType: 'windows',
+    windowBg: '/capabilities-bg-windows.jpg',
+    mobileOrder: 'order-4 sm:order-none',
   },
   {
     title: 'Solutions',
@@ -46,6 +55,7 @@ const products = [
     ],
     href: '/solutions',
     isEmpty: false,
+    mobileOrder: 'order-3 sm:order-none',
   },
 ];
 
@@ -78,7 +88,7 @@ export function Products() {
           }}
         />
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/90" />
       </motion.div>
 
       {/* Top gradient fade */}
@@ -102,14 +112,13 @@ export function Products() {
           {/* Section Header */}
           <div className="mb-16">
             <FadeIn>
-              <h2 className="text-display-2 mt-4 uppercase tracking-tight text-white">
+              <h2 className="text-display-2 mt-4 tracking-tight text-white">
                 Capabilities
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-body-lg mt-6 max-w-2xl text-[#a0a0a0]">
-                A comprehensive suite of tools designed to help your business
-                thrive in the digital age.
+                Essential tools for modern business growth.
               </p>
             </FadeIn>
           </div>
@@ -121,30 +130,58 @@ export function Products() {
                 key={index}
                 direction={index % 2 === 0 ? 'left' : 'right'}
                 delay={index * 0.1}
+                className={product.mobileOrder}
               >
                 {product.isEmpty ? (
-                  <div className="block bg-black/50 p-8 backdrop-blur-sm sm:p-10">
-                    {/* Empty box */}
+                  <div className="relative h-full min-h-[280px] overflow-hidden p-8 sm:p-10">
+                    {/* Background */}
+                    <Image
+                      src={product.windowBg || '/capabilities-bg.jpg'}
+                      alt="Capabilities background"
+                      fill
+                      className="object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-black/40" />
+
+                    {/* Centered Image */}
+                    <div className="relative h-full flex items-center justify-center">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        viewport={{ once: true }}
+                        className={`relative w-[85%] aspect-[16/10] overflow-hidden shadow-2xl ${product.windowType === 'macos' ? 'rounded-md' : ''}`}
+                      >
+                        {product.windowImage && (
+                          <Image
+                            src={product.windowImage}
+                            alt="Application screenshot"
+                            fill
+                            className="object-cover object-left-top"
+                          />
+                        )}
+                      </motion.div>
+                    </div>
                   </div>
                 ) : (
                   <Link
                     href={product.href}
-                    className="group block bg-black/50 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-black/60 sm:p-10"
+                    className="group block bg-black/50 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-black/40 sm:p-10"
                   >
                     {/* Title */}
-                    <h3 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0]">
+                    <h3 className="text-xl font-medium text-[#a0a0a0] transition-colors duration-300 group-hover:text-white">
                       {product.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="mt-3 text-[#a0a0a0]">{product.description}</p>
+                    <p className="mt-3 text-[#4f4f4f] transition-colors duration-300 group-hover:text-[#a0a0a0]">{product.description}</p>
 
                     {/* Features */}
                     <ul className="mt-6 space-y-2">
                       {product.features.map((feature) => (
                         <li
                           key={feature}
-                          className="pl-6 text-sm text-[#4f4f4f]"
+                          className="pl-6 text-sm text-[#4f4f4f] transition-colors duration-300 group-hover:text-[#a0a0a0]"
                         >
                           {feature}
                         </li>
@@ -152,8 +189,8 @@ export function Products() {
                     </ul>
 
                     {/* Link Arrow */}
-                    <div className="mt-8 flex items-center gap-2 text-sm text-white">
-                      Learn more
+                    <div className="mt-8 inline-flex items-center gap-2 border border-white/20 px-4 py-2 text-sm text-[#a0a0a0] transition-all duration-300 group-hover:border-white group-hover:text-white">
+                      Explore {product.title}
                       <svg
                         className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                         fill="none"

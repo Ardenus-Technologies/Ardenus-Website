@@ -19,9 +19,9 @@ const showcaseImagesTop = [
 ];
 
 const showcaseImagesBottom = [
+  { id: 6, src: '/software/core-screenshot-right.png', alt: 'Core Analytics' },
   { id: 4, src: '/software/solutions-growth-left.png', alt: 'Growth Metrics' },
   { id: 5, src: '/software/engine-screenshot-right.png', alt: 'Engine Analytics' },
-  { id: 6, src: '/software/core-screenshot-right.png', alt: 'Core Analytics' },
 ];
 
 export function Showcase() {
@@ -33,7 +33,7 @@ export function Showcase() {
 
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
   const xTop = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
-  const xBottom = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
+  const xBottom = useTransform(scrollYProgress, [0, 1], ['-50%', '10%']);
 
   return (
     <section

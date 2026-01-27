@@ -95,10 +95,10 @@ export default function ArticlesPage() {
     <>
       <ScrollToTop />
       {/* Page Header */}
-      <section className="section-py-lg bg-black pt-32">
+      <section className="bg-black pt-32 pb-20">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <h1 className="text-display-1 uppercase tracking-tight text-white">
+            <h1 className="text-display-1 tracking-tight text-white">
               News & Articles
             </h1>
           </FadeIn>
@@ -130,7 +130,7 @@ export default function ArticlesPage() {
 
                     {/* Content */}
                     <div className="sm:col-span-8">
-                      <h2 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0] sm:text-2xl">
+                      <h2 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-[#a0a0a0] sm:text-2xl" style={{ textTransform: 'none' }}>
                         {article.title}
                       </h2>
                       <p className="mt-3 line-clamp-2 text-[#a0a0a0]">
