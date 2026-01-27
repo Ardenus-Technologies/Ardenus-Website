@@ -9,36 +9,48 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Company Name',
-    template: '%s | Company Name',
+    default: 'Ardenus',
+    template: '%s | Ardenus',
   },
-  description: 'Your company tagline or description goes here.',
-  keywords: ['keyword1', 'keyword2', 'keyword3'],
-  authors: [{ name: 'Your Name' }],
-  creator: 'Your Name',
-  metadataBase: new URL('https://your-domain.com'),
+  description:
+    'The complete AI-powered operating system for pest control businesses. Intelligence, automation, and analytics in one platform.',
+  keywords: [
+    'pest control software',
+    'AI automation',
+    'business intelligence',
+    'field service management',
+  ],
+  authors: [{ name: 'Ardenus Technologies' }],
+  creator: 'Ardenus Technologies',
+  metadataBase: new URL('https://ardenus.com'),
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://your-domain.com',
-    siteName: 'Company Name',
-    title: 'Company Name',
-    description: 'Your company tagline or description goes here.',
+    url: 'https://ardenus.com',
+    siteName: 'Ardenus',
+    title: 'Ardenus',
+    description:
+      'The complete AI-powered operating system for pest control businesses. Intelligence, automation, and analytics in one platform.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Company Name',
+        alt: 'Ardenus - AI-Powered Operating System',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Company Name',
-    description: 'Your company tagline or description goes here.',
+    title: 'Ardenus',
+    description:
+      'The complete AI-powered operating system for pest control businesses.',
     images: ['/og-image.png'],
-    creator: '@yourhandle',
+    creator: '@ardenus',
   },
   robots: {
     index: true,
@@ -68,7 +80,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-background antialiased">
         <PageLoader />
-        <SmoothScrollProvider lerp={0.1} duration={1.2}>
+        <SmoothScrollProvider lerp={0.15} duration={0.8}>
           <Navigation />
           <main className="pt-16">{children}</main>
           <Footer />

@@ -8,7 +8,7 @@ export function PageLoader() {
 
   useEffect(() => {
     const handleLoad = () => {
-      setTimeout(() => setIsLoading(false), 500);
+      setTimeout(() => setIsLoading(false), 100);
     };
 
     if (document.readyState === 'complete') {
@@ -25,7 +25,7 @@ export function PageLoader() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
         >
           <div className="relative">
