@@ -6,9 +6,8 @@ const pageLinks = [
   { href: '/solutions', label: 'Solutions' },
   { href: '/articles', label: 'Articles' },
   { href: '/company', label: 'Company' },
+  { href: '/contact', label: 'Request a Demo' },
 ];
-
-const ctaLink = { href: '/contact', label: 'Request a Demo' };
 
 const socialLinks = [
   { href: 'https://www.linkedin.com/company/ardenus/', label: 'LinkedIn' },
@@ -24,20 +23,22 @@ export function Footer() {
         {/* Mobile Layout */}
         <div className="md:hidden">
           <div className="grid grid-cols-2 gap-8">
-            {/* Left Column - Page Links, Follow Us, LinkedIn */}
-            <div className="flex flex-col gap-4">
-              <nav className="flex flex-col gap-4">
-                {pageLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="link-underline w-fit text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
-              <p className="mt-4 text-xs uppercase tracking-widest text-[#4f4f4f]">
+            {/* Left Column - Page Links including Request a Demo */}
+            <nav className="flex flex-col gap-4">
+              {pageLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="link-underline w-fit text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Right Column - Follow Us, LinkedIn at top, then Privacy/Terms aligned with Request a Demo */}
+            <div className="flex flex-col items-end text-right">
+              <p className="text-xs uppercase tracking-widest text-[#4f4f4f]">
                 Follow Us
               </p>
               {socialLinks.map((link) => (
@@ -46,34 +47,27 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="link-underline w-fit text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
+                  className="link-underline mt-4 text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
                   aria-label={link.label}
                 >
                   {link.label}
                 </a>
               ))}
-            </div>
-
-            {/* Right Column - Request a Demo, Privacy, Terms */}
-            <div className="flex flex-col items-end gap-4 text-right">
-              <Link
-                href={ctaLink.href}
-                className="link-underline text-sm text-[#a0a0a0] transition-colors duration-300 hover:text-white"
-              >
-                {ctaLink.label}
-              </Link>
-              <Link
-                href="/privacy"
-                className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
-              >
-                Terms of Use
-              </Link>
+              {/* Gap to align with Request a Demo on left */}
+              <div className="mt-auto flex flex-col items-end gap-4">
+                <Link
+                  href="/privacy"
+                  className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  href="/terms"
+                  className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
+                >
+                  Terms of Use
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -85,9 +79,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Desktop Layout - 3 columns */}
-        <div className="hidden md:grid md:grid-cols-3 md:gap-12">
-          {/* Left Column - Page Links */}
+        {/* Desktop Layout */}
+        <div className="hidden md:grid md:grid-cols-2 md:gap-12">
+          {/* Left Column - Page Links including Request a Demo */}
           <nav className="flex flex-col gap-5">
             {pageLinks.map((link) => (
               <Link
@@ -100,24 +94,8 @@ export function Footer() {
             ))}
           </nav>
 
-          {/* Center Column - Legal Links */}
-          <div className="flex flex-col items-center gap-3">
-            <Link
-              href="/privacy"
-              className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
-            >
-              Terms of Use
-            </Link>
-          </div>
-
-          {/* Right Column - Social, CTA & Copyright */}
-          <div className="flex flex-col items-end gap-5 text-right">
+          {/* Right Column - LinkedIn at top, Privacy/Terms in middle, Copyright at bottom */}
+          <div className="flex flex-col items-end text-right">
             {/* Social Media */}
             <div>
               <p className="mb-4 text-xs uppercase tracking-widest text-[#4f4f4f]">
@@ -139,13 +117,21 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Request a Demo */}
-            <Link
-              href={ctaLink.href}
-              className="link-underline text-base text-[#a0a0a0] transition-colors duration-300 hover:text-white"
-            >
-              {ctaLink.label}
-            </Link>
+            {/* Legal Links - centered vertically */}
+            <div className="my-auto flex flex-col items-end gap-3">
+              <Link
+                href="/privacy"
+                className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms"
+                className="text-sm text-[#4f4f4f] transition-colors duration-300 hover:text-white"
+              >
+                Terms of Use
+              </Link>
+            </div>
 
             {/* Copyright */}
             <p className="text-sm text-[#4f4f4f]">
