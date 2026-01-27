@@ -1,8 +1,11 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
+
+// Spring config for smooth, performant animations
+const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
 
 const showcaseImagesAll = [
   { id: 1, src: '/software/core-screenshot-left.png', alt: 'Core Dashboard' },
@@ -47,11 +50,14 @@ export function Showcase() {
     offset: ['start end', 'end start'],
   });
 
+  // Smooth the scroll progress to reduce jank
+  const smoothProgress = useSpring(scrollYProgress, springConfig);
+
   // Desktop transform
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
-  // Mobile transforms - smaller range for smoother performance
-  const xTop = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
-  const xBottom = useTransform(scrollYProgress, [0, 1], ['-25%', '5%']);
+  const x = useTransform(smoothProgress, [0, 1], ['0%', '-30%']);
+  // Mobile transforms - use smoothed progress for 60fps feel
+  const xTop = useTransform(smoothProgress, [0, 1], ['0%', '-15%']);
+  const xBottom = useTransform(smoothProgress, [0, 1], ['-25%', '5%']);
 
   return (
     <section
@@ -87,19 +93,16 @@ export function Showcase() {
       <div className="md:hidden">
         {/* Top Row - Scrolls Left */}
         <motion.div
-          style={{
-            x: xTop,
-            willChange: 'transform',
-            transform: 'translateZ(0)',
-          }}
-          className="flex gap-4 pl-4"
+          style={{ x: xTop }}
+          className="flex gap-4 pl-4 will-change-transform"
           initial={false}
+          // Force GPU layer
+          transformTemplate={({ x }) => `translate3d(${x}, 0, 0)`}
         >
           {showcaseImagesTop.map((image, index) => (
             <div
               key={image.id}
               className="relative aspect-video w-[280px] flex-shrink-0 overflow-hidden"
-              style={{ willChange: 'transform', transform: 'translateZ(0)' }}
             >
               <Image
                 src={image.src}
@@ -116,19 +119,16 @@ export function Showcase() {
 
         {/* Bottom Row - Scrolls Right (opposite direction) */}
         <motion.div
-          style={{
-            x: xBottom,
-            willChange: 'transform',
-            transform: 'translateZ(0)',
-          }}
-          className="mt-4 flex gap-4 pl-4"
+          style={{ x: xBottom }}
+          className="mt-4 flex gap-4 pl-4 will-change-transform"
           initial={false}
+          // Force GPU layer
+          transformTemplate={({ x }) => `translate3d(${x}, 0, 0)`}
         >
           {showcaseImagesBottom.map((image, index) => (
             <div
               key={image.id}
               className="relative aspect-video w-[280px] flex-shrink-0 overflow-hidden"
-              style={{ willChange: 'transform', transform: 'translateZ(0)' }}
             >
               <Image
                 src={image.src}
