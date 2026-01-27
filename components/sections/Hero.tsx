@@ -21,51 +21,75 @@ export function Hero() {
     if (!video) return;
 
     const playVideo = async () => {
-      try {
-        video.muted = true; // Ensure muted for autoplay policy
-        await video.play();
-      } catch {
-        // Silently fail - will retry on interaction
+      if (video.paused) {
+        try {
+          video.muted = true;
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            await playPromise;
+          }
+        } catch {
+          // Silently fail - will retry
+        }
       }
     };
 
-    // Play immediately
-    playVideo();
-
-    // iOS requires user interaction - listen for first touch/click anywhere
-    const handleFirstInteraction = () => {
+    // Handle when video data is loaded
+    const handleLoadedData = () => {
       playVideo();
-      // Remove listeners after first successful interaction
-      document.removeEventListener('touchstart', handleFirstInteraction);
-      document.removeEventListener('click', handleFirstInteraction);
     };
 
-    // Also try on visibility change (when user switches tabs back)
+    // Handle when video can play through
+    const handleCanPlay = () => {
+      playVideo();
+    };
+
+    // iOS sometimes needs scroll to trigger - listen for any scroll
+    const handleScroll = () => {
+      playVideo();
+    };
+
+    // Visibility change handler
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         playVideo();
       }
     };
 
-    // Try again after delays for mobile browsers
-    const timer1 = setTimeout(playVideo, 100);
-    const timer2 = setTimeout(playVideo, 500);
-    const timer3 = setTimeout(playVideo, 1000);
+    // First interaction handler for stubborn iOS
+    const handleFirstInteraction = () => {
+      playVideo();
+    };
 
-    // Add interaction listeners for iOS
+    // Try to play immediately
+    playVideo();
+
+    // Aggressive retry timers
+    const timers = [50, 100, 200, 500, 1000, 2000].map((delay) =>
+      setTimeout(playVideo, delay)
+    );
+
+    // Add all event listeners
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('canplay', handleCanPlay);
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+      once: true,
+    });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     document.addEventListener('touchstart', handleFirstInteraction, {
       passive: true,
     });
     document.addEventListener('click', handleFirstInteraction);
-    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
+      timers.forEach(clearTimeout);
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('canplay', handleCanPlay);
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       document.removeEventListener('touchstart', handleFirstInteraction);
       document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 
@@ -91,14 +115,10 @@ export function Hero() {
           muted
           loop
           playsInline
-          preload="auto"
-          controls={false}
-          disablePictureInPicture
+          preload="metadata"
           className="h-full w-full object-cover"
-          style={{
-            objectFit: 'cover',
-            pointerEvents: 'none', // Prevent tap-to-play UI
-          }}
+          // eslint-disable-next-line react/no-unknown-property
+          webkit-playsinline="true"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
