@@ -531,6 +531,7 @@ export default async function ArticlePage({ params }: Props) {
                     <h3
                       key={index}
                       className="mt-8 text-lg font-medium text-white"
+                      style={{ textTransform: 'none' }}
                     >
                       {block.replace('### ', '')}
                     </h3>
@@ -541,6 +542,7 @@ export default async function ArticlePage({ params }: Props) {
                     <h2
                       key={index}
                       className="mt-12 text-2xl font-medium text-white first:mt-0"
+                      style={{ textTransform: 'none' }}
                     >
                       {block.replace('## ', '')}
                     </h2>
@@ -570,7 +572,7 @@ export default async function ArticlePage({ params }: Props) {
               {/* Sources */}
               {article.sources && article.sources.length > 0 && (
                 <div className="mt-16 border-t border-white/10 pt-8">
-                  <h3 className="text-lg font-medium text-white">Sources</h3>
+                  <h3 className="text-lg font-medium text-white" style={{ textTransform: 'none' }}>Sources</h3>
                   <ul className="mt-4 space-y-2">
                     {article.sources.map((source) => (
                       <li key={source.id} className="text-sm text-[#4f4f4f]">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const anchorLinks = [
@@ -13,6 +13,51 @@ const anchorLinks = [
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Force video to play on mobile devices
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const playVideo = async () => {
+      try {
+        // Reset video to start
+        video.currentTime = 0;
+        await video.play();
+      } catch {
+        // Autoplay was prevented, try with muted (required for mobile)
+        video.muted = true;
+        try {
+          await video.play();
+        } catch {
+          // Still failed, will show first frame
+        }
+      }
+    };
+
+    // Play immediately
+    playVideo();
+
+    // Also try on visibility change (when user switches tabs back)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        playVideo();
+      }
+    };
+
+    // Try again after a short delay for mobile browsers
+    const timer = setTimeout(playVideo, 100);
+    const timer2 = setTimeout(playVideo, 500);
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(timer2);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -31,11 +76,14 @@ export function Hero() {
       {/* Background Video */}
       <motion.div style={{ scale }} className="absolute inset-0">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           className="h-full w-full object-cover"
+          style={{ objectFit: 'cover' }}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>

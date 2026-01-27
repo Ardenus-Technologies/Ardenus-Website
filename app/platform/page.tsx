@@ -2,6 +2,7 @@
 
 import { LogoReveal } from '@/components/layout';
 import { FadeIn } from '@/components/animations/FadeIn';
+import { ScrollToTop } from '@/components/utils/ScrollToTop';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -72,6 +73,7 @@ const products = [
 export default function PlatformPage() {
   return (
     <>
+      <ScrollToTop />
       {/* Hero Section with Background Image */}
       <section className="relative min-h-[80vh] w-full pb-20 pt-32">
         <Image

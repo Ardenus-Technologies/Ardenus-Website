@@ -48,10 +48,10 @@ const products = [
     description:
       'Streamline your workflows with intelligent automation that saves time and reduces errors.',
     features: [
-      'Workflow builder',
-      'Task automation',
-      'Integration hub',
-      'Smart scheduling',
+      'Automated Workflows',
+      'Predictive Churn Analysis',
+      'Revenue Forecasting',
+      'Enterprise Security',
     ],
     href: '/solutions',
     isEmpty: false,

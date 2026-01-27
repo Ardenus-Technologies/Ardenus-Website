@@ -47,9 +47,11 @@ export function Showcase() {
     offset: ['start end', 'end start'],
   });
 
+  // Desktop transform
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
-  const xTop = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
-  const xBottom = useTransform(scrollYProgress, [0, 1], ['-50%', '10%']);
+  // Mobile transforms - smaller range for smoother performance
+  const xTop = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
+  const xBottom = useTransform(scrollYProgress, [0, 1], ['-25%', '5%']);
 
   return (
     <section
@@ -84,15 +86,20 @@ export function Showcase() {
       {/* Mobile Version - Two Rows */}
       <div className="md:hidden">
         {/* Top Row - Scrolls Left */}
-        <motion.div style={{ x: xTop }} className="flex gap-4 pl-4">
+        <motion.div
+          style={{
+            x: xTop,
+            willChange: 'transform',
+            transform: 'translateZ(0)',
+          }}
+          className="flex gap-4 pl-4"
+          initial={false}
+        >
           {showcaseImagesTop.map((image, index) => (
-            <motion.div
+            <div
               key={image.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="relative aspect-video w-[280px] flex-shrink-0 overflow-hidden"
+              style={{ willChange: 'transform', transform: 'translateZ(0)' }}
             >
               <Image
                 src={image.src}
@@ -103,20 +110,25 @@ export function Showcase() {
                 priority={index === 0}
                 loading={index === 0 ? 'eager' : 'lazy'}
               />
-            </motion.div>
+            </div>
           ))}
         </motion.div>
 
         {/* Bottom Row - Scrolls Right (opposite direction) */}
-        <motion.div style={{ x: xBottom }} className="mt-4 flex gap-4 pl-4">
+        <motion.div
+          style={{
+            x: xBottom,
+            willChange: 'transform',
+            transform: 'translateZ(0)',
+          }}
+          className="mt-4 flex gap-4 pl-4"
+          initial={false}
+        >
           {showcaseImagesBottom.map((image, index) => (
-            <motion.div
+            <div
               key={image.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="relative aspect-video w-[280px] flex-shrink-0 overflow-hidden"
+              style={{ willChange: 'transform', transform: 'translateZ(0)' }}
             >
               <Image
                 src={image.src}
@@ -126,7 +138,7 @@ export function Showcase() {
                 sizes="280px"
                 loading="lazy"
               />
-            </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>
