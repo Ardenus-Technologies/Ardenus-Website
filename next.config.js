@@ -5,6 +5,8 @@ const nextConfig = {
 
   // Image optimization configuration
   images: {
+    // Disable optimization for better performance on small instances
+    unoptimized: true,
     // Add domains for external images if needed
     remotePatterns: [
       {
@@ -12,8 +14,6 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
       },
     ],
-    // Modern image formats for better performance
-    formats: ['image/avif', 'image/webp'],
   },
 
   // Experimental features (if needed)
