@@ -89,7 +89,7 @@ export default function ContactPage() {
       firstName: formData.get('firstName') as string,
       lastName: formData.get('lastName') as string,
       email: formData.get('email') as string,
-      phone: formData.get('phone') as string || null,
+      phone: (formData.get('phone') as string) || null,
       company: formData.get('company') as string,
       jobTitle: formData.get('jobTitle') as string,
       state: formData.get('state') as string,
