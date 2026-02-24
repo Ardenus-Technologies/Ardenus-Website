@@ -60,9 +60,15 @@ const usStates = [
   'Wyoming',
 ];
 
+// API endpoint for form submissions
+// In production, Nginx proxies /api/* to the Python backend
+// In development, use localhost:8000 directly
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -76,12 +82,41 @@ export default function ContactPage() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get('firstName') as string,
+      lastName: formData.get('lastName') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string || null,
+      company: formData.get('company') as string,
+      jobTitle: formData.get('jobTitle') as string,
+      state: formData.get('state') as string,
+      goals: formData.get('goals') as string,
+    };
 
-    setIsLoading(false);
-    setIsSubmitted(true);
+    try {
+      const response = await fetch(`${API_URL}/api/demo-request`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || 'Failed to submit form');
+      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -275,6 +310,13 @@ export default function ContactPage() {
                           className="mt-2 w-full border border-white/10 bg-black/50 px-4 py-3 text-white transition-colors duration-300 focus:border-white/30 focus:outline-none"
                         />
                       </div>
+
+                      {/* Error Message */}
+                      {error && (
+                        <div className="border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+                          {error}
+                        </div>
+                      )}
 
                       {/* Submit Button */}
                       <button
