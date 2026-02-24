@@ -113,7 +113,11 @@ export default function ContactPage() {
       setIsSubmitted(true);
     } catch (err) {
       console.error('Form submission error:', err);
-      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again.'
+      );
     } finally {
       setIsLoading(false);
     }
