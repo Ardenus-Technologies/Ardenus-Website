@@ -79,19 +79,12 @@ export function SmoothScrollProvider({
       touchMultiplier,
       infinite,
       smoothWheel: true,
+      autoRaf: true,
     });
 
     lenisRef.current = lenis;
     // Expose globally for scroll utilities
     (window as any).__lenis = lenis;
-
-    // Animation frame loop
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
 
     // Cleanup on unmount
     return () => {

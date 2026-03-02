@@ -1,31 +1,35 @@
 'use client';
 
+import { useRef } from 'react';
 import { FadeIn } from '@/components/animations/FadeIn';
-import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import Image from 'next/image';
 
 const integrations = [
-  { name: 'Slack', icon: '/icons/slack.png' },
-  { name: 'Salesforce', icon: '/icons/salesforce.png' },
-  { name: 'HubSpot', icon: '/icons/hubspot.png' },
-  { name: 'Stripe', icon: '/icons/stripe.png' },
-  { name: 'Notion', icon: '/icons/notion.png' },
-  { name: 'Zapier', icon: '/icons/zapier.png' },
-  { name: 'Airtable', icon: '/icons/airtable.png' },
-  { name: 'Briostack', icon: '/icons/briostack.png' },
-  { name: 'Excel', icon: '/icons/excel.png' },
-  { name: 'FactSet', icon: '/icons/factset.png' },
-  { name: 'FieldRoutes', icon: '/icons/fieldroutes.png' },
-  { name: 'Google Drive', icon: '/icons/googledrive.png' },
-  { name: 'GorillaDesk', icon: '/icons/gorilladesk.png' },
-  { name: 'Jobber', icon: '/icons/jobber.png' },
-  { name: 'Make', icon: '/icons/make.png' },
-  { name: 'OpenAI', icon: '/icons/openai.png' },
-  { name: 'Outlook', icon: '/icons/outlook.png' },
-  { name: 'PestPac', icon: '/icons/pestpac.png' },
+  { name: 'Slack', icon: '/icons/slack.webp' },
+  { name: 'Salesforce', icon: '/icons/salesforce.webp' },
+  { name: 'HubSpot', icon: '/icons/hubspot.webp' },
+  { name: 'Stripe', icon: '/icons/stripe.webp' },
+  { name: 'Notion', icon: '/icons/notion.webp' },
+  { name: 'Zapier', icon: '/icons/zapier.webp' },
+  { name: 'Airtable', icon: '/icons/airtable.webp' },
+  { name: 'Briostack', icon: '/icons/briostack.webp' },
+  { name: 'Excel', icon: '/icons/excel.webp' },
+  { name: 'FactSet', icon: '/icons/factset.webp' },
+  { name: 'FieldRoutes', icon: '/icons/fieldroutes.webp' },
+  { name: 'Google Drive', icon: '/icons/googledrive.webp' },
+  { name: 'GorillaDesk', icon: '/icons/gorilladesk.webp' },
+  { name: 'Jobber', icon: '/icons/jobber.webp' },
+  { name: 'Make', icon: '/icons/make.webp' },
+  { name: 'OpenAI', icon: '/icons/openai.webp' },
+  { name: 'Outlook', icon: '/icons/outlook.webp' },
+  { name: 'PestPac', icon: '/icons/pestpac.webp' },
 ];
 
 export function Integrations() {
+  const gridRef = useRef(null);
+  const isInView = useInView(gridRef, { once: true });
+
   return (
     <section id="integrations" className="relative overflow-hidden bg-black">
       <div className="section-py-xl relative z-10">
@@ -46,25 +50,29 @@ export function Integrations() {
           </div>
 
           {/* Icon Grid - 6 columns, 3 rows */}
-          <div className="grid grid-cols-3 gap-8 sm:grid-cols-4 md:grid-cols-6 lg:gap-12">
+          <div
+            ref={gridRef}
+            className="grid grid-cols-3 gap-8 sm:grid-cols-4 md:grid-cols-6 lg:gap-12"
+          >
             {integrations.map((integration, index) => (
-              <motion.div
+              <div
                 key={integration.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.03 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.5, transition: { duration: 0.1 } }}
-                className="flex aspect-square cursor-pointer items-center justify-center p-4"
+                className={`flex aspect-square cursor-pointer items-center justify-center p-4 transition-transform duration-100 hover:scale-150 ${
+                  isInView ? 'integration-fade-in' : 'opacity-0 scale-90'
+                }`}
+                style={
+                  { '--stagger-delay': `${index * 30}ms` } as React.CSSProperties
+                }
               >
                 <Image
                   src={integration.icon}
                   alt={integration.name}
                   width={80}
                   height={80}
+                  loading="lazy"
                   className="h-auto w-full max-w-[80px] object-contain"
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

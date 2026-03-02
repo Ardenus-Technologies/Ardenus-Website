@@ -76,12 +76,11 @@ export function Products() {
       className="relative overflow-hidden"
     >
       {/* Background Image with Parallax */}
-      <motion.div style={{ y, scale }} className="absolute -inset-20 -z-10">
+      <motion.div style={{ y, scale }} className="absolute -inset-20 -z-10 will-change-transform">
         <div
           className="h-full w-full bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/products-bg.jpg)',
-            filter: 'blur(3px)',
+            backgroundImage: 'url(/products-bg-blurred.jpg)',
           }}
         />
         {/* Dark overlay */}
