@@ -57,11 +57,11 @@ export function Integrations() {
             {integrations.map((integration, index) => (
               <div
                 key={integration.name}
-                className={`flex aspect-square cursor-pointer items-center justify-center p-4 transition-transform duration-100 hover:scale-150 ${
-                  isInView ? 'integration-fade-in' : 'opacity-0 scale-90'
-                }`}
+                className={`flex aspect-square cursor-pointer items-center justify-center p-4 transition-transform duration-100 hover:scale-150 ${isInView ? 'integration-fade-in' : 'scale-90 opacity-0'}`}
                 style={
-                  { '--stagger-delay': `${index * 30}ms` } as React.CSSProperties
+                  {
+                    '--stagger-delay': `${index * 30}ms`,
+                  } as React.CSSProperties
                 }
               >
                 <Image
