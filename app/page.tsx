@@ -142,11 +142,11 @@ function WorldClock() {
   return (
     <div
       ref={ref}
-      className="fixed left-0 right-0 top-6 flex justify-between px-6 font-mono text-sm tracking-wider text-white/25 sm:px-12"
+      className="fixed left-0 right-0 top-6 flex justify-between px-3 font-mono text-[9px] tracking-wider text-white/25 sm:px-12 sm:text-sm"
     >
       {ZONES.map((z) => (
         <div key={z.label} className="flex flex-col items-center gap-0.5">
-          <span className="text-[10px] uppercase tracking-[0.3em] text-white/15">
+          <span className="text-[7px] uppercase tracking-[0.2em] text-white/15 sm:text-[10px] sm:tracking-[0.3em]">
             {z.label}
           </span>
           <span data-tz={z.tz}>--:--:--</span>
@@ -492,7 +492,10 @@ export default function Home() {
       ref={containerRef}
       className="relative flex h-full w-full items-center justify-center"
     >
-      <Crosshair />
+      {/* Crosshair — hidden on touch devices */}
+      <div className="hidden sm:block">
+        <Crosshair />
+      </div>
 
       {/* ACCESS DENIED overlay */}
       {showDenied && (
@@ -532,8 +535,8 @@ export default function Home() {
       {/* World Clock — top bar */}
       <WorldClock />
 
-      {/* Mouse Coordinates — bottom center */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2">
+      {/* Mouse Coordinates — bottom center, hidden on mobile */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 hidden sm:block">
         <MouseCoords />
       </div>
 

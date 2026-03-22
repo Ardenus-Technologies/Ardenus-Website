@@ -81,8 +81,10 @@
     @apply bg-white/20 text-white;
   }
 
-  * {
-    cursor: none !important;
+  @media (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
   }
 }
 
