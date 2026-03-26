@@ -112,8 +112,6 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet, noimageindex');
   response.headers.set('X-Download-Options', 'noopen');
   response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
-  response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  response.headers.set('Pragma', 'no-cache');
 
   return response;
 }
