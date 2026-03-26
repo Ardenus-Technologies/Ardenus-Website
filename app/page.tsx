@@ -166,47 +166,49 @@ export default function Home() {
           className="fixed bottom-0 left-0 right-0 px-6 pb-8 sm:px-12 sm:pb-12 lg:px-16"
           style={{ opacity: copyrightOpacity }}
         >
-          {/* Founders row */}
-          <div className="mb-6 flex flex-wrap items-center gap-x-8 gap-y-2 sm:gap-x-12">
-            <span className="text-xs tracking-wider text-white/40 sm:text-sm">
+          {/* Founders */}
+          <div className="mb-6">
+            <span className="mb-3 block text-xs tracking-wider text-white/40 sm:mb-0 sm:text-sm">
               //Founders
             </span>
-            <a
-              href="https://www.linkedin.com/in/felixwood01/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
-            >
-              Felix Wood
-            </a>
-            <a
-              href="https://www.linkedin.com/in/francisvnguyen/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
-            >
-              Francis Nguyen
-            </a>
-            <a
-              href="https://www.linkedin.com/in/uku-pyle/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
-            >
-              Uku Pyle
-            </a>
-            <a
-              href="https://www.linkedin.com/in/richardking7/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
-            >
-              Richard King
-            </a>
+            <div className="mt-2 flex flex-col gap-2 sm:mt-0 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-12 sm:gap-y-2">
+              <a
+                href="https://www.linkedin.com/in/felixwood01/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
+              >
+                Felix Wood
+              </a>
+              <a
+                href="https://www.linkedin.com/in/francisvnguyen/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
+              >
+                Francis Nguyen
+              </a>
+              <a
+                href="https://www.linkedin.com/in/uku-pyle/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
+              >
+                Uku Pyle
+              </a>
+              <a
+                href="https://www.linkedin.com/in/richardking7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
+              >
+                Richard King
+              </a>
+            </div>
           </div>
 
           {/* Copyright row */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs tracking-wider text-white/20 sm:text-sm">
               2026 Ardenus Technologies. All rights reserved
             </p>
