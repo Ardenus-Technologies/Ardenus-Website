@@ -74,7 +74,15 @@ export default function Home() {
       // Lock when fully scrolled
       if (progress >= 0.99) {
         lockedRef.current = true;
+        // Desktop
         document.body.style.overflow = 'hidden';
+        // Mobile: fix body in place to prevent rubber-band scrolling
+        document.body.style.position = 'fixed';
+        document.body.style.inset = '0';
+        document.body.style.touchAction = 'none';
+        // Block touch move events
+        const blockTouch = (e: TouchEvent) => e.preventDefault();
+        window.addEventListener('touchmove', blockTouch, { passive: false });
       }
     };
 
