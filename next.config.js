@@ -1,17 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable React Strict Mode for better development experience
   reactStrictMode: true,
 
-  // Image optimization configuration
   images: {
-    // Disable optimization for better performance on small instances
     unoptimized: true,
-    // Add domains for external images if needed
     remotePatterns: [],
   },
 
-  // Disable x-powered-by header
+  // Suppress all server identification
   poweredByHeader: false,
 
   // Security headers
@@ -28,25 +24,32 @@ const nextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            key: 'Referrer-Policy',
+            value: 'no-referrer',
+          },
           {
             key: 'Permissions-Policy',
             value:
-              'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+              'camera=(), microphone=(), geolocation=(), browsing-topics=(), accelerometer=(), autoplay=(), encrypted-media=(), gyroscope=(), magnetometer=(), midi=(), payment=(), picture-in-picture=(), usb=(), xr-spatial-tracking=()',
           },
           {
             key: 'Content-Security-Policy',
             value: [
-              "default-src 'self'",
+              "default-src 'none'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob:",
+              "img-src 'self' data:",
               "font-src 'self'",
               "connect-src 'self' https://api.ipify.org",
               "frame-ancestors 'none'",
-              "base-uri 'self'",
-              "form-action 'self'",
+              "base-uri 'none'",
+              "form-action 'none'",
               "object-src 'none'",
+              "media-src 'none'",
+              "worker-src 'none'",
+              "manifest-src 'self'",
+              "upgrade-insecure-requests",
             ].join('; '),
           },
           {
@@ -60,6 +63,14 @@ const nextConfig = {
           {
             key: 'Cross-Origin-Embedder-Policy',
             value: 'require-corp',
+          },
+          {
+            key: 'X-Permitted-Cross-Domain-Policies',
+            value: 'none',
+          },
+          {
+            key: 'X-Download-Options',
+            value: 'noopen',
           },
         ],
       },

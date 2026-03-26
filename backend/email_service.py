@@ -13,13 +13,15 @@ Or with uvicorn:
 """
 
 import os
+import time
 import asyncio
 from datetime import datetime
 from typing import Optional
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from collections import defaultdict
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
 import aiosmtplib
@@ -29,24 +31,24 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI(
-    title="Ardenus Demo Request API",
-    description="API for handling demo request form submissions",
-    version="1.0.0"
+    title="Ardenus API",
+    docs_url=None,
+    redoc_url=None,
+    openapi_url=None,
 )
 
-# CORS configuration - allow requests from your frontend
+# CORS configuration - production origins only
+ALLOWED_ORIGINS = os.getenv(
+    "CORS_ORIGINS",
+    "https://ardenus.com,https://www.ardenus.com"
+).split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "https://ardenus.com",
-        "https://www.ardenus.com",
-        # Add your production domain here
-    ],
-    allow_credentials=True,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=False,
     allow_methods=["POST", "OPTIONS"],
-    allow_headers=["*"],
+    allow_headers=["Content-Type"],
 )
 
 # Email configuration from environment variables
@@ -57,13 +59,27 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 FROM_EMAIL = os.getenv("FROM_EMAIL", SMTP_USER)
 FROM_NAME = os.getenv("FROM_NAME", "Ardenus Website")
 
-# Recipients for demo requests
+# Recipients from environment variable
 RECIPIENTS = [
-    "uku@ardenus.com",
-    "francis@ardenus.com",
-    "felix@ardenus.com",
-    "richard@ardenus.com",
+    r.strip() for r in os.getenv("EMAIL_RECIPIENTS", "").split(",") if r.strip()
 ]
+
+# Rate limiting for email endpoint
+email_rate_limit: dict[str, list[float]] = defaultdict(list)
+EMAIL_RATE_WINDOW = 3600  # 1 hour
+EMAIL_RATE_MAX = 5  # 5 submissions per hour per IP
+
+
+def is_email_rate_limited(ip: str) -> bool:
+    now = time.time()
+    # Clean old entries
+    email_rate_limit[ip] = [
+        t for t in email_rate_limit[ip] if now - t < EMAIL_RATE_WINDOW
+    ]
+    if len(email_rate_limit[ip]) >= EMAIL_RATE_MAX:
+        return True
+    email_rate_limit[ip].append(now)
+    return False
 
 
 class DemoRequest(BaseModel):
@@ -221,8 +237,6 @@ def generate_plain_text_email(data: DemoRequest) -> str:
 NEW DEMO REQUEST
 Submitted on {submitted_at}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 CONTACT INFORMATION
 -------------------
 Name:       {data.firstName} {data.lastName}
@@ -238,10 +252,6 @@ State:      {data.state}
 BUSINESS IMPROVEMENT GOALS
 --------------------------
 {data.goals}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-This email was automatically generated from the Ardenus website demo request form.
 """
     return text
 
@@ -250,7 +260,10 @@ async def send_email(data: DemoRequest) -> bool:
     """Send HTML email to all recipients"""
 
     if not SMTP_USER or not SMTP_PASSWORD:
-        raise ValueError("SMTP credentials not configured. Set SMTP_USER and SMTP_PASSWORD environment variables.")
+        raise ValueError("SMTP credentials not configured.")
+
+    if not RECIPIENTS:
+        raise ValueError("No email recipients configured.")
 
     # Create the email message
     msg = MIMEMultipart("alternative")
@@ -266,62 +279,32 @@ async def send_email(data: DemoRequest) -> bool:
     msg.attach(MIMEText(plain_text, "plain"))
     msg.attach(MIMEText(html_content, "html"))
 
-    # Send the email
-    try:
-        await aiosmtplib.send(
-            msg,
-            hostname=SMTP_HOST,
-            port=SMTP_PORT,
-            start_tls=True,
-            username=SMTP_USER,
-            password=SMTP_PASSWORD,
-        )
-        return True
-    except Exception as e:
-        print(f"Failed to send email: {e}")
-        raise
-
-
-@app.get("/")
-async def root():
-    """Health check endpoint"""
-    return {"status": "ok", "service": "Ardenus Demo Request API"}
+    await aiosmtplib.send(
+        msg,
+        hostname=SMTP_HOST,
+        port=SMTP_PORT,
+        start_tls=True,
+        username=SMTP_USER,
+        password=SMTP_PASSWORD,
+    )
+    return True
 
 
 @app.post("/api/demo-request")
-async def submit_demo_request(data: DemoRequest):
-    """
-    Handle demo request form submission.
-    Sends an HTML email to all configured recipients.
-    """
+async def submit_demo_request(data: DemoRequest, request: Request):
+    """Handle demo request form submission."""
+    ip = request.headers.get("x-forwarded-for", request.client.host if request.client else "unknown").split(",")[0].strip()
+
+    if is_email_rate_limited(ip):
+        raise HTTPException(status_code=429, detail="Too many requests. Try again later.")
+
     try:
         await send_email(data)
-        return {
-            "success": True,
-            "message": "Demo request submitted successfully"
-        }
-    except ValueError as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Failed to send email: {str(e)}"
-        )
+        return {"success": True}
+    except Exception:
+        raise HTTPException(status_code=500, detail="Request failed.")
 
 
 if __name__ == "__main__":
     import uvicorn
-
-    print("\n" + "=" * 60)
-    print("  Ardenus Demo Request Email Service")
-    print("=" * 60)
-    print(f"\n  SMTP Host: {SMTP_HOST}")
-    print(f"  SMTP Port: {SMTP_PORT}")
-    print(f"  SMTP User: {SMTP_USER or '(not set)'}")
-    print(f"  From Email: {FROM_EMAIL or '(not set)'}")
-    print(f"\n  Recipients:")
-    for r in RECIPIENTS:
-        print(f"    - {r}")
-    print("\n" + "=" * 60 + "\n")
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)

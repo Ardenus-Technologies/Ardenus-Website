@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from 'next';
-import { fontSans, fontMono } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
+import { fontMono } from '@/lib/fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Ardenus',
-  description: 'Ardenus',
+  description: 'We Build the Systems You Don\u2019t See',
   metadataBase: new URL('https://ardenus.com'),
   icons: {
     icon: [
@@ -22,10 +21,10 @@ export const metadata: Metadata = {
     url: 'https://ardenus.com',
     siteName: 'Ardenus',
     title: 'Ardenus',
-    description: 'Ardenus',
+    description: 'We Build the Systems You Don\u2019t See',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-ardenus.png',
         width: 1200,
         height: 630,
         alt: 'Ardenus',
@@ -33,8 +32,12 @@ export const metadata: Metadata = {
     ],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
+    noarchive: true,
+    nosnippet: true,
+    noimageindex: true,
+    nocache: true,
   },
 };
 
@@ -50,12 +53,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cn(fontSans.variable, fontMono.variable)}
-      suppressHydrationWarning
-    >
-      <body className="h-screen w-screen overflow-hidden bg-black">
+    <html lang="en" className={fontMono.variable} suppressHydrationWarning>
+      <body className="min-h-screen bg-black">
         {children}
       </body>
     </html>

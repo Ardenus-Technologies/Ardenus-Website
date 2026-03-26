@@ -2,53 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================
-   CUSTOM FONTS
-   ============================================ */
-
-@font-face {
-  font-family: 'ZT Nature';
-  src: url('/fonts/ZTNature-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+/* Hide scrollbar across all browsers */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
-
-@font-face {
-  font-family: 'Nurom';
-  src: url('/fonts/Nurom-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
-
-@font-face {
-  font-family: 'DIN 1451';
-  src: url('/fonts/DIN1451-36breit.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Typold';
-  src: url('/fonts/Typold-Book500.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Edgecutting';
-  src: url('/fonts/EdgecuttingLiteMedium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ============================================
-   BASE STYLES
-   ============================================ */
 
 @layer base {
   html {
@@ -69,49 +30,18 @@
   body {
     @apply bg-black text-white antialiased;
     font-family:
-      'Edgecutting',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      sans-serif;
+      var(--font-mono),
+      ui-monospace,
+      SFMono-Regular,
+      'Cascadia Code',
+      monospace;
   }
 
-  ::selection {
-    @apply bg-white/20 text-white;
+  * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
-
-  @media (pointer: fine) {
-    * {
-      cursor: none !important;
-    }
-  }
-}
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-
-@keyframes blink-caret {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.entrance-delay {
-  animation: fade-in 1.5s ease-out 1.5s forwards;
-  opacity: 0;
 }
