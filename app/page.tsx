@@ -176,10 +176,10 @@ export default function Home() {
         >
           {/* Founders */}
           <div className="mb-6">
-            <span className="mb-3 block text-sm tracking-wider text-white/40 sm:mb-0">
-              //Founders
-            </span>
-            <div className="mt-2 flex flex-col gap-2 sm:mt-0 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-12 sm:gap-y-2">
+            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-12 sm:gap-y-2">
+              <span className="text-sm tracking-wider text-white/40">
+                //Founders
+              </span>
               <a
                 href="https://www.linkedin.com/in/felixwood01/"
                 target="_blank"
@@ -212,7 +212,7 @@ export default function Home() {
               >
                 Richard King
               </a>
-            </div>
+          </div>
           </div>
 
           {/* Copyright row */}
