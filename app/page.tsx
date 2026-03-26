@@ -120,7 +120,7 @@ export default function Home() {
         <img
           src="/logo.png"
           alt="Ardenus"
-          className="h-4 w-auto opacity-30 sm:h-5 lg:h-6"
+          className="h-5 w-auto opacity-30 sm:h-5 lg:h-6"
         />
         <a
           href="https://www.linkedin.com/company/ardenus/"
