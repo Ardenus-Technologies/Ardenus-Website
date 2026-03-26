@@ -144,7 +144,7 @@ export default function Home() {
 
         {/* Word-by-word reveal — sticky centered */}
         <div className="fixed inset-0 flex items-center justify-center px-6">
-          <h1 className="max-w-xl text-center text-2xl leading-relaxed tracking-tight sm:max-w-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-relaxed">
+          <h1 className="max-w-xl text-center text-3xl leading-relaxed tracking-tight sm:max-w-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-relaxed">
             {WORDS.map((word, i) => (
               <span
                 key={i}
@@ -168,7 +168,7 @@ export default function Home() {
         >
           {/* Founders */}
           <div className="mb-6">
-            <span className="mb-3 block text-xs tracking-wider text-white/40 sm:mb-0 sm:text-sm">
+            <span className="mb-3 block text-sm tracking-wider text-white/40 sm:mb-0">
               //Founders
             </span>
             <div className="mt-2 flex flex-col gap-2 sm:mt-0 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-12 sm:gap-y-2">
@@ -176,7 +176,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/felixwood01/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
+                className="text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60"
               >
                 Felix Wood
               </a>
@@ -184,7 +184,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/francisvnguyen/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
+                className="text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60"
               >
                 Francis Nguyen
               </a>
@@ -192,7 +192,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/uku-pyle/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
+                className="text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60"
               >
                 Uku Pyle
               </a>
@@ -200,7 +200,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/richardking7/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:text-sm"
+                className="text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60"
               >
                 Richard King
               </a>
@@ -209,11 +209,11 @@ export default function Home() {
 
           {/* Copyright row */}
           <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs tracking-wider text-white/20 sm:text-sm">
+            <p className="text-sm tracking-wider text-white/20">
               2026 Ardenus Technologies. All rights reserved
             </p>
             {ip && (
-              <p className="text-xs tracking-wider text-white/20 sm:text-sm">
+              <p className="hidden text-sm tracking-wider text-white/20 sm:block">
                 {ip}
               </p>
             )}
