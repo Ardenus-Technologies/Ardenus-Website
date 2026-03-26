@@ -184,7 +184,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/felixwood01/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60"
+                className="self-start text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:self-auto"
               >
                 Felix Wood
               </a>
@@ -192,7 +192,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/francisvnguyen/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60"
+                className="self-start text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:self-auto"
               >
                 Francis Nguyen
               </a>
@@ -200,7 +200,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/uku-pyle/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60"
+                className="self-start text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:self-auto"
               >
                 Uku Pyle
               </a>
@@ -208,7 +208,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/richardking7/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60"
+                className="self-start text-sm tracking-wider text-white/30 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/60 sm:self-auto"
               >
                 Richard King
               </a>
